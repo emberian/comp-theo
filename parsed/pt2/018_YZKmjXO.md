@@ -1,0 +1,213 @@
+## Transcription
+
+COMPUTATIONAL THEOLOGY SERIES
+
+15 / 18
+
+DISTINCTION ENGINEERING
+
+What a system can mark is what it can predict, value, and suffer.
+
+1 FIRST OPERATION:  
+DRAW A DISTINCTION.
+
+Before “this” or “that,”  
+there is only  
+undifferentiated  
+possibility.
+
+To mark a boundary  
+is to open a world  
+of form.
+
+undifferentiated
+
+mark
+
+A mark | not-mark → form emerges.
+
+2 MARK AND UNMARK:  
+Boundaries create the play of world.
+
+INSIDE / OUTSIDE
+
+SAME / DIFFERENT
+
+SIGNAL / NOISE
+
+Containment  
+and exclusion.
+
+Identity emerges  
+from contrast.
+
+Meaning emerges from  
+what is filtered out.
+
+Unmarking dissolves the boundary; new worlds reappear.
+
+3 DISTINCTIONS SCAFFOLD  
+MODELS AND CATEGORIES.
+
+Models ride on  
+distinctions.
+
+Categories are  
+compressed  
+boundaries.
+
+Entities  
+(what is in)
+
+Types  
+(levels)
+
+Relations  
+(among)
+
+Systems  
+(of all)
+
+Change the distinction → change the scaffold → change the model.
+
+4 PREDICTION REQUIRES STABLE DISTINCTIONS;  
+DESIRE INHERITS THEM; PAIN INTENSIFIES AROUND THEM.
+
+PREDICTION  
+Stability of boundary  
+makes future thinkable.
+
+Unstable boundaries  
+make futures noisy.
+
+DESIRE  
+We want what  
+is inside our map.
+
+Desire inherits  
+our distinctions.
+
+PAIN  
+Threats to boundaries  
+feel like injury.
+
+Pain is amplified  
+where distinctions  
+are sharp.
+
+Boundaries shape what we expect, want, and fear.
+
+5 BAD DISTINCTIONS CREATE  
+FALSE GOODS, FALSE THREATS, AND FALSE WOUNDS.
+
+FALSE GOODS
+
+FALSE THREATS
+
+FALSE WOUNDS
+
+We value what is merely  
+in-group, loud, or visible.
+
+We fear what is only  
+different, unfamiliar,  
+or inconvenient.
+
+We wound ourselves  
+for misrecognition,  
+comparison, or shame.
+
+Outcome: hollow  
+satisfaction, addiction.
+
+Outcome: paranoia,  
+control, violence.
+
+Outcome: self-hatred,  
+fragmentation.
+
+Misdrawn lines mislead the whole system.
+
+6 DISTINCTION REDESIGN:  
+ALTER BOUNDARIES, GRANULARITY, AND FRAMING  
+TO CHANGE COGNITION.
+
+BOUNDARIES
+
+GRANULARITY
+
+FRAMING
+
+Expand, contract,  
+dissolve, or relocate  
+boundaries.
+
+Coarsen or refine  
+the level at which  
+we carve reality.
+
+Shift the axes, the  
+reference, and the  
+purpose.
+
+Redesign the distinction → redesign the model → redesign the world.
+
+7 SPENCER–BROWN /  
+LAW-OF-FORMS RESONANCE
+
+The world of form begins with a mark.
+
+No mark  
+(no form)
+
+Mark  
+(form)
+
+Distinction  
+(enables all forms)
+
+To mark is to call something forth.  
+To re-mark is to transform the world.
+
+Keep this conceptual, not biographical.
+
+8 PROVISIONAL THESIS
+
+ONTOLOGY  
+What exists is what the  
+distinction allows.
+
+AGENCY  
+What can be done is what the  
+distinction makes possible.
+
+SUFFERING  
+What can hurt is what the  
+distinction exposes.
+
+Change the way we draw → change what there is, what we do,  
+and how we can be hurt.
+
+SYNTHESIS: THE DISTINCTION LOOP
+
+DISTINCTION  
+We mark.
+
+PREDICTION  
+We project.
+
+VALUE  
+We prefer.
+
+PAIN  
+We suffer.
+
+Feedback refines or  
+corrupts the distinction.  
+The loop is self-reinforcing.
+
+To redraw the distinction is already to redesign the world.
+
+## Visual
+
+A vertically oriented parchment-style poster with ornate medieval manuscript borders, navy-and-gold corner emblems, and eight numbered instructional panels arranged in a two-column grid. The panels mix small schematic diagrams, icons, arrows, and symbolic figures: boundaries, circles, signal waves, an eye, a heart, a blood drop, a chalice, a serpent, a shield, and monk-like illuminated figures. The palette is cream, navy, gold, black, and dark red, with serif small-caps typography and rubric-style emphasis, ending in a bottom “distinction loop” flow diagram.

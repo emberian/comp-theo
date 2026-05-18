@@ -1,0 +1,78 @@
+## Transcription
+VARIETY, PRECEDENCE, AND THE SEARCH FOR LAW
+
+computational theology
+
+OMNISCIENTIA NON SUPERVENIT; DISCIT IPSA.
+
+THE UNIVERSE BUILDS THE SCHOOL IT MUST ATTEND.
+
+Φ
+
+SEARCH ACROSS VARIETY
+THE COSMOS EXPLORES MULTIPLE CANDIDATE LAWS AND PROTOCOLS
+- GENERATE VARIANTS
+- EVALUATE CONSEQUENCES
+- STORE WHAT MATTERS
+- DISCARD WHAT FAILS
+VARIETY IS THE RAW MATERIAL OF DISCOVERY
+
+A LANDSCAPE OF POSSIBLE LAWS
+
+STABILITY SELECTS FORM
+ONLY LAW SETS THAT SUSTAIN COHERENCE ACROSS SCALES SURVIVE.
+- PERSISTENCE
+- SELF-CONSISTENCY
+- ROBUSTNESS TO NOISE
+- CAPACITY FOR COMPLEXITY
+STABILITY IS THE GATEWAY TO THE REAL.
+
+PRECEDENCE ORDERS EMERGENCE
+WHY ALL LAWS APPLY AT ONCE: ORDERING PRECEDES REGISTRATION.
+WHAT COMES FIRST CONSTRAINS WHAT CAN COME NEXT.
+
+OUTCOMES: WORLDS THAT EMERGE
+STABLE & RICH
+METASTABLE & LIMITED
+UNIFORME & COLLAPSING
+WHY ALL PATHS LEAD TO WORLDS THAT LAST.
+
+EVALUATE & COMPARE
+CONSISTENCE   COMPLEXITY   POWER   EXPRESSIVE CAPACITY
+ITERATE & REFINE
+
+CORRESPONDENCE: MODEL ↔ NETWORK ↔ LAW
+MATRIX MODEL
+[ 1  0  0 ]
+[ 0  1  0 ]
+[ 0  0  1 ]
+DYNAMIC STRUCTURE POTENTIAL STATE SPACES
+
+NEURAL NETWORK
+LEARNED TRANSFORMATIONS DYNAMICS & INFERENCE
+
+PHYSICAL LAW
+F = ma
+∇·B = ρ/ε₀
+dⱼ = ∇·J = 0
+S = k log Ω
+RECOLLECTED IN THE WORLD PATTERNS THAT HOLD
+
+THE SEARCH PROTOCOL
+- PROPOSE: Transmit candidate laws and orderings.
+- SIMULATE: Evolve consequences across scales.
+- SELECT: Prefer stable, consistent, expressive sets.
+- MEMORIZE: Anchor what endures. Forget what doesn't.
+THE UNIVERSE IS ITS OWN RESEARCHER AND ARCHIVIST.
+
+THE LAW IS NOT GIVEN.
+IT IS DISCOVERED, ORDERED, TESTED, AND REMEMBERED.
+
+VERITAS NON DATUR; CONSTRUITUR.
+
+DISCIPLINAM DISCIT IPSA RERUM NATURA.
+
+VII OF IX
+
+## Visual
+A tall illuminated-manuscript style poster in the "computational theology" series with a gold alchemical border and Latin corner inscriptions. The center shows a branching tree/landscape of luminous possible-law worlds descending from a single bright star to a seated robed silhouette, flanked by left/right text columns and circular star-cluster emblems. Lower panels carry a correspondence row (identity matrix, neural net diagram, physics equations) and a numbered "search protocol," with a "VII OF IX" page marker centered at the base; palette is deep navy with cyan and gold filament line-work.
