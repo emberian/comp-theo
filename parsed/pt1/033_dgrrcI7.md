@@ -1,0 +1,215 @@
+## Transcription
+
+ORDERED CREATION / LEAST-ACTION SERIES · 7 / 8
+
+WHERE RECURSION  
+BREAKS
+
+Why least-action minimization  
+is not automatically self-similar.
+
+“  
+Local thrift  
+can build  
+expensive  
+worlds.  
+”
+
+NESTED SCALES
+
+LOCAL MINIMA CONFLICT WITH GLOBAL MINIMA
+
+Worldsystem  
+(macro)
+
+Subsystems  
+(meso)
+
+Components  
+(micro)
+
+Trapped in  
+a high-action  
+macro basin.
+
+Each subsystem  
+minimizes its  
+own action.
+
+Parts do the  
+same locally.
+
+LOCAL OPTIMA
+
+SCALE CONFLICT
+
+GLOBAL TRAP
+
+DIAGNOSTIC QUESTION
+
+Does minimizing  
+action locally  
+preserve the  
+global action  
+economy,
+
+or does it  
+externalize cost  
+to other scales?
+
+IMPLICATION
+
+Goods can fail to appear  
+if the cheapest local  
+motions create  
+costly global structure.
+
+Local economy  
+≠  
+Global economy
+
+FAILURE MODES: WHY RECURSION BREAKS
+
+1  
+LOCAL MINIMA  
+VS GLOBAL  
+MINIMUM
+
+Many small dips  
+mislead search  
+away from the  
+global minimum.
+
+2  
+INCOMPATIBLE  
+BOUNDARY  
+CONDITIONS
+
+Locally optimal states  
+cannot be tiled  
+without creating  
+boundary strain.
+
+3  
+NON-ADDITIVE  
+COUPLING
+
+Interactions make the  
+whole more (or less)  
+than the sum of  
+its parts.
+
+4  
+FRUSTRATION /  
+CHIRALITY  
+LOOPS
+
+Loops force  
+contradictory  
+preferences;  
+no state satisfies  
+all locally.
+
+5  
+PATH DEPENDENCE  
+& HYSTERESIS
+
+History matters.  
+Return path ≠  
+forward path.  
+Costs get locked in.
+
+6  
+SELF-REFERENCE  
+COLLAPSE
+
+Action of the system  
+alters the rules  
+it uses to evaluate  
+action.
+
+NON-COMPOSABILITY
+
+ACTION DOES NOT COMPOSE UNDER STRONG INTERACTIONS.
+
+S_total ≠ Σ_i S_i
+
+In general:
+
+S_total = Σ_i S_i + Σ_{i<j} I_ij + C_boundary + C_history + …
+
+S_i  
+local action of subsystem i
+
+I_ij  
+interaction term between i and j
+
+C_boundary  
+boundary / constraint cost
+
+C_history  
+path-dependence / hysteresis cost
+
+PAIR INTERACTION EXAMPLE
+
+1  
+2  
+3  
+4
+
+I_ij > 0  
+synergy cost
+
+I_ij < 0  
+cooperative  
+benefit
+
+WHEN RECURSION HOLDS (CONDITIONAL)
+
+Weak interactions  
+Clean boundaries  
+No hidden costs  
+No frustrated loops  
+No path dependence
+
+I_ij ≈ 0, C_* ≈ 0
+
+THEN S_total ≈ Σ_i S_i
+
+CONSEQUENCE
+
+LOCAL THRIFT CAN BUILD GLOBAL EXPENSIVENESS.
+
+Parts: cheap motions
+
+Locally cheap
+
+=
+
+Globally costly
+
+Externalized costs appear as:
+
+• Constraint buildup  
+  (geometry, tension, congestion)  
+• Fragile states (high sensitivity)  
+• Latent costs (paid later)  
+• Lost options (reduced flexibility)
+
+What looks  
+optimal here  
+can be  
+suboptimal  
+elsewhere.
+
+THESIS
+
+RECURSIVE LEAST ACTION IS CONDITIONAL,  
+NOT AUTOMATIC.
+
+Strong interactions, hidden costs,  
+and scale conflict can destroy the recursion.
+
+## Visual
+
+A dense retro-modern poster uses cream paper texture, black condensed type, red and teal emphasis, and geometric Bauhaus-style blocks. The main diagram shows nested micro/meso/macro optimization basins connected by dotted lines, with local checkmarks leading toward a red global failure mark. Smaller panels use network diagrams, wells, arrows, warning symbols, and equations to show how local optima, coupling, hysteresis, and boundary conflicts break compositional reasoning across scales.

@@ -1,0 +1,182 @@
+## Transcription
+
+COMPUTATIONAL THEOLOGY SERIES  
+4 / 18
+
+THE FRUSTRATION EQUATION
+
+Suffering grows when discrepancy is believed, attended, and replayed.
+
+1  THE EQUATION
+
+F ≈ perceived reward loss × certainty × attention × replay = F
+
+how much was lost  
+(relative to expected)
+
+how sure the loss  
+is real
+
+how much capacity  
+is devoted
+
+how many times it  
+is reactivated
+
+frustration  
+intensity
+
+2  PERCEIVED  
+REWARD LOSS
+
+Expected reward  
+minus obtained  
+reward,  
+thresholded at zero.
+
+L = max(0, E − O)
+
+0 = no loss  
+1 = total loss
+
+3  CERTAINTY
+
+How convinced  
+the agent is  
+that the loss  
+is real.
+
+0 = totally unsure  
+1 = absolutely certain
+
+4  ATTENTION
+
+How much  
+processing  
+resources are  
+allocated to  
+the loss.
+
+0 = ignored  
+1 = fully engrossed
+
+5  REPLAY
+
+How many  
+times the loss  
+is reactivated  
+in memory or  
+simulation.
+
+0 = never  
+1 = constantly
+
+WORKED EXAMPLE
+
+A modest loss can become  
+major frustration if certainty,  
+attention, and replay are all high.
+
+Scenario: You were  
+passed over for a small  
+recognition you expected.
+
+TERM
+
+Low settings (mild frustration)
+
+High settings (major frustration)
+
+Perceived reward loss (L)
+
+0.20 (small gap)
+
+0.20 (same small gap)
+
+Certainty (C)
+
+0.30 (maybe I misread it)
+
+0.95 (this is definitely unfair)
+
+Attention (A)
+
+0.20 (brief thought)
+
+0.90 (I keep focusing on it)
+
+Replay (R)
+
+0.20 (one or two replays)
+
+0.95 (all day, every day)
+
+F ≈ L × C × A × R
+
+0.20 × 0.30 × 0.20 × 0.20 = 0.0024  
+≈ very mild frustration
+
+0.20 × 0.95 × 0.90 × 0.95 = 0.1625  
+≈ intense frustration
+
+6  AMPLIFIERS
+
+SELF-RELEVANCE  
+It touches my identity,  
+status, or story.
+
+PUBLIC MEANING  
+Others saw it, judged it,  
+or it affects my image.
+
+IRREVERSIBILITY  
+It cannot be undone  
+or taken back.
+
+HUMILIATION  
+It feels degrading,  
+exposing, or shameful.
+
+REPEATED FAILURE  
+It fits a pattern of prior  
+letdowns or defeats.
+
+7  REDUCERS
+
+LOWER EXPECTATION  
+Calibrate reality:  
+expect less, suffer less.
+
+LOWER CERTAINTY  
+Leave space for doubt;  
+most stories are partial.
+
+BROADER ATTENTION  
+Distribute resources across  
+many things.
+
+LESS COMPULSIVE REPLAY  
+Interrupt the loop;  
+don’t rehearse the loss.
+
+NONATTACHMENT  
+Hold outcomes lightly;  
+act, release, remain free.
+
+8  INTERPRETIVE NOTE
+
+Pain is not just outcome;  
+it is outcome filtered  
+through cognition.
+
+Change the filters,  
+change the suffering.
+
+THESIS
+
+Error becomes suffering when cognition  
+keeps paying interest on the loss.
+
+## Visual
+
+An illuminated-manuscript style poster with ornate borders, numbered panels, gauges, tables, and icon medallions in navy, burgundy, teal, and gold on aged parchment. The main equation is presented as a chain of four gauge-like variables leading to frustration intensity, with later panels unpacking each term. Religious and symbolic imagery includes scales, an all-seeing eye, a head with stars, a spiral, monk/scribe figures, a split brain-and-heart emblem, and a tree, giving the analytical model a medieval theological visual language.

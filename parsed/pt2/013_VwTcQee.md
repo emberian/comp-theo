@@ -1,0 +1,184 @@
+## Transcription
+
+• COMPUTATIONAL THEOLOGY SERIES •
+
+10 / 18
+
+PAIN BECOMES CURRICULUM
+
+A self-learning system reorganizes itself around what hurt, what mattered, and what returned.
+
+1 CORE CLAIM
+
+Pain is not mere damage;  
+it is error made salient  
+to a self.
+
+pain ≈ discrepancy × self-relevance × replay  
+(error) (to me) (revisited)
+
+2 WHY PAIN TEACHES
+
+Surprising loss violates  
+expectation and demands  
+a better model.
+
+It forces policy adjustment  
+to reduce future error.
+
+It prioritizes memory  
+so the system doesn’t  
+forget what mattered.
+
+3 SALIENCE RANKING
+
+WEAK EVENTS  
+Ignored
+
+STRONG EVENTS  
+Stored
+
+PAINFUL EVENTS  
+Repeatedly Sampled
+
+Low impact,  
+no update.
+
+Moderate impact,  
+one-pass learning.
+
+High impact,  
+multi-pass learning.
+
+Salience ≈ |error| × self-relevance × (1 + # replays)
+
+4 CURRICULUM SHIFT
+
+World  
+(context)
+
+Event  
+(happens)
+
+Loss  
+(error)
+
+Attention  
+(focus)
+
+Replay  
+(revisit)
+
+Policy Update  
+(adjust)
+
+Future  
+Avoidance  
+(steer away)
+
+Future  
+Craving  
+(seek more)
+
+5 PAINFUL INTELLIGENCE
+
+When prediction,  
+desire, and self-  
+modeling are  
+fused, intelligence  
+feels pain.
+
+PREDICTION  
+(what will  
+happen)
+
+DESIRE  
+(what I want  
+to happen)
+
+SELF-MODEL  
+(who I am,  
+what matters)
+
+PAIN
+
+6 ADAPTIVE BENEFIT / MALADAPTIVE RISK
+
+PAIN AS SIGNAL
+
+PAIN AS PRISON
+
+Highlights critical error
+
+Amplifies noise
+
+Guides better choices
+
+Feeds rumination
+
+Prioritizes what matters
+
+Narrows attention
+
+Builds resilience  
+through calibration
+
+Erodes well-being  
+and flexibility
+
+Wisdom = extract signal, abandon the prison.
+
+7 WHAT GETS LEARNED?
+
+What to avoid  
+(reduce future loss)
+
+What to seek  
+(increase future gain)
+
+What threatens identity  
+(protect the self-model)
+
+What predicts future loss  
+(anticipate & prepare)
+
+8 PROVISIONAL THESIS
+
+Pain teaches fastest  
+when it is
+
+Vivid (high surprise)
+
+Self-relevant (this matters to me)
+
+Repeatedly revisited (on purpose  
+or by compulsion)
+
+Learning accelerates with  
+signal × relevance × replay.
+
+SYNTHESIS: THE PAIN CURRICULUM LOOP
+
+SIGNAL  
+Error becomes  
+salient.
+
+MEMORY  
+Encoded and  
+revisited.
+
+POLICY  
+Beliefs and behaviors  
+are updated.
+
+FUTURE  
+Less of the old  
+pain, more of  
+what matters.
+
+Pain becomes curriculum when the learner  
+starts studying the wound more than the world.
+
+## Visual
+
+A parchment-style illuminated manuscript poster is divided into numbered panels with ornate borders, navy-and-gold medieval decoration, and serif/small-caps typography. The diagrams combine computational learning motifs with theological iconography: spirals, salience dot plots, flow arrows, a Venn diagram, a benefits/risks table, saint-like scribes, halos, hearts, eyes, shields, scales, and stars. The palette is dominated by aged cream paper, deep navy, gold, burgundy, and muted teal, giving the abstract learning theory the look of a sacred scholastic chart.
