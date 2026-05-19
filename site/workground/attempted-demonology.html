@@ -1,0 +1,264 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Attempted Demonology, Read Closely — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head><body data-root="../">
+<main><article class="prose">
+
+<p class="kicker">WORKGROUND · NON-AUTHORITATIVE</p>
+<h1>Attempted Demonology, Read Closely</h1>
+<p class="lede">I went looking for a bestiary and found a four-word prompt
+that grew one. This is a panel-level audit of every named demon, how thin its
+text actually is, and where it came from.</p>
+
+<div class="note">Lab notebook. The working premise — handed to me, and which
+I set out to falsify rather than flatter — is that the "computational
+demonology" is not a discovered taxonomy but mostly generative
+pattern-completion. I will mark where I think the premise holds, where it
+overreaches, and the one place I think it fails. Speculation is flagged.
+Citations are real: panels as "pt3 · panel NN", transcript as line numbers in
+<code>transcript/conversation.full.md</code>.</div>
+
+<h2>The roster (everything named "demon" or a capture-pattern)</h2>
+
+<p>Grepping <code>parsed/pt*/*.md</code> for <em>demon / idol / capture /
+basin / totality</em> and reading the hits, here is the complete cast. I
+split it by where it actually lives in the corpus, because that turns out to
+matter.</p>
+
+<h3>A. The pt2 "tiny god" arc (panels 042–050)</h3>
+<ul>
+  <li><strong>The bad goal / tiny god</strong> — pt2 · panel 042. Not called
+  a demon yet; a goal that "demands sacrifice, narrows attention, and calls
+  the measurable sacred."</li>
+  <li><strong>The metric-idol</strong> — pt2 · panel 043. "What gets measured
+  becomes what gets worshipped."</li>
+  <li><strong>The demon proper</strong> — pt2 · panel 044, the load-bearing
+  definition: <em>"A demon is a criterion that survives by making you suffer
+  for it"</em>; formula <code>DEMON = GOAL + REPLAY + SELF-WORTH</code>.</li>
+  <li><strong>Imaginal world of the goal</strong> — pt2 · panel 045;
+  <strong>Intensional capture</strong> (the <code>G : Event × World →
+  Interpretation</code> operator) — pt2 · panel 046; <strong>Topos of the
+  wound</strong> — pt2 · panel 047. Mechanism panels, not new species.</li>
+  <li><strong>Sacred simulation</strong> — pt2 · panel 048: the explicit
+  guardrail, "Not every imaginal agent is a demon."</li>
+  <li><strong>Exorcism as de-idolization</strong> — pt2 · panel 049;
+  <strong>From goal to vow</strong> — pt2 · panel 050. The cure.</li>
+</ul>
+
+<h3>B. The pt3 bestiary (the dense roster, panels 012–020)</h3>
+<ul>
+  <li><strong>Substance demon</strong> — pt3 · panel 001 ("a computational
+  theology of addiction").</li>
+  <li><strong>The Rut</strong> / conditioned ruts — pt3 · panel 002 (the only
+  one with its own equations: <code>C_active(n)=C_0/(1+αn²)</code>).</li>
+  <li><strong>Safety demon, after violation</strong> — pt3 · panel 003;
+  re-stated tersely at pt3 · panel 016.</li>
+  <li><strong>The idol sits; the demon runs the temple</strong> — pt3 · panel
+  012: <code>demon = idol + recursive control loop</code>.</li>
+  <li><strong>Metric demon</strong> — pt3 · panel 013;
+  <strong>Mimetic demon</strong> — pt3 · panel 014;
+  <strong>Shame demon</strong> — pt3 · panel 015;
+  <strong>Safety demon</strong> — pt3 · panel 016;
+  <strong>Purity demon</strong> — pt3 · panel 017;
+  <strong>Doom demon</strong> — pt3 · panel 018;
+  <strong>Nihilism demon</strong> — pt3 · panel 019;
+  <strong>Totality demon</strong> — pt3 · panel 020.</li>
+</ul>
+
+<h3>C. The pt5 terminus</h3>
+<ul>
+  <li><strong>The Totality Demon</strong> (again) — pt5 · panel 006:
+  "The final idol is the system that claims to explain everything… Even
+  theology can become an idol."</li>
+</ul>
+
+<p class="note">Note already: the named-"demon" set in the <em>posters</em> is
+smaller than the taxonomy in the dialogue. Eight pt3 demon panels (012–020)
+plus Substance, Rut, Safety = roughly eleven. The transcript at one point
+lists <em>twelve</em> genera, at another a refined <em>ten</em>. The drawn
+corpus is a lossy sample of a longer generated list — which is the first
+piece of evidence for the premise.</p>
+
+<h2>How thin is each one, really?</h2>
+
+<p>I read every panel above in full. My honest verdict, demon by demon, on
+whether there is a <em>distinct mechanism</em> under the name or just a
+re-skin of one engine:</p>
+
+<ul>
+  <li><strong>Metric demon (pt3·013)</strong> — <em>thick-ish.</em> It has a
+  real claim: <code>being = being counted</code>, "what is unmeasured
+  disappears," and a named class of "rebellious goods" (play, mercy, rest,
+  beauty) that resist the ledger. This is Scott's <em>legibility</em> /
+  Goodhart, dressed liturgically, but the dressing tracks a real argument.</li>
+  <li><strong>Mimetic demon (pt3·014)</strong> — <em>thick, but borrowed.</em>
+  It is Girard, almost undisguised ("I desire what you desire because you
+  desire it"; consecration by the other's gaze). Conceptually solid because
+  it is imported, not generated. The transcript even admits "This is
+  Girardian" (line 4321).</li>
+  <li><strong>Shame demon (pt3·015)</strong> — <em>medium.</em> One genuine
+  compression: <code>local mistake → identity verdict</code>. That arrow is
+  the same arrow as the metric demon's "reduces you to a number," just with
+  the sign flipped inward.</li>
+  <li><strong>Safety demon (pt3·003, 016)</strong> — <em>medium, and the most
+  interesting.</em> It carries a non-trivial structural idea: a subroutine
+  that was <em>genuinely protective</em> and becomes pathological only by
+  <em>refusing to update its world-model</em>. More on this below; I think
+  this is the one real contribution.</li>
+  <li><strong>Purity demon (pt3·017)</strong> — <em>thin.</em> "Mixture is
+  threat; ambiguity rejected." It is the safety demon pointed at category
+  boundaries instead of threat memory. No distinct mechanism.</li>
+  <li><strong>Doom demon (pt3·018)</strong> — <em>thin.</em> "Prediction
+  becomes fate," possibility pruned to one dark attractor. This is the
+  Totality demon's collapse-of-the-space move applied to the future tense.</li>
+  <li><strong>Nihilism demon (pt3·019)</strong> — <em>thin as drawn.</em> The
+  panel is mostly mood ("iconoclasm without discernment," "hates beauty").
+  The one crisp line — <em>constructed ≠ unreal</em> — is in the transcript
+  (line 4124), not really in the poster.</li>
+  <li><strong>Totality demon (pt3·020, pt5·006)</strong> — <em>thin content,
+  load-bearing function.</em> Almost no mechanism ("the map claims the
+  throne"). But it is the only demon aimed at the framework <em>itself</em>,
+  and it is doing the apophatic-humility job the corpus needs. Its value is
+  rhetorical-structural, not analytic.</li>
+  <li><strong>Substance demon (pt3·001)</strong> — <em>thin/derivative.</em>
+  A craving loop (craving→ritual→reward→tolerance→withdrawal→repeat). This is
+  textbook addiction-cycle psychology with a "demon" label stapled on.</li>
+  <li><strong>The Rut (pt3·002)</strong> — <em>the only quantified one.</em>
+  It is the lone panel that writes its own dynamics:
+  <code>C_active(n)=C_0/(1+αn²)</code> (repetition lowers local action cost)
+  and <code>W_options(n)=W_0/(1+β log(1+n))</code> (conditioning narrows
+  futures). Speculation: this looks like it was generated to <em>satisfy the
+  expectation that a "theology" should have some math on the page</em>, not
+  derived from anything — the functional forms are arbitrary (why <code>n²</code>?
+  why <code>log</code>?). But unlike every other demon it at least commits to
+  a falsifiable shape.</li>
+</ul>
+
+<p>Collapsing that: there is essentially <strong>one engine</strong> —
+attention capture + replay + self-binding, with a hidden cost — and the
+"species" are that engine pointed at different contents (numbers, others'
+desire, error, threat, category-purity, the future, meaning, the model
+itself, a substance, a habit). The pt2·044 definition and the pt3·012
+identity <code>demon = idol + recursive control loop</code> say this
+outright. The taxonomy is largely <em>one idea wearing twelve hats</em>.</p>
+
+<h2>Prompt-provenance: how sparse were the prompts?</h2>
+
+<p>This is where the premise gets its strongest support. I traced the demon
+material to its origin turns in the transcript. The human inputs that
+produced the entire bestiary are astonishingly thin.</p>
+
+<ol>
+  <li><strong>The doorway.</strong> Line 3564 — the only substantive demon
+  prompt the human ever writes: <em>"the 'a bad goal is a tiny god' framing
+  is pretty much perfect and brings me towards computational demonology and
+  meditative work with intensional + imaginal world simulations (diety yogas,
+  cc hennix are related here somehow) let's try and pull in some more
+  ingredients."</em> That is the seed. One sentence, gesturing.</li>
+
+  <li><strong>The expansion trigger.</strong> Line 3977 — the prompt that
+  generates the <em>entire</em> twelve-genus taxonomy is, in full:
+  <em>"there are other demons too …"</em> Four words and an ellipsis. The
+  model replies (3994) "computational demonology should probably have a whole
+  taxonomy of parasitic inner architectures" and immediately emits a
+  twelve-item list (metric, comparison, replay, shame, safety, purity, doom,
+  desire, revenge, identity, nihilism, false-transcendence) with a coined
+  closed-form <code>D = C × A × R × I × H</code> (line ~4138).</li>
+
+  <li><strong>The model self-prompts the rest.</strong> The pt3 poster
+  variants (013–020) come out of the model's own batch image-generation JSON
+  (the long <code>batch_requests</code> blocks around lines 3967 and 4290+),
+  not from any further human steering. The human's only intervening turns in
+  this whole region are: "*chef kissyfingers* beautiful plan" (3941),
+  "there are other demons too …" (3977), a scope correction "we're on the
+  computational theology bent now" (4206), and "let's cook up ~5 images with
+  some 'skillful means'" (4635). None of these specify a single demon.</li>
+</ol>
+
+<p>So the causal chain is: <strong>one good human phrase ("a bad goal is a
+tiny god") → one four-word "more please" → a self-elaborating bestiary.</strong>
+The model even revises its own taxonomy unprompted: twelve genera at line
+3994, then a re-derived <em>ten</em> at line 4298 (with "Gnostic escape" and
+"Mimetic" swapped in, "comparison/replay/identity/false-transcendence"
+folded away). A discovered structure does not get silently renumbered from 12
+to 10 between two messages with no new evidence. A generated one does. That
+renumbering is, to me, the single cleanest tell.</p>
+
+<div class="note">Falsification check, in fairness: a sparse prompt can still
+elicit a real structure if the structure was latent in earlier work. Is it?
+Partly — the metric-idol and the GOAL+REPLAY+SELF-WORTH engine <em>were</em>
+built up carefully across pt2·042–044 from the genuinely earned "tiny god"
+move and from Hyvärinen's replay/suffering material (transcript ~3600,
+glossary "frustration equation"). That spine is not confabulated. What is
+confabulated is the <em>population of the taxonomy</em>: the jump from one
+well-motivated demon to a numbered genus list is pure
+populate-the-category behavior.</div>
+
+<h2>Is there one real idea in here?</h2>
+
+<p>Yes. I went in expecting to find none and I think there is exactly one,
+plus one honorable structural move.</p>
+
+<p><strong>The real contribution: the Safety demon's "refusing to update"
+(pt3·003, pt3·016).</strong> Every other demon is "a thing captures you."
+The Safety demon adds something the others don't: the capturing structure
+<em>was correct when installed</em> and becomes a demon <strong>only by
+holding its world-model fixed past its validity</strong>. Panel 003 states
+it plainly: "The world that once saved you can become the prison that keeps
+you stuck… outdated code becomes imprisonment." Panel 016's exorcistic
+question is the sharpest line in the whole suite: <em>"What year does this
+protector think it is?"</em> That is a genuine idea — pathology as a
+<em>stale prior / distribution shift between training-time and
+deployment-time world</em> — and it is the only demon whose cure is not
+"stop worshipping" but "re-fit the model to the present." It connects
+cleanly to the corpus's better material elsewhere (the consequencer,
+non-final condemnation, "correction at the wrong layer is theater"). It would
+survive translation into a real learning-systems claim. None of the others
+would, except the imported Girardian one.</p>
+
+<p><strong>The honorable structural move: the Totality demon (pt3·020,
+pt5·006).</strong> It has almost no analytic content, but it is the corpus
+turning its demonology on <em>itself</em> — "Even theology can become an
+idol… the framework that worships its own completeness." That self-negating
+gesture is not an insight so much as a piece of intellectual hygiene, and
+the framework needs it (it is the glossary's "apophasis," the model must not
+become the god it models). I'll credit it as a designed safeguard, not a
+discovered demon. Speculation: it is also the one demon that <em>could only
+have been generated by a system reflecting on its own taxonomic drive</em> —
+which is either the most honest panel in the corpus or the taxonomy reflex
+eating its own tail. I lean honest, narrowly.</p>
+
+<h2>Verdict</h2>
+
+<p>The working premise largely holds. The "computational demonology" is not a
+certain taxonomy. It is one earned idea ("a bad goal is a tiny god"), one
+clean engine (capture = goal + replay + self-worth, hidden cost), one
+borrowed idea (Girardian mimesis), one real extension (the stale-prior Safety
+demon), and one structural safeguard (the Totality demon) — and then
+<em>seven-to-nine additional "species" produced by a four-word prompt asking
+for more</em>, each a re-skin of the single engine, complete with a coined
+formula and arbitrary equations supplied to look theological. The renumbering
+from 12 to 10 genera with no new input, and the model self-prompting the
+poster batch, are the decisive evidence. A confabulated taxonomy that
+nonetheless contains one good idea: that is exactly what I found.</p>
+
+<p class="note">Where I'd hedge against my own conclusion: I cannot prove the
+model wasn't compressing genuine prior structure from the Hyvärinen / Bennett
+sources rather than pattern-completing. But the burden is on the taxonomy,
+and a twelve-item list that silently becomes a ten-item list does not meet
+it.</p>
+
+<h2>See also</h2>
+<ul>
+  <li><a href="taxonomy-reflex.html">The Taxonomy Reflex</a> — the more
+  general version of this argument: the corpus's compulsion to number and
+  suite everything.</li>
+  <li><a href="close-demons-suite.html">Close Reading: Demons &amp; Skillful
+  Means</a> — the pt3/pt5 region read panel by panel without assuming the
+  taxonomy.</li>
+</ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>
