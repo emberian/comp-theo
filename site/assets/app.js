@@ -9,6 +9,7 @@
     ["compare/index.html", "Comparisons"],
     ["glossary.html", "Glossary"],
     ["map.html", "Poster Map"],
+    ["workground/index.html", "Workground"],
   ];
 
   // Path back to site root from the current page depth.
