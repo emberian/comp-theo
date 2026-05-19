@@ -1,0 +1,101 @@
+{
+  "slice": "grace",
+  "mechanism": "grace",
+  "backbone": "lab5kit / labcore (Rust engine)",
+  "N": 600,
+  "seeds": 6,
+  "criterion": "95%CI excludes 0 AND |effect|>0.02",
+  "grid": [
+    {
+      "agent": "myopic",
+      "world": "single",
+      "effect": 0.14351858333333334,
+      "lo": 0.08333333333333333,
+      "hi": 0.20370366666666664,
+      "jaccard": 0.5,
+      "robust": true,
+      "sign": "+"
+    },
+    {
+      "agent": "myopic",
+      "world": "two_basin",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.04194630872483222,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "myopic",
+      "world": "community",
+      "effect": 0.06481483333333332,
+      "lo": 0.01851858333333332,
+      "hi": 0.11574074999999999,
+      "jaccard": 0.39215686274509803,
+      "robust": true,
+      "sign": "+"
+    },
+    {
+      "agent": "tabular",
+      "world": "single",
+      "effect": 0.03291666666666665,
+      "lo": 0.010416666666666704,
+      "hi": 0.05458333333333334,
+      "jaccard": 0.5,
+      "robust": true,
+      "sign": "+"
+    },
+    {
+      "agent": "tabular",
+      "world": "two_basin",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.08375209380234507,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "tabular",
+      "world": "community",
+      "effect": 0.034166666666666644,
+      "lo": 0.007499999999999969,
+      "hi": 0.062499999999999965,
+      "jaccard": 0.379746835443038,
+      "robust": true,
+      "sign": "+"
+    },
+    {
+      "agent": "fa",
+      "world": "single",
+      "effect": -0.006810749999999995,
+      "lo": -0.019631229166666653,
+      "hi": 0.003605895833333317,
+      "jaccard": 0.5,
+      "robust": false,
+      "sign": "-"
+    },
+    {
+      "agent": "fa",
+      "world": "two_basin",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.04194630872483222,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "fa",
+      "world": "community",
+      "effect": 0.0008012916666666666,
+      "lo": -0.008012874999999994,
+      "hi": 0.009635488541666732,
+      "jaccard": 0.40789473684210525,
+      "robust": false,
+      "sign": "+"
+    }
+  ],
+  "wall_s": 19.6
+}

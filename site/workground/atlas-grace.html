@@ -1,0 +1,135 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — Grace across every instrument — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.3em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.4rem .55rem;
+  vertical-align:top;text-align:left}
+.sb th{color:var(--accent)}
+.sb td.num{text-align:right;font-variant-numeric:tabular-nums}
+.v-pass{color:#79c879;font-weight:700}.v-neg{color:#e0a33a;font-weight:700}
+.ladder{font:.84rem system-ui;color:var(--dim);border-left:3px solid
+  var(--accent);padding:.4em 0 .4em 1em;margin:1.2em 0}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · ATLAS</p>
+  <h1>Atlas — Grace across every instrument</h1>
+  <p class="lede">Under lab4's function-approximation agent, <em>grace</em>
+  — an exogenous edge that rescues a stuck agent — was significant at
+  <strong>+0.10</strong>. The robustness atlas re-tests that single result
+  across the full instrument grid: three agents (myopic, tabular,
+  linear&nbsp;FA) × three worlds (single-basin, two-basin,
+  community-found). Does "an exogenous edge rescues you" generalise, or was
+  it FA-specific?</p>
+
+  <div class="ladder"><strong>The ladder.</strong>
+  <a href="lab4.html">lab4</a> found grace significant under one
+  instrument (FA, detected single basin). This page is the atlas slice:
+  same mechanism, every instrument, one factorial each. Numbers are
+  verbatim from the <a href="labcore.html">Rust engine</a> via
+  <code>lab5kit.full_factorial</code> (N=600, 6 seeds, detected basin,
+  3000-resample seed bootstrap). See also →
+  <a href="lab5.html">lab5</a>, <a href="lab4.html">lab4</a>.</div>
+
+  <div class="note">Every number below is verbatim from
+  <code>atlas/grace.json</code>; <code>figs/atlas_grace.png</code> is the
+  same data as a heatmap. A cell is <strong>robust</strong> iff the 95%
+  bootstrap CI excludes 0 <em>and</em> |effect|&nbsp;&gt;&nbsp;0.02.</div>
+
+  <div class="fig">
+    <img src="../figs/atlas_grace.png"
+         alt="3x3 heatmap of the grace main effect: agents (myopic,
+         tabular, fa) by worlds (single, two-basin, community). Lime
+         boxes mark robust cells: myopic-single, myopic-community,
+         tabular-single, tabular-community. The fa row is null or
+         negative everywhere.">
+    <figcaption>Grace main effect (Δ success, on − off) across every
+      instrument. Lime box = robust. The FA row — the very instrument
+      lab4 used — is null or negative everywhere.</figcaption>
+  </div>
+
+  <table class="sb">
+    <thead><tr>
+      <th>agent</th><th>world</th><th>effect</th>
+      <th>95% CI</th><th>jaccard</th><th>verdict</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>myopic</td><td>single</td><td class="num">+0.1435</td>
+        <td class="num">[+0.083, +0.204]</td><td class="num">0.500</td>
+        <td class="v-pass">robust +</td></tr>
+      <tr><td>myopic</td><td>two-basin</td><td class="num">+0.0000</td>
+        <td class="num">[+0.000, +0.000]</td><td class="num">0.042</td>
+        <td class="v-neg">not robust (0)</td></tr>
+      <tr><td>myopic</td><td>community</td><td class="num">+0.0648</td>
+        <td class="num">[+0.019, +0.116]</td><td class="num">0.392</td>
+        <td class="v-pass">robust +</td></tr>
+      <tr><td>tabular</td><td>single</td><td class="num">+0.0329</td>
+        <td class="num">[+0.010, +0.055]</td><td class="num">0.500</td>
+        <td class="v-pass">robust +</td></tr>
+      <tr><td>tabular</td><td>two-basin</td><td class="num">+0.0000</td>
+        <td class="num">[+0.000, +0.000]</td><td class="num">0.084</td>
+        <td class="v-neg">not robust (0)</td></tr>
+      <tr><td>tabular</td><td>community</td><td class="num">+0.0342</td>
+        <td class="num">[+0.008, +0.063]</td><td class="num">0.380</td>
+        <td class="v-pass">robust +</td></tr>
+      <tr><td>fa</td><td>single</td><td class="num">−0.0068</td>
+        <td class="num">[−0.020, +0.004]</td><td class="num">0.500</td>
+        <td class="v-neg">not robust (−)</td></tr>
+      <tr><td>fa</td><td>two-basin</td><td class="num">+0.0000</td>
+        <td class="num">[+0.000, +0.000]</td><td class="num">0.042</td>
+        <td class="v-neg">not robust (0)</td></tr>
+      <tr><td>fa</td><td>community</td><td class="num">+0.0008</td>
+        <td class="num">[−0.008, +0.010]</td><td class="num">0.408</td>
+        <td class="v-neg">not robust (+)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Honest verdict</h2>
+  <p><strong>Grace is robust in 4 of 9 cells:</strong> myopic·single
+  (+0.143), myopic·community (+0.065), tabular·single (+0.033), and
+  tabular·community (+0.034). In every robust cell the sign is positive —
+  where grace does anything, an exogenous rescue edge helps.</p>
+
+  <p><strong>lab4's headline does not generalise to its own
+  instrument.</strong> lab4 reported grace at +0.10 under the
+  function-approximation agent. Across this atlas the entire <code>fa</code>
+  row is null or slightly negative: fa·single −0.007 (CI spans 0),
+  fa·two-basin exactly 0, fa·community +0.001 (CI spans 0). None is
+  robust. The +0.10 lab4 result is <em>not</em> reproduced by lab5kit's FA
+  configuration; the effect lab4 attributed to grace appears to be
+  instrument-specific to that earlier setup, not a property of grace as a
+  mechanism. This is a negative result and is reported as one.</p>
+
+  <p><strong>The two-basin world annihilates grace entirely.</strong>
+  Every agent scores exactly 0.000 with a degenerate
+  [0, 0] CI in <code>two_basin</code>, alongside the lowest detector
+  Jaccard (≈0.04–0.08). When the basin detector fails to localise the
+  trap, the rescue edge has nothing coherent to bypass and the mechanism
+  is inert across all three agents.</p>
+
+  <p><strong>Where grace generalises: the simpler agents.</strong> The
+  pattern is the reverse of an FA story — grace earns its keep for the
+  myopic and tabular agents (which lack a lossy spectral map and can get
+  genuinely stuck), and contributes nothing for the FA agent, whose
+  function approximation already smooths over the trap that grace would
+  otherwise rescue. "An exogenous edge rescues you" generalises across
+  <em>worlds</em> for the unaided agents (single and community both
+  robust), but it does <em>not</em> generalise across <em>agents</em>: it
+  is real for myopic/tabular, absent for FA.</p>
+
+  <p class="ladder">Source: <code>atlas/grace.json</code> ·
+  <code>figs/atlas_grace.png</code> · backbone
+  <code>lab5kit</code> / <a href="labcore.html">labcore</a>
+  (read-only). See also → <a href="lab5.html">lab5</a>,
+  <a href="lab4.html">lab4</a>.</p>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>

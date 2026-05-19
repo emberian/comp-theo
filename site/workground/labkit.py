@@ -57,16 +57,20 @@ def batch_run(world_path, specs):
     process; it parallelises the batch across all cores internally."""
     lines = [world_path]
     for s in specs:
-        lines.append("{seed} {fa} {vow} {forgive} {variety} {grace} "
-                      "{episodes} {cap}".format(
-                          seed=int(s["seed"]),
-                          fa=1 if s.get("fa") else 0,
+        # mode: explicit s["mode"] (0 tabular,1 FA,2 myopic) or via fa flag
+        mode = s.get("mode")
+        if mode is None:
+            mode = 1 if s.get("fa") else 0
+        lines.append("{seed} {mode} {vow} {forgive} {variety} {grace} "
+                      "{episodes} {cap} {beta}".format(
+                          seed=int(s["seed"]), mode=int(mode),
                           vow=1 if s.get("vow") else 0,
                           forgive=1 if s.get("forgive") else 0,
                           variety=1 if s.get("variety") else 0,
                           grace=1 if s.get("grace") else 0,
                           episodes=int(s["episodes"]),
-                          cap=int(s["cap"])))
+                          cap=int(s["cap"]),
+                          beta=float(s.get("beta", 3.0))))
     p = subprocess.run([ensure_built()], input="\n".join(lines),
                         capture_output=True, text=True, check=True)
     out = []

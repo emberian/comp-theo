@@ -1,0 +1,101 @@
+{
+  "slice": "forgive",
+  "mechanism": "forgive",
+  "backbone": "lab5kit / labcore (Rust engine)",
+  "N": 600,
+  "seeds": 6,
+  "criterion": "95%CI excludes 0 AND |effect|>0.02",
+  "grid": [
+    {
+      "agent": "myopic",
+      "world": "single",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.5,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "myopic",
+      "world": "two_basin",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.08375209380234507,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "myopic",
+      "world": "community",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.40939597315436244,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "tabular",
+      "world": "single",
+      "effect": -0.024583333333333308,
+      "lo": -0.05416666666666662,
+      "hi": 0.007916666666666702,
+      "jaccard": 0.5,
+      "robust": false,
+      "sign": "-"
+    },
+    {
+      "agent": "tabular",
+      "world": "two_basin",
+      "effect": -0.018333333333333313,
+      "lo": -0.057499999999999975,
+      "hi": 0.021666666666666723,
+      "jaccard": 0.04194630872483222,
+      "robust": false,
+      "sign": "-"
+    },
+    {
+      "agent": "tabular",
+      "world": "community",
+      "effect": 0.00916666666666662,
+      "lo": -0.014166666666666772,
+      "hi": 0.034999999999999996,
+      "jaccard": 0.4066666666666667,
+      "robust": false,
+      "sign": "+"
+    },
+    {
+      "agent": "fa",
+      "world": "single",
+      "effect": -0.052884562500000044,
+      "lo": -0.08814087500000006,
+      "hi": -0.022435916666666705,
+      "jaccard": 0.5,
+      "robust": true,
+      "sign": "-"
+    },
+    {
+      "agent": "fa",
+      "world": "two_basin",
+      "effect": -0.00961525,
+      "lo": -0.05128183333333333,
+      "hi": 0.02724358333333335,
+      "jaccard": 0.04194630872483222,
+      "robust": false,
+      "sign": "-"
+    },
+    {
+      "agent": "fa",
+      "world": "community",
+      "effect": -0.012019291666666654,
+      "lo": -0.020833416666666642,
+      "hi": -0.004006458333333333,
+      "jaccard": 0.3674698795180723,
+      "robust": false,
+      "sign": "-"
+    }
+  ],
+  "wall_s": 16.2
+}

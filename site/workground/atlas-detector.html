@@ -1,0 +1,166 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — Is the detector honest? — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.3em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.4rem .55rem;
+  vertical-align:top;text-align:right}
+.sb th{color:var(--accent);text-align:right}
+.sb td:first-child,.sb th:first-child{text-align:left}
+.v-pass{color:#79c879;font-weight:700}.v-neg{color:#e0a33a;font-weight:700}
+.note{border-left:3px solid var(--accent);padding:.5em 0 .5em 1em;
+  margin:1.2em 0;color:var(--dim);font:.9rem system-ui}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · ATLAS</p>
+  <h1>Atlas — Is the detector honest?</h1>
+  <p class="lede">Mechanisms in the lab "target the detected basin" — a set
+  found by an <em>unsupervised</em> MFPT trap-score
+  (<code>K.detect_basin</code>), never the planted label. Two worries
+  follow. If the detector is rubbish, "we target it" is empty. And if the
+  conclusions only hold when we feed the agent the <em>true</em> basin, the
+  whole instrument is cheating. This slice measures detector quality across
+  worlds and scales, then re-runs a full factorial with the switch flipped
+  to see whether any verdict moves.</p>
+
+  <div class="note">Every number below is verbatim from
+  <code>atlas/detector.json</code> — backbone
+  <code>lab5kit</code> on the <a href="labcore.html">Rust engine</a>.
+  Part (a): 3 worlds &times; 3 sizes &times; 6 seeds. Part (b):
+  agent <code>fa</code>, world <code>community</code>, N=700, 6 seeds,
+  full 2&#8308; factorial run twice (<code>use_detected</code> True/False).</div>
+
+  <h2>(a) How good is the detector?</h2>
+
+  <p>Jaccard overlap between the detected basin and the true basin,
+  mean &plusmn; std over 6 seeds:</p>
+
+  <table class="sb">
+    <tr><th>world</th><th>N=300</th><th>N=600</th><th>N=1000</th></tr>
+    <tr><td>single</td><td>0.359 &plusmn; 0.204</td>
+        <td>0.476 &plusmn; 0.020</td><td>0.348 &plusmn; 0.178</td></tr>
+    <tr><td>two_basin</td><td>0.054 &plusmn; 0.019</td>
+        <td>0.049 &plusmn; 0.016</td><td>0.062 &plusmn; 0.031</td></tr>
+    <tr><td>community</td><td>0.400 &plusmn; 0.029</td>
+        <td>0.406 &plusmn; 0.017</td><td>0.406 &plusmn; 0.022</td></tr>
+  </table>
+
+  <p>Mean Jaccard ranges from <strong>0.049</strong> (two_basin, N=600) to
+  <strong>0.476</strong> (single, N=600). The honest reading is graded, not
+  flattering:</p>
+
+  <ul>
+    <li><strong>community</strong> — the emergent stochastic-block basin
+    the lab actually cares about: the detector is <em>stable and partial</em>.
+    ~0.40 Jaccard, essentially flat from N=300 to N=1000 (0.400 &rarr;
+    0.406) and tight (std &le; 0.03). It recovers a consistent ~40% of the
+    true community every time; it does not collapse with scale.</li>
+    <li><strong>single</strong> — best mean (up to 0.48) but
+    <em>unstable</em>: std blows up to 0.20 at N=300 and 0.18 at N=1000.
+    The 90th-percentile MFPT cut lands differently across seeds.</li>
+    <li><strong>two_basin</strong> — the detector essentially
+    <em>fails</em>: ~0.05 Jaccard at every scale, near-zero overlap with
+    the planted union. The trap-score concentrates on the deep-toll
+    bottleneck, not the planted basin members.</li>
+  </ul>
+
+  <p>So "the detector is good" is <span class="v-neg">false in
+  general</span>. It is a weak, world-dependent estimator. That makes
+  part (b) the load-bearing question: a weak detector is only a problem
+  for the lab's claims if swapping it for ground truth changes the
+  verdicts.</p>
+
+  <h2>(b) Does DETECTED vs TRUE flip any verdict?</h2>
+
+  <p>Agent <code>fa</code>, world <code>community</code>, N=700, 6 seeds.
+  Full 2&#8308; factorial run twice on the same engine: once with the
+  detected basin (default, here Jaccard to truth = <strong>0.412</strong>)
+  and once with the true basin (Jaccard = 1.000). Main effect = success
+  on &minus; off, with seed-bootstrap 95% CI. Verdict is robust only if the
+  CI excludes 0 and |effect| &gt; 0.02.</p>
+
+  <table class="sb">
+    <tr><th>factor</th><th>detected: eff [95% CI]</th><th>verdict</th>
+        <th>true: eff [95% CI]</th><th>verdict</th><th>flip?</th></tr>
+    <tr><td>vow</td><td>+0.0000 [+0.0000, +0.0000]</td><td>0</td>
+        <td>+0.0000 [+0.0000, +0.0000]</td><td>0</td>
+        <td class="v-pass">same</td></tr>
+    <tr><td>forgive</td><td>&minus;0.0080 [&minus;0.0136, &minus;0.0024]</td>
+        <td>0</td><td>&minus;0.0024 [&minus;0.0136, +0.0080]</td><td>0</td>
+        <td class="v-pass">same</td></tr>
+    <tr><td>variety</td><td>&minus;0.0048 [&minus;0.0128, +0.0048]</td>
+        <td>0</td><td>+0.0024 [&minus;0.0072, +0.0128]</td><td>0</td>
+        <td class="v-pass">same</td></tr>
+    <tr><td>grace</td><td>+0.0032 [&minus;0.0064, +0.0088]</td><td>0</td>
+        <td>+0.0024 [&minus;0.0024, +0.0080]</td><td>0</td>
+        <td class="v-pass">same</td></tr>
+  </table>
+
+  <p>The focus factors the task asks after — <strong>variety</strong> and
+  <strong>grace</strong> — do not flip. Neither does any other factor. For
+  <code>fa</code> in <code>community</code> at this budget every factor is a
+  null (verdict <code>0</code>) under both the detected and the true basin.
+  The point estimates wobble (forgive moves from &minus;0.0080 to
+  &minus;0.0024; variety even changes sign, &minus;0.0048 &rarr; +0.0024),
+  but all of it stays inside the &plusmn;0.02 / CI-includes-0 noise band,
+  so no conclusion moves.</p>
+
+  <div class="fig">
+    <img src="figs/atlas_detector.png"
+      alt="Left: Jaccard vs N per world. Right: detected vs true main
+      effects for fa/community.">
+    <figcaption>(a) Detector quality vs scale: community is stable ~0.40,
+    single is high but unstable, two_basin sits in the no-overlap band.
+    (b) fa/community N=700: detected (purple) vs true (grey) main effects;
+    every factor is a null under both, det/true verdict labels all read
+    "same".</figcaption>
+  </div>
+
+  <h2>Honest verdict</h2>
+
+  <p>Two separate findings, kept separate:</p>
+
+  <ol>
+    <li><strong>The detector is not "good".</strong> It is weak and
+    world-dependent: a near-total miss on two_basin (~0.05), high but
+    seed-unstable on single, and a stable-but-partial ~0.40 on the
+    community world the lab leans on. Any prose that calls the detector
+    accurate is overclaiming.</li>
+    <li><strong>But the "we're not cheating" claim holds — for this
+    cell.</strong> Swapping the detected basin for the true basin (Jaccard
+    0.41 &rarr; 1.00) moves no verdict for <code>fa</code> in
+    <code>community</code> at N=700: variety and grace stay null, and so
+    does everything else. The mechanism conclusions in this cell are
+    <em>not</em> an artefact of feeding the agent the answer; they survive
+    with the real label too. The honest scope: this is one (agent, world,
+    N) cell — a strong existence check, not a proof across the whole
+    atlas.</li>
+  </ol>
+
+  <p>Net: the detector is a blunt instrument, and the lab should describe
+  it as one — but here being blunt is harmless, because the verdicts do
+  not depend on its accuracy. The "mechanisms target the detected basin"
+  framing is honest precisely because targeting the <em>true</em> basin
+  instead changes nothing.</p>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="lab5.html">Lab V</a> — the atlas backbone
+    (<code>lab5kit</code>): worlds, detector, agents, claim runners this
+    slice rides on.</li>
+    <li><a href="lab4.html">Lab IV</a> — where the unsupervised detector
+    and the "detected, not labelled" discipline were introduced.</li>
+    <li><a href="labcore.html">labcore</a> — the Rust engine every number
+    here is run on.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>

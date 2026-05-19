@@ -1,0 +1,95 @@
+{
+  "slice": "vow",
+  "grid": [
+    {
+      "agent": "myopic",
+      "world": "single",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.5,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "myopic",
+      "world": "two_basin",
+      "effect": -0.018518333333333335,
+      "lo": -0.06018500000000001,
+      "hi": 0.018518666666666666,
+      "jaccard": 0.04194630872483222,
+      "robust": false,
+      "sign": "-"
+    },
+    {
+      "agent": "myopic",
+      "world": "community",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.391025641025641,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "tabular",
+      "world": "single",
+      "effect": 0.014583333333333337,
+      "lo": -0.017083333333333322,
+      "hi": 0.04793750000000007,
+      "jaccard": 0.21621621621621623,
+      "robust": false,
+      "sign": "+"
+    },
+    {
+      "agent": "tabular",
+      "world": "two_basin",
+      "effect": 0.18583333333333338,
+      "lo": 0.14750000000000002,
+      "hi": 0.23250000000000004,
+      "jaccard": 0.08375209380234507,
+      "robust": true,
+      "sign": "+"
+    },
+    {
+      "agent": "tabular",
+      "world": "community",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.43795620437956206,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "fa",
+      "world": "single",
+      "effect": 0.0060096041666666085,
+      "lo": -4.166666674650562e-08,
+      "hi": 0.014022437499999948,
+      "jaccard": 0.5,
+      "robust": false,
+      "sign": "+"
+    },
+    {
+      "agent": "fa",
+      "world": "two_basin",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.08375209380234507,
+      "robust": false,
+      "sign": "0"
+    },
+    {
+      "agent": "fa",
+      "world": "community",
+      "effect": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "jaccard": 0.4178082191780822,
+      "robust": false,
+      "sign": "0"
+    }
+  ]
+}

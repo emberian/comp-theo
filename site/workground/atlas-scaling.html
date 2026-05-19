@@ -1,0 +1,119 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — Is the scaling law universal? — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.3em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.4rem .55rem;
+  vertical-align:top;text-align:left}.sb th{color:var(--accent)}
+.v-pass{color:#79c879;font-weight:700}.v-neg{color:#e0a33a;font-weight:700}
+.v-fail{color:#e06a4a;font-weight:700}
+.ladder{font:.84rem system-ui;color:var(--dim);border-left:3px solid
+  var(--accent);padding:.4em 0 .4em 1em;margin:1.2em 0}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · ATLAS</p>
+  <h1>Atlas — Is the scaling law universal?</h1>
+  <p class="lede"><a href="lab4.html">lab4</a>'s headline result A says
+  the bare learner's collapse is <em>lawful</em>: failure is predicted by a
+  scalar — the reference exit time τ — computed independently of the
+  learner, so bare success rises monotonically in the dimensionless ratio
+  <code>B/τ</code> (ρ=+0.78 under the engine). lab4 measured this in
+  <em>one</em> world with <em>one</em> agent. This atlas slice re-runs the
+  exact same test across every instrument: 3 agents (myopic, tabular,
+  function-approximation) × 3 worlds (single-basin, two-basin, community),
+  N = 200 → 1400, 5 seeds, on the same Rust engine. The question: is
+  lab4-A a universal law or an instrument-specific artefact?</p>
+
+  <div class="ladder"><strong>Criterion.</strong> A cell is
+  <em>lawful</em> iff Spearman ρ(B/τ, bare success) &gt; 0.6 — the same
+  monotone-collapse bar lab4 used. Real numbers only; a failure to
+  generalise is a key result, not a bug.</div>
+
+  <h2>The ρ table — across every instrument</h2>
+  <table class="sb">
+    <tr><th>agent (instrument)</th><th>single-basin</th>
+      <th>two-basin</th><th>community</th></tr>
+    <tr><td>myopic</td>
+      <td class="num v-pass">+0.72 ✓</td>
+      <td class="num v-fail">−0.18 ✗</td>
+      <td class="num v-pass">+0.73 ✓</td></tr>
+    <tr><td>tabular</td>
+      <td class="num v-pass">+0.86 ✓</td>
+      <td class="num v-fail">−0.22 ✗</td>
+      <td class="num v-pass">+0.89 ✓</td></tr>
+    <tr><td>fa (lossy map)</td>
+      <td class="num v-pass">+0.68 ✓</td>
+      <td class="num v-fail">−0.24 ✗</td>
+      <td class="num v-fail">−0.24 ✗</td></tr>
+  </table>
+  <p>Lawful (ρ&gt;0.6) in <strong>5 of 9</strong> cells:
+  myopic/single, myopic/community, tabular/single, tabular/community,
+  fa/single. The law <em>fails</em> in the other 4 — and the failures are
+  not random noise.</p>
+
+  <figure class="fig"><img src="figs/atlas_scaling.png" alt="3x3 grid of
+  bare success versus B/tau, one panel per agent and world, annotated
+  with Spearman rho and a lawful/fails verdict">
+  <figcaption>Small multiples: bare-agent success vs budget/exit-time
+  (B/τ, log x), coloured by graph size N. Green frame = lawful (ρ&gt;0.6),
+  red frame = the τ-prediction fails. The monotone collapse lab4 reported
+  is visible only in the single-basin and community columns; the
+  two-basin column inverts it.</figcaption></figure>
+
+  <h2>Honest verdict</h2>
+  <p><strong>lab4-A is not a universal law — it is conditional on the
+  world's basin geometry, not on the agent.</strong></p>
+  <ul>
+  <li><strong>Holds for all three agents</strong> in the
+  <em>single-basin</em> world (ρ = +0.72 / +0.86 / +0.68). lab4's
+  headline reproduces exactly where lab4 measured it; the choice of
+  instrument (myopic, tabular, lossy FA) does not break it. This is the
+  genuine, robust core of the claim.</li>
+  <li><strong>Holds for the table-class agents</strong> in the
+  <em>community</em> (emergent-basin) world too (myopic +0.73, tabular
+  +0.89) — the law travels to a basin that was never planted, a real
+  strengthening. But it <em>breaks for the lossy-map agent</em> there
+  (fa, ρ = −0.24): under function approximation the τ scalar no longer
+  predicts the collapse in an emergent basin.</li>
+  <li><strong>Fails for every agent</strong> in the <em>two-basin</em>
+  world (ρ = −0.18 / −0.22 / −0.24, all negative). With two competing
+  basins of different depth, a single scalar exit time computed from the
+  start state mispredicts the bare learner's fate <em>systematically and
+  in the same direction for all three instruments</em>. This is the key
+  negative result: the τ-scaling law is geometry-specific, not a law of
+  sample-limited learning per se.</li>
+  </ul>
+
+  <p>So lab4's headline is <em>instrument-robust but not
+  world-universal</em>. The collapse-predicted-by-τ phenomenon is a
+  property of <em>single-attractor</em> exit problems: where one
+  reference exit time meaningfully summarises the escape, it predicts
+  bare success across myopic, tabular, and lossy-FA learners alike. Where
+  the escape is governed by competing attractors (two-basin) or by an
+  emergent community basin seen through a lossy map (fa/community), the
+  scalar loses its predictive grip. lab4 was right within its frame and
+  honest to call it a law there; this atlas shows the frame's edges. A
+  universal law would have to be stated over the basin <em>spectrum</em>,
+  not a single MFPT — which is exactly the open direction lab4's own
+  falsification anticipated.</p>
+
+  <p class="ladder">Backbone: lab5kit / labcore (Rust engine), read-only.
+  N ∈ {200, 350, 500, 750, 1000, 1400}, 5 seeds per cell. Data:
+  <code>atlas/scaling.json</code>. ρ = Spearman of (B/τ, bare success).</p>
+
+  <nav class="seealso">See also →
+  <a href="lab5.html">lab5</a> ·
+  <a href="lab4.html">lab4</a> ·
+  <a href="lab2.html">lab2</a></nav>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>
