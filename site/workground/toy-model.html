@@ -1,0 +1,250 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Does It Cash Out? — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · NON-AUTHORITATIVE</p>
+  <h1>Does It Cash Out? A toy graph-world, actually built</h1>
+  <p class="lede">The corpus repeatedly proposes a small graph-world to make
+  its metaphors literal, and even writes its own falsification test — then
+  never runs it. I ran it. Here are the numbers and an honest verdict on which
+  metaphors survive being made code.</p>
+
+  <div class="note">This is a lab notebook, not a verdict on the theology.
+  Every number below is real output from
+  <code>site/workground/toy_model.py</code> (standard library only,
+  <code>seed=1729</code>), reproducible with
+  <code>python3 site/workground/toy_model.py</code>. The toy world is mine,
+  not the corpus's — the corpus only specifies the <em>roles</em> (demon, vow,
+  mercy, grace, forgiveness, variety), not a graph. So a metaphor "surviving"
+  here means: <em>under a reasonable literalisation, it produces the behaviour
+  the corpus claims for it</em>. It does not mean the theology is true.
+  Speculation is labelled as such.</div>
+
+  <h2>Why this is the experiment the series never ran</h2>
+
+  <p>The origin dialogue is unusually explicit about wanting this. At
+  <code>transcript/conversation.full.md</code> ~line 13894 the project lists
+  exactly the model it wants built:</p>
+
+  <blockquote>A small graph-world where: agents follow low-cost paths;
+  "demon" = low-cost capture basin; "vow" = repeated edge reinforcement toward
+  return; "mercy" = lowering return-path cost without deleting harm; "grace" =
+  exogenous addition of a new reachable edge; "variety" = penalty against
+  collapse of structural views; "forgiveness" = demotion of a wound-node from
+  global routing authority.</blockquote>
+
+  <p>And ~line 13909 it states its own falsification condition:</p>
+
+  <blockquote>Claim: "A vow changes reachability." Failure test: if repeated
+  vow-inscriptions do not measurably alter future transition probabilities or
+  path choices, the vow is merely decorative.</blockquote>
+
+  <p>That is a real, runnable test. The corpus calls it "exactly the kind of
+  thing the project needs" and then moves on to more posters. The synthesis
+  inherits the gestures verbatim (<code>synthesis/GLOSSARY.md</code>,
+  soteriology/demonology layer) without ever instantiating them. So the
+  honest move is to build the smallest thing that could fail.</p>
+
+  <h2>The world</h2>
+
+  <p>A six-node directed graph with edge costs. <code>GOOD</code> is the
+  marked target ("God running a search for the Good", per the glossary).
+  <code>D</code> is the demon: cheap to enter (cost 0.2 from <code>a</code>),
+  with a near-free self-loop (0.1) and an extortionate exit (<code>D-&gt;b</code>
+  = 6.0). <code>w</code> is a wound node deliberately placed on the cheapest
+  route toward the goal, so it carries genuine routing centrality — you cannot
+  test "demotion without deletion" on a node nothing routes through. The agent
+  is bounded-rational: a softmax walk with inverse temperature
+  <code>&beta;=2.5</code>, i.e. it prefers cheap edges but is not a perfect
+  optimiser. 20,000 walks per condition.</p>
+
+  <h2>Raw output (verbatim, seed=1729)</h2>
+
+  <pre>====================================================================
+EXPERIMENT 0 -- the bare world (demon present, no intervention)
+====================================================================
+  least-cost dist START-&gt;GOOD : 3.000
+  least-cost path             : START -&gt; w -&gt; b -&gt; GOOD
+  least-cost dist START-&gt;D    : 1.500  (the demon is closer)
+  softmax agent  P(reach GOOD): 0.0215
+  softmax agent  P(captured D): 0.9785
+  mean steps to GOOD          : 3.00
+
+====================================================================
+EXPERIMENT 1 -- VOW: reinforce the return edge D-&gt;b, 8 rounds x0.7
+====================================================================
+  edge cost D-&gt;b  before : 6.000
+  edge cost D-&gt;b  after  : 0.346
+  P(reach GOOD)  before  : 0.0215
+  P(reach GOOD)  after   : 0.7056   (delta +0.6841)
+  P(captured)    before  : 0.9785
+  P(captured)    after   : 0.2145   (delta -0.7640)
+
+====================================================================
+EXPERIMENT 2 -- MERCY: cheapen ONE escape edge, keep the harm
+====================================================================
+  Only D-&gt;b lowered 6.00 -&gt; 0.40; D, self-loop, w untouched.
+  P(reach GOOD)  before  : 0.0215
+  P(reach GOOD)  after   : 0.6808   (delta +0.6593)
+  P(captured)    after   : 0.2386
+  D still in graph?      : True  (harm not deleted)
+
+====================================================================
+EXPERIMENT 3 -- GRACE: add a NEW edge D-&gt;GOOD (cost 1.5)
+====================================================================
+  edge D-&gt;GOOD existed in base world? : False
+  edge D-&gt;GOOD exists after grace?    : True
+  least-cost dist START-&gt;GOOD before : 3.000
+  least-cost dist START-&gt;GOOD after  : 3.000
+  new least-cost path : START -&gt; w -&gt; D -&gt; GOOD
+  P(reach GOOD)  before : 0.0215
+  P(reach GOOD)  after  : 0.6807   (delta +0.6592)
+
+====================================================================
+EXPERIMENT 4 -- FORGIVENESS: demote wound-node w, do not delete it
+====================================================================
+  routing centrality of w  before : 0.2727
+  routing centrality of w  after  : 0.0000
+  w still a node after forgiveness?: True
+  w still reachable at all?       : True  (dist 6.00)
+
+====================================================================
+EXPERIMENT 5 -- VARIETY: entropy of exercised structure
+====================================================================
+  structural entropy  base world      : 0.1539 bits
+  structural entropy  collapsed world : -0.0000 bits
+  base   node-visit spread : {'D': 3911, 'GOOD': 89}
+  collapsed node-visit spread : {'D': 4000}</pre>
+
+  <h2>Verdict, per mechanism</h2>
+
+  <h3>Demon = low-cost capture basin — <strong>survives, strongly</strong></h3>
+  <p>This is the load-bearing one and it is the most honest result. A node
+  that is cheap to enter, nearly free to stay in, and expensive to leave
+  captures 97.85% of bounded-rational agents even though the goal is only
+  cost 3.0 away and the demon's exit toll is 6.0. The optimal path
+  (<code>START-&gt;w-&gt;b-&gt;GOOD</code>) is well-defined and cheap; almost
+  nobody walks it. This cashes out cleanly and it cashes out the corpus's
+  sharpest theological claim — "a bad goal is a tiny god", idolatry as a
+  self-preserving attractor. It is not trivially true: it required the
+  asymmetry (cheap in, costly out, cheap self-loop) to be real. Remove the
+  self-loop and capture drops. So the metaphor has content: it names a
+  specific structural signature, not just "bad thing is sticky".</p>
+
+  <h3>Vow = repeated edge reinforcement — <strong>survives its own
+  falsification test</strong></h3>
+  <p>The corpus wrote the test: if repeated inscriptions don't measurably
+  change path choices, the vow is decorative. Eight multiplicative
+  reinforcements of the return edge move P(reach GOOD) from 0.0215 to 0.7056
+  (&Delta; +0.68) and cut capture from 0.98 to 0.21. Measurable, large,
+  directional. The vow is <em>not</em> decorative under literalisation.</p>
+  <p><strong>But</strong> — and this is the honest caveat — the result is
+  almost entirely "I lowered the most important edge cost a lot." The
+  "repeated", "ritual", "inscription" framing adds nothing the single
+  multiplication <code>6.0 &rarr; 0.346</code> wouldn't. The corpus's
+  distinctive content (that <em>iteration itself</em> matters, that a vow is
+  unlike a one-shot decree) does not survive: my model has no path-dependence,
+  no cost to inscribing, no forgetting. <em>Speculation:</em> to make
+  "repetition" load-bearing you'd need decay between inscriptions or a convex
+  inscription cost, so that a vow and a decree come apart. As built, "vow"
+  is a true-but-thin relabelling of "edge reweighting".</p>
+
+  <h3>Mercy = lower return cost without deleting harm — <strong>survives,
+  but collapses into the vow</strong></h3>
+  <p>Mercy rescues agents (P(GOOD) 0.02 &rarr; 0.68) while leaving D, its
+  self-loop, and w in the graph. The "without deleting harm" clause is
+  literally satisfied: <code>D still in graph? True</code>. So the claim is
+  true. The problem is discriminant validity: mercy (Exp 2) and vow (Exp 1)
+  produce statistically indistinguishable outcomes (0.6808 vs 0.7056) by
+  near-identical mechanisms. In this model "mercy" and "vow" are the same
+  operation seen from two narrative angles. That is a genuine finding against
+  the corpus's taxonomy: it treats them as distinct soteriological moves;
+  the literalisation says they are one move (cheapen the return path),
+  differentiated only by who is described as doing it.</p>
+
+  <h3>Grace = exogenous new reachable edge — <strong>survives, with a real
+  surprise</strong></h3>
+  <p>This is the most interesting result and the one I'd flag to the corpus.
+  Adding <code>D-&gt;GOOD</code> at cost 1.5 — an edge absent from the world's
+  own transition table, which the code enforces (<code>grace must add an edge
+  that does not exist</code>) — does change behaviour: P(GOOD) jumps to 0.68.
+  But the least-cost distance <code>START-&gt;GOOD</code> is
+  <em>unchanged</em>: 3.000 before, 3.000 after. The optimal planner gets
+  nothing from grace. Only the <em>bounded-rational, captured</em> agent
+  benefits, because grace places an exit <em>inside the basin where the lost
+  agent actually is</em>. <em>Speculation, but it falls out of the numbers:</em>
+  this literalises "grace enters from outside the loop" with unexpected
+  precision — grace is worthless to the agent who could already plan its way
+  out, and decisive for the one who is trapped. The corpus's metaphor here is
+  doing more work than it knew. It survives, and it survives non-trivially.</p>
+
+  <h3>Forgiveness = demote a wound-node, don't delete it — <strong>survives
+  cleanly</strong></h3>
+  <p>Routing centrality of <code>w</code> goes 0.2727 &rarr; 0.0000 under a
+  penalty on every edge entering it, while <code>w still a node? True</code>
+  and <code>w still reachable? True (dist 6.00)</code>. This is the metaphor
+  that translates most exactly: "the wound is irreversible; its sovereignty
+  is not" becomes a precise, measurable distinction between a node's
+  <em>existence/reachability</em> and its <em>betweenness</em>. The corpus's
+  formulation — demotion of global routing authority, not deletion — maps
+  one-to-one onto a quantity (betweenness centrality) that is standard,
+  computable, and behaves exactly as claimed. Of all six, this is the one
+  where the math is genuinely carrying the idea rather than decorating it.</p>
+
+  <h3>Variety = penalty against collapse of structural views —
+  <strong>does not cash out as an independent mechanism</strong></h3>
+  <p>Here is the failure I'm most confident about. Terminal-state entropy is
+  0.15 bits in the base world and 0.00 in the deliberately collapsed world,
+  so the <em>measure</em> works: monoculture scores lower. But look at the
+  base number. 0.15 bits, with the spread <code>{'D': 3911, 'GOOD': 89}</code>:
+  the un-collapsed world is <em>already</em> a near-total monoculture, because
+  the demon already ate everyone. "Variety" did not detect a distinct
+  pathology; it re-measured the demon basin from Experiment 0. In this model
+  variety has no causal handle of its own — there is no anti-collapse
+  <em>operator</em> the way there is a vow operator or a grace operator, only
+  a diagnostic that lights up when the demon wins. The corpus treats variety
+  as a substantive value (anti-monoculture, anti-idolatry); the literalisation
+  says it is, here, a downstream readout of capture, not a lever. To make it
+  load-bearing you would need an explicit diversity-promoting dynamic in the
+  agent (e.g. an entropy bonus in the walk), which the corpus gestures at but
+  never specifies. As stated, <em>trivially true as a metric, empty as a
+  mechanism</em>.</p>
+
+  <h2>Summary table</h2>
+  <ul>
+    <li><strong>Demon</strong> — survives strongly; non-trivial; names a
+    specific structural signature.</li>
+    <li><strong>Vow</strong> — survives its own falsification test; but the
+    "repetition/ritual" content is thin — a relabelled edge reweight.</li>
+    <li><strong>Mercy</strong> — true, but mechanically identical to the vow;
+    the corpus's vow/mercy distinction does not survive.</li>
+    <li><strong>Grace</strong> — survives, and with a precise surprise:
+    useless to the planner, decisive for the trapped agent.</li>
+    <li><strong>Forgiveness</strong> — survives most cleanly; one-to-one onto
+    betweenness centrality; math doing real work.</li>
+    <li><strong>Variety</strong> — trivially true as a metric, empty as a
+    mechanism in this model.</li>
+  </ul>
+
+  <h2>What I'd want before trusting any of this</h2>
+  <p>One graph, one seed, one agent. The results are <em>existence proofs</em>
+  that the metaphors <em>can</em> be made literal, not evidence about how
+  often they do. The honest scoreboard: four of six survive literalisation,
+  one (vow) survives but loses its distinctive content, one (mercy)
+  collapses into another, one (variety) is a diagnostic masquerading as a
+  doctrine. That the corpus's <em>sharpest</em> claims (demon, forgiveness)
+  are the ones that cash out best is the genuinely encouraging finding —
+  and it is the corpus's own "analogy, not theorem" guardrail vindicated:
+  the math gave these ideas teeth without proving the theology.</p>
+
+  <p>See also: <a href="cruxes.html">Open Problems &amp; Cruxes</a> for the
+  load-bearing-vs-decorative split this experiment was trying to settle, and
+  <a href="inference-audit.html">Inference Audit</a> for where the corpus's
+  reasoning steps are doing real work versus supplying atmosphere.</p>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>
