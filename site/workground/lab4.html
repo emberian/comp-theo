@@ -1,0 +1,164 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab IV: lossy maps, found basins, a falsified law — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.3em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.4rem .55rem;
+  vertical-align:top}.sb th{color:var(--accent);text-align:left}
+.v-pass{color:#79c879;font-weight:700}.v-neg{color:#e0a33a;font-weight:700}
+.ladder{font:.84rem system-ui;color:var(--dim);border-left:3px solid
+  var(--accent);padding:.4em 0 .4em 1em;margin:1.2em 0}
+pre{white-space:pre-wrap}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · NON-AUTHORITATIVE</p>
+  <h1>Lab IV — lossy maps, found basins, a falsified law</h1>
+  <p class="lede">lab4 closes lab3's four open objections: a
+  function-approximation agent (a <em>lossy map</em>, not a memorised
+  table), an <em>unsupervised-detected</em> basin (not a handed label), a
+  <em>predicted</em> scaling law, and <em>significance-tested</em> effects.
+  Then the Rust engine (<a href="labcore.html">labcore</a>), as an
+  independent re-implementation, falsified one of lab4's own results.</p>
+
+  <div class="ladder"><strong>The ladder.</strong>
+  <a href="toy-model.html">toy</a> → <a href="lab.html">lab</a> →
+  <a href="lab2.html">lab2</a> (analytic, theory-checked) →
+  <a href="lab3.html">lab3</a> (model-free, complected, scaled) →
+  <strong>lab4</strong>: linear function approximation over spectral
+  features; the basin is <em>detected</em> not labelled; collapse is
+  <em>predicted</em>; effects carry CIs. Numbers below are from the
+  <a href="labcore.html">Rust engine</a> (8 seeds, ~22 s); the slow Python
+  agent survives only as the correctness anchor in <code>validate()</code>.</div>
+
+  <div class="note">Every number is verbatim from
+  <code>site/workground/lab4.py</code> driving <code>labcore</code> (8
+  seeds, machine-readable in <code>lab4_results.json</code>). Two gates run
+  first: the learner must match exact value iteration, and the unsupervised
+  basin detector must recover a planted basin (Jaccard ≥ 0.45) — only then
+  do the mechanisms get the <em>detected</em> set, never ground truth.</div>
+
+  <h2>0 · Two self-validations</h2>
+  <p>The function-approximation learner recovers the value-iteration optimum
+  on a greedy rollout (raw path cost ≤ 1.25× optimal) on the easy case, and
+  the mean-first-passage <em>trap-score</em> detector recovers a planted
+  basin at Jaccard ≈ 0.6 against ground truth. Both gates pass; from there
+  vow/forgive/grace target only the detected basin, so a positive result
+  cannot be the experimenter pointing at the answer.</p>
+
+  <h2>A · Predicted scaling law <span class="v-pass">PASS — strengthened</span></h2>
+  <p>Theory (lab2's MFPT, reused): a sample-limited learner fails the basin
+  when the reference exit time τ exceeds the per-run sample budget B, so
+  bare success should rise monotonically in the dimensionless ratio
+  <code>B/τ</code>. Across N = 200 → 1400:</p>
+  <pre>N= 200  τ=  772   B/τ=45.0   bare success 0.992
+N= 500  τ= 1955   B/τ=17.6   bare success 0.948
+N=1000  τ= 3427   B/τ=10.2   bare success 0.767
+N=1400  τ= 5171   B/τ= 7.1   bare success 0.568
+Spearman(B/τ, success) = +0.783      threshold ~ O(1)</pre>
+  <p>lab3's headline "the bare learner collapses at scale" now has a
+  <em>law</em>: the collapse is predicted by a scalar — the reference
+  exit time — computed independently of the learner. Under the engine the
+  correlation rose from a weak ρ≈0.54 (pure Python) to <strong>+0.78</strong>.
+  The lab3 phenomenon survived the change of instrument and got sharper.</p>
+  <figure class="fig"><img src="figs/i1_scaling_law.png" alt="">
+  <figcaption>I1 · bare-learner success vs budget/exit-time (B/τ), coloured
+  by N. Monotone collapse with an O(1) threshold.</figcaption></figure>
+
+  <h2>B · Significance-tested factorial — and it <em>shifted</em>
+  <span class="v-neg">representation-dependent</span></h2>
+  <p>N=800, linear FA over 16 spectral features, detected basin, 8 seeds,
+  seed-bootstrap 95% CIs + a seed permutation test:</p>
+  <pre>bare = 0.767   full = 0.935   (detector Jaccard ≈ 0.50)
+vow      +0.086   95%CI[+0.023,+0.173]   perm p=0.031   SIG
+grace    +0.100   95%CI[+0.022,+0.227]   perm p=0.019   SIG
+variety  +0.024   95%CI[+0.000,+0.051]   perm p=0.142   weak
+forgive  −0.047   95%CI[−0.105,+0.003]   perm p=0.164   ns</pre>
+  <p>This is <em>not</em> lab3. Under tabular Q-learning (lab3),
+  <strong>variety</strong> carried the entire stack and vow was inert. Under
+  linear function approximation, <strong>vow and grace</strong> are the
+  significant helpers and variety is small. That is not a contradiction —
+  it is the lab's recurring lesson, now measured twice: the value of the
+  corpus's machinery is <em>agent- and representation-relative</em>. And the
+  cross-instrument arc on <strong>vow</strong> is the sharpest single thread
+  in the whole project: inert in lab2 (analytic) and lab3 (tabular),
+  <em>significant</em> here under FA. A vow only helps a mind of a
+  particular shape.</p>
+  <figure class="fig"><img src="figs/i2_factorial_tested.png" alt="">
+  <figcaption>I2 · main effects with seed-bootstrap CIs; green = CI
+  excludes 0.</figcaption></figure>
+
+  <h2>C · "A lossier map needs more variety" — <span class="v-neg">FALSIFIED
+  by the engine</span></h2>
+  <p>This was lab4's prettiest result in pure Python: the main effect of
+  variety rose monotonically as the feature map got lossier (k=4 → onehot),
+  correlation <strong>−0.96</strong> — the corpus's "the map is not the
+  territory" as a measured representation/exploration law. Then
+  <a href="labcore.html">labcore</a>, a faithful but independent
+  re-implementation, ran the same experiment:</p>
+  <pre>k= 4      variety main effect = −0.003 ± 0.089
+k= 8      variety main effect = +0.031 ± 0.087
+k=16      variety main effect = +0.003 ± 0.097
+k=onehot  variety main effect = +0.055 ± 0.149
+corr(k, variety-effect) = −0.05      (pure Python had −0.96)</pre>
+  <p>It is gone. The law was an artifact of the particular Python agent's
+  exploration constants, not a property of the model. <strong>This is the
+  most valuable thing in lab4.</strong> The whole point of building a second
+  engine was lab2's doctrine — survive a change of instrument, or be
+  exposed — and here it exposed the result this very page would most have
+  liked to keep. It stays on the board, falsified, with the receipt.</p>
+  <figure class="fig"><img src="figs/i3_capacity.png" alt="">
+  <figcaption>I3 · variety main effect vs feature dimension under the
+  engine — flat. No capacity dependence.</figcaption></figure>
+
+  <h2>Scoreboard</h2>
+  <table class="sb">
+    <tr><th>Claim</th><th>pure Python</th><th>Rust engine (truth)</th>
+      <th>verdict</th></tr>
+    <tr><td>A scaling collapse predicted by τ</td><td>ρ≈0.54</td>
+      <td>ρ=+0.78, monotone</td><td class="v-pass">PASS</td></tr>
+    <tr><td>B which mechanism helps under FA</td><td>noisy</td>
+      <td>vow &amp; grace significant; variety small</td>
+      <td class="v-neg">shifted vs lab3 (rep-dependent)</td></tr>
+    <tr><td>C lossier map ⇒ more variety</td><td>corr −0.96 (PASS)</td>
+      <td>corr −0.05</td><td class="v-neg">FALSIFIED</td></tr>
+  </table>
+
+  <h2>What lab4 establishes</h2>
+  <p>(1) lab3's scaling collapse is <em>lawful</em> — predicted by the
+  reference exit time, and the prediction <em>strengthened</em> under an
+  independent engine. (2) Which of the corpus's mechanisms "works" is not a
+  fact about the mechanism; it is a fact about the agent: variety for a
+  tabular mind, vow/grace for a function-approximating one — the same
+  agent-relativity lab.py first found, now across three instruments.
+  (3) The single prettiest law lab4 produced did <em>not</em> replicate, and
+  the archive says so in the same breath it reported it. An instrument you
+  only believe when it flatters you is the Totality Demon by another name;
+  lab4's best result is the one it had to retract.</p>
+
+  <div class="note">Honest ceiling: tabular/linear agents, ≤8 seeds, N≤1400,
+  spectral features, a constructed (though now detected, not labelled)
+  basin. lab5 — deep function approximation on a <em>found</em> community
+  basin at N~10⁵, now cheap on the engine — is the next rung. The code and
+  the <a href="labcore.html">engine page</a> state the same.</div>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="labcore.html">labcore — the Rust engine</a> — how lab4 is
+    run, and why a second implementation is the point, not the speed.</li>
+    <li><a href="lab3.html">Lab III</a> — the tabular run where variety
+    carried the stack; read against B here for the representation
+    dependence.</li>
+    <li><a href="lab2.html">Lab II</a> — "survive a change of instrument or
+    be exposed"; lab4·C is that doctrine executed on lab4 itself.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>
