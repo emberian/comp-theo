@@ -1,0 +1,180 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab III: complected &amp; scaled — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.3em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.4rem .55rem;
+  vertical-align:top}
+.sb th{color:var(--accent);text-align:left}
+.v-pass{color:#79c879;font-weight:700}
+.v-neg{color:#e0a33a;font-weight:700}
+.ladder{font:.84rem system-ui;color:var(--dim);border-left:3px solid
+  var(--accent);padding:.4em 0 .4em 1em;margin:1.2em 0}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · NON-AUTHORITATIVE</p>
+  <h1>Lab III — complected &amp; scaled</h1>
+  <p class="lede">"Are we still doing toy linear-MDP bullshits?" Fair. Lab III
+  drops the closed form for a <em>model-free learner</em>, braids all six
+  corpus mechanisms into <em>one coupled agent</em>, scales the world to a
+  thousand nodes, and measures each mechanism's contribution
+  <em>and its interactions</em> with a factorial.</p>
+
+  <div class="ladder"><strong>The ladder.</strong>
+  <a href="toy-model.html">toy</a>: 1 graph, ad-hoc agent — existence proof.
+  <a href="lab.html">lab</a>/<a href="lab2.html">lab2</a>: an analytic
+  linearly-solvable MDP, each metaphor tested <em>in isolation</em>, with
+  theory-checked laws. <strong>lab3</strong>: no closed form — Q-learning
+  with prioritized replay on <em>stochastic</em> transitions; every
+  mechanism mapped to the agent's <em>own</em> machinery, not to graph
+  edits; a 2⁴ factorial with interactions; a scaling sweep. The agent never
+  sees the cost landscape — it learns it from samples.</div>
+
+  <div class="note">Every number is verbatim from
+  <code>site/workground/lab3.py</code> (numpy, seeds 0–3, ~100 s),
+  machine-readable in <code>lab3_results.json</code>. The instrument
+  refuses to report until its learner has matched exact value iteration.</div>
+
+  <h2>How the mechanisms were complected</h2>
+  <p>The point of "complect" is that these are no longer six separate
+  graph edits — they are six parts of one learning agent, coupled through
+  its value function and replay buffer:</p>
+  <ul>
+    <li><strong>consequencer</strong> = the prioritized experience-replay
+    buffer itself (memory that has acquired causal power over learning);</li>
+    <li><strong>vow</strong> = a decaying self-imposed Q-shaping commitment
+    to the costly <em>return</em> move out of the basin (a consequencer the
+    agent installs in itself);</li>
+    <li><strong>forgiveness</strong> = demoting the highest-surprise
+    "wound" transition's <em>replay priority</em> — forgiveness mapped to
+    the literal replay mechanism the corpus already invokes;</li>
+    <li><strong>variety</strong> = a count-based exploration drive
+    (anti-monoculture as an intrinsic objective);</li>
+    <li><strong>grace</strong> = an exogenous edge the <em>environment</em>
+    injects at a random episode — unearned, from outside the loop.</li>
+  </ul>
+
+  <h2>0 · Self-validation</h2>
+  <p>Before reporting, the model-free learner is trained on small worlds
+  and checked against exact value iteration: it recovers the optimum on
+  <strong>5/6</strong> worlds within 20%. If it could not learn the easy
+  case, its verdicts on the hard one would be worthless. Gate passed.</p>
+
+  <h2>A · The complected 2⁴ factorial <span class="v-pass">decomposed</span></h2>
+  <p>At N=900 (the regime where a sample-limited bare learner has real
+  headroom), every combination of {vow, forgive, variety, grace} is trained
+  from scratch. Bare agent: <strong>0.671</strong> final success. Full
+  stack: <strong>0.992</strong>. The decomposition:</p>
+  <pre>main effect  variety  = +0.197   (per-seed +0.197 ± 0.060)   <-- carries it
+main effect  grace    = +0.052
+main effect  forgive  = +0.035
+main effect  vow      = +0.012   (negligible)
+
+interactions: variety×grace  +0.039  synergy
+              forgive×variety −0.028  antagonism
+              vow×variety     −0.023  antagonism
+              vow×forgive     −0.021  antagonism</pre>
+  <p>The honest reading: <strong>variety is the load-bearing mechanism</strong>
+  — anti-monoculture exploration is what lets a sample-limited learner find
+  the costly bypass instead of dying in the cheap basin. Grace and a little
+  forgiveness add a bit. <strong>Vow is ≈ inert</strong> — and that is a
+  <em>robust cross-instrument finding</em>: lab2 already showed vow≈decree;
+  lab3, with a completely different (learning) agent, again finds vow adds
+  almost nothing. The mechanisms mostly <em>interfere</em> rather than stack
+  additively (negative interactions with variety): once exploration solves
+  it, the others fight for the same credit. "Stack everything" is not the
+  lesson; "variety, then taste" is.</p>
+  <figure class="fig"><img src="figs/h1_factorial.png" alt="">
+  <figcaption>H1 · main effects (with seed error bars) and the pairwise
+  interaction matrix.</figcaption></figure>
+
+  <h2>B · Scaling — the actual headline <span class="v-pass">strong</span></h2>
+  <p>This is what "scale them up" was for. The demon community grows with
+  the world. A bare learner and the full complected stack, N = 150 → 1000:</p>
+  <pre>N= 150   bare 1.000   full 0.996     (stack irrelevant — easy)
+N= 300   bare 0.992   full 1.000
+N= 600   bare 0.925   full 0.996
+N=1000   bare 0.417   full 0.879     (bare COLLAPSES; stack holds)
+stack advantage:  −0.004  (N=150)  →  +0.462  (N=1000)</pre>
+  <p>On small worlds the mechanisms are pointless — the bare learner wins
+  anyway. As the world scales, the bare learner <em>collapses</em> (credit
+  for the basin's toll cannot propagate back through a huge near-free
+  interior cycle within the sample budget), while the complected stack
+  stays at 0.88. The advantage is not constant — it <em>widens by two
+  orders of effect</em> with scale. The corpus's apparatus is overkill in
+  miniature and decisive at scale. That is the most defensible thing lab3
+  found, and it only became visible once the model was both braided
+  <em>and</em> grown.</p>
+  <figure class="fig"><img src="figs/h2_scaling.png" alt="">
+  <figcaption>H2 · success and demon-time vs world size, bare vs full
+  stack.</figcaption></figure>
+
+  <h2>Scoreboard</h2>
+  <table class="sb">
+    <tr><th>Question</th><th>Result</th><th>Verdict</th></tr>
+    <tr><td>Learner valid (vs value iteration)</td><td>5/6 within 20%</td>
+      <td class="v-pass">gate passed</td></tr>
+    <tr><td>Which mechanism carries the stack?</td>
+      <td>variety, +0.197 (others ≤0.05)</td><td class="v-pass">clear</td></tr>
+    <tr><td>Do the mechanisms stack additively?</td>
+      <td>no — negative interactions with variety</td>
+      <td class="v-neg">antagonistic</td></tr>
+    <tr><td>Is vow load-bearing?</td>
+      <td>+0.012 — inert, as in lab2</td>
+      <td class="v-neg">robust negative</td></tr>
+    <tr><td>Does the complected stack matter at scale?</td>
+      <td>advantage −0.00 → +0.46 from N=150→1000</td>
+      <td class="v-pass">strongly yes</td></tr>
+  </table>
+
+  <h2>What lab3 actually establishes</h2>
+  <p>Three things the isolated instruments could not. (1) <strong>Complected,
+  the mechanisms are not equals.</strong> One — variety / anti-monoculture
+  — does almost all the work; the corpus's most elaborate apparatus (vows,
+  the forgiveness liturgy) is close to inert once the agent simply explores.
+  (2) <strong>They interfere.</strong> The interactions with variety are
+  negative: the framework's instinct to pile mechanism on mechanism is, by
+  its own complected model, mildly counterproductive — "a bad goal is a
+  tiny god" applies to the toolkit too (cf.
+  <a href="panels-it-didnt-make.html">idolatry of the repair toolkit</a>).
+  (3) <strong>Scale is the whole point.</strong> None of this matters on a
+  toy; all of it matters at N=1000. The corpus reads very differently once
+  you accept that its machinery is built for a world too big to plan.</p>
+  <p>And the cross-instrument signal worth most: <em>vow keeps failing</em>.
+  Analytic LMDP (lab2: vow≈decree, powered null) and a model-free learner
+  (lab3: +0.012, negligible) — two unrelated agents, same verdict. When a
+  result survives a complete change of instrument, it is the closest this
+  archive gets to knowing something.</p>
+
+  <div class="note">Ceiling honestly stated: tabular Q-learning, 4 seeds,
+  N≤1000, a planted two-tier demon, count-based variety as the only
+  exploration model. These are scaling and ablation results on one family
+  of learners, not a claim about minds. Bigger N, function approximation,
+  and more seeds would sharpen the interaction estimates. The code says so
+  in its docstring. lab4 would be deep function approximation and a found
+  (not planted) basin — a story for when "high-schooler" is no longer the
+  insult.</div>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="lab2.html">Lab II</a> — the analytic instrument lab3
+    leaves behind; its powered vow≈decree null is the result lab3
+    independently re-confirms with a learning agent.</li>
+    <li><a href="panels-it-didnt-make.html">Panels It Didn't Make</a> —
+    "idolatry of the repair toolkit": lab3's negative interactions are that
+    speculation, measured.</li>
+    <li><a href="cruxes.html">Open Problems &amp; Cruxes</a> — "is the
+    apparatus load-bearing?" now has a number: mostly no, except variety,
+    except at scale.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>
