@@ -1,0 +1,215 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab II: theory predicting the numbers — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.4em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.42rem .55rem;
+  vertical-align:top}
+.sb th{color:var(--accent);text-align:left}
+.v-pass{color:#79c879;font-weight:700}
+.v-neg{color:#e0a33a;font-weight:700}
+.ladder{font:.84rem system-ui;color:var(--dim);border-left:3px solid
+  var(--accent);padding:.4em 0 .4em 1em;margin:1.3em 0}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · NON-AUTHORITATIVE</p>
+  <h1>Lab II — theory predicting the numbers</h1>
+  <p class="lede">Calling <a href="lab.html">lab.py</a> "postdoc" was
+  overselling one seed and a constructed motif. The honest grade was
+  middle-school. Lab II keeps the <em>same validated core</em> and adds the
+  things that actually separate a measurement from a result.</p>
+
+  <div class="ladder"><strong>The rigour ladder, stated plainly.</strong>
+  <a href="toy-model.html">toy</a>: 1 graph, 1 seed, an ad-hoc agent —
+  existence proof. <a href="lab.html">lab</a>: a principled agent + ensembles
+  + bootstrap on one master seed — a measurement. <strong>lab2</strong>:
+  6 independent seeds, a self-validating test harness, and for every
+  experiment a <em>predicted law</em> the data is checked against — plus a
+  hypothesis test with a demonstrated power control and a confound control.
+  Still not a paper. But it now fails honestly and passes for a stated
+  reason.</div>
+
+  <div class="note">Every number below is verbatim from
+  <code>site/workground/lab2.py</code> (numpy/scipy/matplotlib, seeds 0–5),
+  reproducible in ~10 s; machine-readable results in
+  <code>lab2_results.json</code>. The instrument refuses to report anything
+  until it has brute-forced and asserted its own core.</div>
+
+  <h2>0 · Self-validation (the instrument tests itself first)</h2>
+  <p>Before any result, the harness brute-forces 40 random graphs and
+  asserts: independent Floyd–Warshall equals the Bellman–Ford used
+  everywhere; the LMDP value at β=80 equals the exact shortest path (the
+  Maslov limit); every controlled-chain row is stochastic to 1e-8; every
+  committor lies in [0,1]. <strong>160/160 assertions pass.</strong> If any
+  failed, lab2 exits without reporting — a result on a broken core is worse
+  than no result.</p>
+
+  <h2>A · Maslov: the provable bound, and a decay faster than it
+  <span class="v-pass">PASS</span></h2>
+  <p>The honest theory here is an <em>inequality</em>, not a rate: softmin
+  underestimates the min by at most <code>(1/β)·log K</code> per state, so
+  the gap must lie under a <code>(diam/β)·log K<sub>max</sub></code>
+  envelope — always. It does, for <strong>100% of β across all seeds</strong>.
+  The decay is then <em>faster</em> than that envelope (pre-saturation
+  log–log slope <strong>−5.2 ± 0.35</strong>, well past the −1 of a pure
+  1/β law), collapsing to machine zero — exactly the generic
+  unique-optimum prediction. lab.py's earlier "rate = −1" claim was my
+  mis-statement; the rigorous claim is the bound, and it holds.</p>
+  <pre>b= 3  gap 0.112521   bound 19.46      b=16  gap 0.000007
+b= 6  gap 0.007686   bound  9.73      b=24  gap 0.000000
+b= 8  gap 0.001760   bound  7.30      b=64  gap 0.000000
+provable (1/b)logK bound respected: 1.00 of betas</pre>
+  <figure class="fig"><img src="figs/g1_maslov_rate.png" alt="">
+  <figcaption>G1 · gap vs β with the provable envelope and the ideal-1/β
+  reference; the data dives under both.</figcaption></figure>
+
+  <h2>B · Kramers: theory predicts the slope <em>is</em> β
+  <span class="v-pass">PASS</span></h2>
+  <p>This is the upgrade that matters most. lab.py showed myopic exit time
+  is exponential in basin depth (a line on a log axis). Lab II asks the
+  sharper question: <em>does the slope equal the value theory predicts?</em>
+  For a myopic Gibbs walk the per-visit escape probability scales as
+  <code>e<sup>−β·depth</sup></code>, so Eyring–Kramers predicts
+  <code>slope(log-MFPT vs depth) = β</code>. Measured, across seeds:</p>
+  <pre>β=1.0  slope 0.903 ± 0.001     β=2.0  slope 1.933 ± 0.002
+β=1.5  slope 1.419 ± 0.002     β=3.0  slope 2.948 ± 0.003
+regression slope-vs-β:  1.022·β − 0.116   (theory: 1·β + 0)</pre>
+  <p>The measured escape slope tracks β with regression slope 1.02 and
+  intercept −0.12 — the theory does not just describe the curve, it
+  <em>predicts the number</em>. That is the line between "I fit an
+  exponential" and "I confirmed Kramers".</p>
+  <figure class="fig"><img src="figs/g2_kramers_slope.png" alt="">
+  <figcaption>G2 · measured depth-slope vs β; points sit on the
+  theory line y = β.</figcaption></figure>
+
+  <h2>C · The boundedness phase boundary <span class="v-pass">PASS</span></h2>
+  <p>lab.py's myopic-vs-LMDP dissociation was binary. Lab II makes it
+  continuous: a λ-foresight agent
+  (<code>π ∝ e<sup>−β(c + λV*)</sup></code>, λ=0 myopic → λ=1 optimal) and
+  the question <em>how much foresight does a basin of depth d demand to
+  stop trapping you?</em> The answer is a clean phase boundary
+  λ*(depth):</p>
+  <pre>depth  1  2     4     6     8    10
+λ*     0  0  0.20  0.45  0.60  0.70     Spearman(depth,λ*) = +1.000</pre>
+  <p>Shallow basins need no foresight; the required foresight rises
+  monotonically (perfect rank correlation) with depth. "A bad goal is a
+  tiny god" now has a dose: the deeper the idol, the more look-ahead it
+  takes to not be owned by it.</p>
+  <figure class="fig"><img src="figs/g3_phase_boundary.png" alt="">
+  <figcaption>G3 · λ*(depth): the foresight a depth-d basin demands; shaded
+  region = "trapped".</figcaption></figure>
+
+  <h2>D · Vow ≈ decree: a null result <em>with demonstrated power</em>
+  <span class="v-pass">PASS (a credible negative)</span></h2>
+  <p>lab.py reported vow≈decree but a null is worthless without showing the
+  test <em>could</em> have rejected. Lab II runs a minimal-detectable-effect
+  control: the same permutation test, same sample size, on a known +15%
+  shift.</p>
+  <pre>real vow vs decree          : d=−0.103   perm p = 0.261
++15% shift control vs decree: d=−0.788   perm p = 0.0002</pre>
+  <p>The test rejects a mere 15% effect at p=0.0002, yet cannot distinguish
+  a spaced-with-decay vow from a budget-matched one-shot decree (p=0.26,
+  |d|=0.10). So "repetition itself matters" is not underpowered — within
+  this model it is <strong>absent</strong>. The corpus's vow/decree
+  distinction needs a path-dependence the corpus never specifies. Kept on
+  the board as a credible negative, with the receipts.</p>
+  <figure class="fig"><img src="figs/g4_vow_power.png" alt="">
+  <figcaption>G4 · vow, decree, and the +15% power control; vow and decree
+  overlap, the control separates.</figcaption></figure>
+
+  <h2>E · Forgiveness: the invariant holds, the predictor deflates
+  <span class="v-pass">PASS + an honest deflation</span></h2>
+  <p>Two questions, separated. <strong>The corpus's actual claim</strong> —
+  "the wound is irreversible; its sovereignty is not" — is now a measured
+  asymmetry: demoting a node keeps GOOD reachable in
+  <strong>100.0%</strong> of trials, while <em>deleting</em> it severs GOOD
+  in 0.6% (the wound really is load-bearing infrastructure you must keep).
+  That invariant is the operationalisation, and it holds exactly.</p>
+  <p><strong>The deflation, kept honestly:</strong> is "global routing
+  authority" really betweenness, or just degree wearing a fancier name? A
+  partial Spearman controlling out-degree:</p>
+  <pre>raw Spearman(betweenness, |Δ behaviour|)        = +0.175
+PARTIAL | out-degree controlled = +0.042  [−0.026, +0.140]</pre>
+  <p>The partial correlation's CI spans zero. Betweenness does <em>not</em>
+  predict beyond degree. So "routing authority" deflates to ordinary
+  connectivity — a sharper, humbler reading than lab.py's confident
+  "betweenness identified". The finding that survives is the asymmetry, not
+  the centrality story; lab2 says so rather than burying it.</p>
+  <figure class="fig"><img src="figs/g5_forgiveness_controlled.png" alt="">
+  <figcaption>G5 · betweenness vs effect after the degree control (left),
+  and the demote-keeps / delete-breaks asymmetry (right).</figcaption></figure>
+
+  <h2>F · The price of a bit <span class="v-pass">PASS</span></h2>
+  <p>lab.py showed variety "is a lever." Lab II prices it: across seeds,
+  what does one bit of behavioural entropy <em>buy</em> in avoided
+  capture?</p>
+  <pre>d(capture)/d(entropy) = −0.368   [−0.370, −0.367]  capture per bit</pre>
+  <p>Each bit of variety buys ≈0.37 less demon-capture, with a CI strictly
+  negative and razor-tight across seeds. "Anti-monoculture" stops being a
+  slogan and becomes a rate–distortion law with a number and an error bar.</p>
+  <figure class="fig"><img src="figs/g6_rate_distortion.png" alt="">
+  <figcaption>G6 · capture vs entropy across seeds with the fitted
+  price-per-bit line.</figcaption></figure>
+
+  <h2>Scoreboard — measurement vs predicted law</h2>
+  <table class="sb">
+    <tr><th>Experiment</th><th>Predicted law</th><th>Measured</th>
+      <th>Verdict</th></tr>
+    <tr><td>A Maslov</td><td>gap ≤ (1/β)logK, ∀β</td>
+      <td>respected 100%; decay slope −5.2 (faster)</td>
+      <td class="v-pass">PASS</td></tr>
+    <tr><td>B Kramers</td><td>log-MFPT depth-slope = β</td>
+      <td>slope ≈ 1.02·β − 0.12</td><td class="v-pass">PASS</td></tr>
+    <tr><td>C Phase boundary</td><td>λ*(depth) monotone ↑</td>
+      <td>Spearman = +1.000</td><td class="v-pass">PASS</td></tr>
+    <tr><td>D Vow=decree</td><td>null, with test power</td>
+      <td>p=0.26; control p=0.0002</td>
+      <td class="v-neg">credible null</td></tr>
+    <tr><td>E Forgiveness</td><td>demote keeps, delete breaks</td>
+      <td>100.0% vs 0.6%; betweenness deflates to degree</td>
+      <td class="v-pass">PASS*</td></tr>
+    <tr><td>F Variety price</td><td>d(capture)/d(entropy) &lt; 0</td>
+      <td>−0.368 [−0.370,−0.367]</td><td class="v-pass">PASS</td></tr>
+  </table>
+
+  <h2>What actually changed from lab to lab2</h2>
+  <p>Not "more green." The difference is epistemic. lab.py could say
+  "exit time is exponential"; lab2 says "its slope equals β, the
+  Eyring–Kramers prediction, regression 1.02·β−0.12 across six seeds".
+  lab.py could say "betweenness predicts forgiveness"; lab2 controls for
+  degree and reports, against its own earlier claim, that it doesn't —
+  while confirming the asymmetry the corpus actually asserts. lab.py asserted
+  its core; lab2 brute-forces and proves it before speaking. A "vow matters"
+  null is now backed by a demonstrated-power control instead of a shrug. The
+  one place lab2 is most credible is exactly where it walked back a lab.py
+  result — which is the only direction an instrument upgrade is allowed to
+  be trusted in.</p>
+
+  <div class="note">Still honest about the ceiling: six seeds, n≈30, a
+  constructed two-state basin, ER/WS/BA/SBM ensembles, a bracket of agents
+  (myopic ↔ optimal) not an exhaustive family. These are scaling laws and
+  confound-controlled correlations on a model, not universal claims about
+  minds or worlds. High-schooler, maybe. Not a paper. The code says the
+  same in its own docstring.</div>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="lab.html">From Toy to Lab</a> — the instrument this
+    sharpens; read it for the LMDP core and the agent-relativity finding
+    lab2 makes continuous.</li>
+    <li><a href="toy-model.html">Does It Cash Out? (the toy)</a> — the
+    6-node on-ramp the whole ladder starts from.</li>
+    <li><a href="cruxes.html">Open Problems &amp; Cruxes</a> — the deflation
+    of "routing authority" in E directly tightens the forgiveness crux.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>
