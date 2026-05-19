@@ -1,5 +1,9 @@
 # Computational Theology — Archive & Archeology
 
+**Live site:** https://emberian.github.io/comp-theo/ — poster browser
+(all 210 panels, both transcription passes side-by-side), critical essays,
+guided lessons, philosophy comparisons, glossary, and poster map.
+
 A mirror and reconstruction of the *Computational Theology* visual-essay
 series (5 imgur albums, 210 posters), plus the dialogue transcript that
 produced it.
@@ -47,6 +51,14 @@ Transcriptions were produced by two engines: **73** via `codex exec`
 the remaining **137** via Claude (Opus 4.7) vision when the quota blocked
 codex for hours. Per-file mapping in `synthesis/provenance.json`. Format and
 prompt were identical across both.
+
+## Site
+
+Plain HTML/JS (no build framework) under `site/`, deployed to GitHub Pages
+by `.github/workflows/pages.yml` (assembles `site/` + mirrored `images/`,
+regenerating `site/data/` via `scripts/build_site_data.py`). Local preview:
+`scripts/serve_site.sh` → http://localhost:8765. Interpretive essays/lessons/
+comparisons are a skeptical outside reading, not the original author's voice.
 
 ## Reproduce
 
