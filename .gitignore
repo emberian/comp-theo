@@ -1,0 +1,5 @@
+logs/
+site/images
+__pycache__/
+*.tmp
+.DS_Store
