@@ -1,0 +1,224 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>From Toy to Lab — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.6em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.5em}
+.sb{width:100%;border-collapse:collapse;font:.86rem system-ui;margin:1.5em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.45rem .6rem;
+  text-align:left;vertical-align:top}
+.sb th{color:var(--accent)}
+.v-pass{color:#79c879;font-weight:700}
+.v-neg{color:#e0a33a;font-weight:700}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · NON-AUTHORITATIVE</p>
+  <h1>From Toy to Lab</h1>
+  <p class="lede">The <a href="toy-model.html">toy</a> proved the corpus's
+  metaphors <em>can</em> be literalised on one 6-node graph with an arbitrary
+  softmax agent. This is the postdoc version — a principled agent, graph
+  ensembles, statistics — and it changes some of the verdicts in a way the
+  toy could not have seen.</p>
+
+  <div class="note">Every number and figure below is verbatim output of
+  <code>site/workground/lab.py</code> (numpy/scipy/matplotlib, master seed
+  1729), reproducible with <code>python3 site/workground/lab.py</code>. This
+  is a lab notebook: speculation is labelled, negative results are kept, and
+  the most interesting finding is one that demotes a toy result.</div>
+
+  <h2>The one change that matters: a principled agent</h2>
+
+  <p>The toy's agent was an ad-hoc softmax over <em>immediate</em> edge cost
+  — myopic, no look-ahead. The lab's agent is a <strong>linearly-solvable
+  MDP</strong> (Todorov's KL / path-integral control), the canonical model of
+  a bounded-rational planner. Desirability <code>z(s)=exp(−βV(s))</code>
+  solves a single linear system <code>z(s)=Σ_v e^{−βc(s,v)} z(v)</code>,
+  <code>z(GOOD)=1</code>; the controlled policy is
+  <code>π(v|s) ∝ e^{−βc(s,v)} z(v)</code>. Two properties make this the
+  right core: it is exactly solvable (nothing diverges the way an
+  undiscounted entropy-softmin does), and it has a clean β→∞ limit. Swapping
+  the agent is not cosmetic — it is what exposes which of the toy's results
+  were about the <em>world</em> and which were about the <em>agent</em>.</p>
+
+  <h2>EXP 1 — Maslov dequantisation <span class="v-pass">PASS</span></h2>
+  <p>The corpus repeatedly leans on "tropical algebra is the β→∞ limit; the
+  choice of algebra is an ethical decision." That is now a measured curve,
+  not a slogan. As β grows, <code>−(1/β) log z(START)</code> converges to the
+  <em>exact</em> min-plus (Bellman–Ford) shortest path:</p>
+  <pre>b=  2  median gap 0.36735      b= 12  gap 0.00003
+b=  4  median gap 0.02846      b= 16  gap 0.00000
+b=  8  median gap 0.00062      b=128  gap 0.00000</pre>
+  <p>Gap 0.367 → 0.00000 over 50 random graphs. The bounded agent
+  <em>is</em> the soft (log-sum-exp) relaxation of least action, and it
+  dequantises to the tropical semiring exactly as advertised. Honest caveat,
+  stated in the code: below ≈β=2 the Boltzmann path-sum genuinely diverges
+  (a real high-temperature transition, not a bug) and above ≈β=128 it
+  underflows float64; the claim lives strictly inside that window, and the
+  window is shown, not hidden.</p>
+  <figure class="fig"><img src="figs/f1_dequantisation.png" alt="">
+  <figcaption>F1 · |V_β(START) − tropical| vs β (log–log), 50 ER graphs;
+  band = inter-quartile range.</figcaption></figure>
+
+  <h2>EXP 2 — Metastability is <em>agent-relative</em>
+  <span class="v-pass">PASS (and the centrepiece)</span></h2>
+  <p>This is the result worth the whole exercise. Implant a basin of depth
+  <em>d</em> (the toll on its single exit) and ask how long an agent dwells.
+  For the <strong>myopic</strong> agent (the toy's actual agent) the basin
+  is a textbook Kramers trap — mean exit time is exponential in the toll:</p>
+  <pre>depth  myopic exit   LMDP exit
+ 0.5         7.77        4.11
+ 2.0        98.81        4.10
+ 4.0      5291.53        4.12
+ 6.0    291692.00        4.11
+ 8.0  15622169.93        4.12
+ fit: log(exit) = 1.954·depth + 0.83     R² = 0.9994</pre>
+  <p>The myopic exit time fits a clean exponential across four orders of
+  magnitude (R² = 0.999). The <strong>value-aware</strong> agent's exit
+  time is <em>flat at ≈4.1 regardless of depth</em> — it sees the toll,
+  prices it, and walks out. The demon is a genuine metastable basin
+  <em>for a myopic agent</em> and not at all for a planner. So the toy's
+  vivid "capture basin" was real — but it was a property of the toy's
+  <em>agent</em>, not of the world. This both vindicates the corpus's
+  intuition and sharply bounds it: "a bad goal is a tiny god" only traps a
+  mind that does not look ahead.</p>
+  <figure class="fig"><img src="figs/f2_metastable.png" alt="">
+  <figcaption>F2 · exit time vs basin depth: myopic (exponential fit) vs
+  value-aware LMDP (flat).</figcaption></figure>
+
+  <h2>EXP 3 — Vow vs decree <span class="v-neg">honest negative</span></h2>
+  <p>The toy admitted it could not test the corpus's claim that a vow is
+  <em>not</em> a one-shot decree — that "iteration itself matters". The lab
+  builds the fair test: a spaced vow <em>with forgetting</em> (each
+  inscription decays back toward baseline) against a single decree of equal
+  nominal budget.</p>
+  <pre>vow    MFPT median = 3.18      decree MFPT median = 3.21
+effect size Cohen d = -0.11   (indistinguishable)</pre>
+  <p>Even with decay — the mechanism that should make repetition matter —
+  vow and budget-matched decree are statistically indistinguishable. On this
+  model, "repetition is load-bearing" does <strong>not</strong> survive
+  literalisation; the distinctive content of a vow over a decree is, here,
+  decorative. The toy suspected this and could not show it; the lab shows
+  it. Kept as a negative result, not hidden.</p>
+  <figure class="fig"><img src="figs/f3_vow_vs_decree.png" alt="">
+  <figcaption>F3 · MFPT distributions, vow (spaced+decay) vs one-shot
+  decree, matched budget.</figcaption></figure>
+
+  <h2>EXP 4 — Grace rescues the trapped agent
+  <span class="v-pass">PASS (the robust half)</span></h2>
+  <p>The toy's striking "grace is inert for the planner but decisive for the
+  trapped agent" had two halves. The lab tests both across 160 graphs and
+  separates them honestly. The robust half holds emphatically: an exogenous
+  edge reliably rescues the trapped myopic agent —</p>
+  <pre>Δ trapped-agent success  mean = +0.625  [+0.623, +0.627]  (n=160)
+Δ planner optimal cost   mean = +7.200  (large here: on-path toll)</pre>
+  <p>Grace lifts the trapped agent's success by +0.63 with a razor-tight CI.
+  But the "inert for the planner" half is <em>topology-specific</em>: it
+  holds when the demon is a side-basin (the toy's accidental topology) and
+  fails when it is an on-path toll-gate (where the planner needs the new
+  edge too). So the corpus's clean dissociation was partly an artifact of
+  one graph's shape — the rescue is general, the inertness is not.</p>
+  <figure class="fig"><img src="figs/f4_grace_law.png" alt="">
+  <figcaption>F4 · distribution of Δ(trapped-agent success) after a single
+  exogenous edge, 160 graphs.</figcaption></figure>
+
+  <h2>EXP 5 — "Routing authority" = betweenness
+  <span class="v-pass">PASS</span></h2>
+  <p>The corpus's forgiveness move — "demote the wound-node from global
+  routing authority, not delete it" — presumes a specific, unnamed
+  centrality. The lab adjudicates it: which centrality of a node best
+  predicts the behavioural effect of demoting it (while keeping it
+  reachable), across ER/WS/BA/SBM ensembles?</p>
+  <pre>betweenness  rho = +0.292  [+0.149, +0.414]
+eigenvector  rho = +0.100  [-0.050, +0.282]
+katz         rho = +0.110  [-0.024, +0.260]</pre>
+  <p><strong>Betweenness</strong> wins with a CI clear of zero; the
+  alternatives' CIs include zero. The corpus's vague "routing authority" has
+  a real, identifiable referent — shortest-path betweenness — and the
+  forgiveness-as-demotion picture is, to that extent, well-posed. This was
+  the toy's cleanest survivor and it strengthens under the ensemble.</p>
+  <figure class="fig"><img src="figs/f5_forgiveness_centrality.png" alt="">
+  <figcaption>F5 · rank correlation of each centrality with the demotion
+  effect size.</figcaption></figure>
+
+  <h2>EXP 6 — Variety is a priced lever
+  <span class="v-pass">PASS</span></h2>
+  <p>The toy's sharpest self-criticism was that "variety" had no mechanism —
+  it was a readout, not a lever. For the myopic agent the temperature β
+  <em>is</em> the lever, and it traces a real rate–distortion frontier:</p>
+  <pre>b=0.5  entropy 1.476 bits  cost-rate 0.229  capture 0.446
+b=1.0  entropy 0.956 bits  cost-rate 0.267  capture 0.661
+b= 34  entropy 1.004 bits  cost-rate 0.257  capture 0.565</pre>
+  <p>Occupation entropy spans 0.95 → 1.48 bits as the lever moves, and the
+  high-variety (exploratory) regime cuts demon capture from 0.66 to 0.45 —
+  at a measurable cost rate. Variety is no longer a description of collapse;
+  it is a dial with a price, exactly the "anti-monoculture as a mechanism"
+  the corpus wanted and never built.</p>
+  <figure class="fig"><img src="figs/f6_variety_frontier.png" alt="">
+  <figcaption>F6 · the variety lever: occupation entropy and demon capture
+  vs β.</figcaption></figure>
+
+  <h2>Scoreboard</h2>
+  <table class="sb">
+    <tr><th>Claim</th><th>Toy</th><th>Lab</th><th>What changed</th></tr>
+    <tr><td>Tropical = β→∞ limit</td><td>gestured</td>
+      <td class="v-pass">PASS</td><td>now an exact measured curve
+      (gap→0.00000)</td></tr>
+    <tr><td>Demon = capture basin</td><td>strong (one graph)</td>
+      <td class="v-pass">PASS*</td><td>real, but <em>agent-relative</em>:
+      Kramers-metastable for a myopic agent (R²=0.999), invisible to a
+      planner</td></tr>
+    <tr><td>Vow ≠ decree (repetition matters)</td><td>couldn't test</td>
+      <td class="v-neg">negative</td><td>indistinguishable even with decay
+      (d=−0.11) — decorative</td></tr>
+    <tr><td>Grace acts on the boundedness gap</td><td>one striking graph</td>
+      <td class="v-pass">PASS*</td><td>rescue is robust (+0.63, n=160);
+      "inert for planner" is topology-specific</td></tr>
+    <tr><td>Forgiveness = demote routing authority</td><td>≈betweenness</td>
+      <td class="v-pass">PASS</td><td>betweenness confirmed across 4
+      ensembles (ρ=+0.29, CI&gt;0)</td></tr>
+    <tr><td>Variety = anti-collapse mechanism</td><td>empty (a readout)</td>
+      <td class="v-pass">PASS</td><td>becomes a priced lever with a
+      rate–distortion frontier</td></tr>
+  </table>
+
+  <h2>What the upgrade actually taught</h2>
+  <p>The headline is not "more things passed." It is that a better
+  <em>instrument</em> relocated the corpus's central image. "Capture", "a
+  bad goal is a tiny god", the whole demonology — the lab says these are
+  real and sharp, but they describe a <strong>myopic</strong> mind. Give the
+  agent look-ahead and the basins stop being prisons; they become tolls it
+  simply pays. That is a more precise and more humane reading than either
+  the toy or the posters reached: the demon's power is not in the world's
+  geometry but in the narrowness of the agent traversing it — which is, read
+  back, almost exactly the corpus's own "idolatry as overconstraint", now
+  with the overconstraint located in the <em>policy</em>, not the graph. The
+  one claim that simply did not survive (vow ≠ decree) is kept on the board
+  as a negative, because an instrument you only believe when it agrees with
+  you is the Totality Demon by another name.</p>
+
+  <div class="note">Limits, stated plainly: one master seed (results are
+  deterministic, not yet seed-averaged); modest graph sizes (n≈30–34);
+  the demon motif is a constructed two-state basin, not a found one; the
+  myopic/LMDP pair brackets bounded agents but is not exhaustive. These are
+  existence-and-scaling results, not universal laws. The code says the same.</div>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="toy-model.html">Does It Cash Out? (the toy)</a> — the
+    6-node on-ramp this instrument grew out of; read it first.</li>
+    <li><a href="cruxes.html">Open Problems &amp; Cruxes</a> — EXP 2's
+    agent-relativity is the sharpest answer the site has to the
+    "is the demonology real?" crux.</li>
+    <li><a href="inference-audit.html">The Inference Audit</a> — the
+    tropical and forgiveness steps this lab measured are audited there as
+    proof obligations.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>
