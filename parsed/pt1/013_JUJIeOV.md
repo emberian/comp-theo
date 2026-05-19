@@ -1,91 +1,51 @@
 ## Transcription
-
 5 / 8
 
 CATHERINE CHRISTER HENNIX:
 
 DOMAINS OF VARIATION
 
-Hennix pushes us  
-beyond a rigid binary cut:  
-distinctions occur within  
-domains of variation,  
-interpretation, and  
-lived formalism.
-
-local meaning
-
-\(U_i\)
-
-\(s_i : U_i \to F\)
-
-arrows  
-reveal  
-structure
-
-\(U_i \xrightarrow{f_{ij}} U_j\)  
-\(U_i \xleftarrow{g_{ji}} U_j\)
-
-\(f_{ij} \circ g_{ji} = id_{U_j}\)  
-\(g_{ji} \circ f_{ij} = id_{U_i}\)  
-(local isomorphisms)
+Hennix pushes us beyond a rigid binary cut: distinctions occur within domains of variation, interpretation, and lived formalism.
 
 domain of variation
 
-\(\mathcal{V}\)  
-(base space)
+V (base space)
 
-\(V\)  
-base space
+local meaning
+s_i : U_i → F
+U_i
 
-\(U_1\)  
-\(U_2\)  
-\(U_3\)  
-\(U_4\)
+arrows reveal structure
+f_ij
+U_i → U_j
+g_ji
+f_ij ∘ g_ji = id_{U_j}
+g_ji ∘ f_ij = id_{U_i}
+(local isomorphisms)
 
-\(F : V^{op} \to \mathrm{Set}\)  
-(sheaf)
+V
 
-\(U_i\)  
-\(F(f_{ij})\)  
-\(U_j\)
+U_1  U_2  U_3  U_4
 
-\(F(U_i)\)  
-\(F(g_{ji})\)  
-\(F(U_j)\)
+topos as modality of thought
+E
+finite limits, exponentials, subobject classifier, internal logic
 
-topos as  
-modality of  
-thought
+F : V^op → Set    (sheaf)
+U_1
+F(U_1)
+U_2
+F(U_2)
+U_3
+F(U_3)
 
-\(\mathcal{E}\)  
-topos
+From local contexts (to global coherence)
 
-finite limits  
-exponentials  
-subobject classifier  
-internal logic
+local distinctions ⇒ gluing via structure (compatibility) ⇒ global meaning (structured variation)
 
-From local  
-contexts  
-(to global  
-coherence)
+NOTE  Distinction is primitive, but its interpretation is local.
 
-local distinctions
-
-gluing via structure  
-(compatibility)
-
-global meaning  
-(structured variation)
-
-NOTE
-
-Distinction is primitive,  
-but its interpretation is local.
-
-SERIES: DISTINCTION AS PRIMITIVE • 5 / 8
+SERIES: DISTINCTION AS PRIMITIVE · 5 / 8
 
 ## Visual
-
-A tall cream-colored poster uses severe condensed black typography with “VARIATION” in dark red, framed by thin rule lines and small schematic ornaments. The central image is a layered mathematical/topological diagram: a gray base space, a translucent red “domain of variation,” dotted points, arrows, cover sets, sheaf notation, and a topos box in blue. A black horizontal band near the bottom shows a progression from local dots to overlapping structures to a toroidal global form, using white linework with blue highlights.
+Light-cream editorial poster with a bold condensed headline mixing black and dark-red type. Center shows stacked translucent blob-like sheets (a sheaf/fiber-bundle illustration) with scattered nodes and vertical projection lines connecting an upper "domain of variation" to a lower base space V. Small inset diagrams show a waveform, commuting-arrow isomorphism equations, and a topos legend box. A bottom strip illustrates a three-step progression from local distinctions to gluing to global meaning with cluster-of-dots and torus icons. Refined academic typographic style, series footer at foot.

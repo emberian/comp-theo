@@ -55,6 +55,8 @@ def main():
         rec = {
             "part": r["part"], "index": r["index"], "id": r["id"],
             "img": r["file"],
+            "thumb": "thumbs/" + r["file"][len("images/"):].rsplit(".", 1)[0]
+            + ".jpg",
             "w": r.get("width"), "h": r.get("height"),
             "title": title_of(tr),
             "transcription": tr or "", "visual": vi or "",

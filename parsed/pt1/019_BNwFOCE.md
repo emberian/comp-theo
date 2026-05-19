@@ -1,169 +1,67 @@
 ## Transcription
-
 WORLDSYSTEMS AS ORDERED CREATION · 1 / 8
 
-ENGINEERED SIMULATION  
-OF AN ORDERED CREATION
+ENGINEERED SIMULATION of AN ORDERED CREATION
 
-Using Tamon-style quantum-walk ingredients  
-to build navigable worldsystems
+Using Tamon-style quantum-walk ingredients to build navigable worldsystems
 
-TAMON  
-INGREDIENTS
+TAMON Ingredients
+- spatial search
+- weak coupling
+- tails / protected subspaces
+- chiral adjacency
+- state transfer
+- timing robustness
 
-spatial  
-search
+SIMULATION GOAL
+- engineer a lawful workspace
+- define admissible transitions
+- guide search toward reachable goods
+- stabilize reachable realizations
 
-weak  
-coupling
+1 DISTINCTION
+Introduce a distinguished element or set.
 
-tails /  
-protected  
-subspaces
+2 REGION
+Delbit the bounded domain of discourse. [transcription: likely "Delimit the bounded domain of discourse."]
 
-chiral  
-adjacency
+3 ORDER STRUCTURE
+covert relation
+up-set
+down-set
+incomparable
+monotone progression
+up-set ↑x = {y : x ≤ y}
+down-set ↓x = {y : y ≤ x}
+(P, ≤) a finite poset
 
-state  
-transfer
-
-timing  
-robustness
-
-z  
-|\psi\rangle  
-y  
-x
-
-||\psi||^2 = \langle \psi | \psi \rangle = 1
-
-p_w(t)  
-0  
-t
-
-1  
-DISTINCTION
-
-mark
-
-Introduce a  
-distinguished  
-element or set.
-
-2  
-REGION
-
-Define the  
-bounded domain  
-of discourse.
-
-3  
-ORDER STRUCTURE
-
-cover relation  
-up-set ↑  
-down-set ↓  
-monotone  
-progression
-
-up-set ↑  
-\uparrow x = {y \in P | x \le y}
-
-down-set ↓  
-\downarrow x = {y \in P | y \le x}
-
-monotone  
-progression
-
-(P, \le) a finite poset
-
-4  
-GRAPH / ADJACENCY
-
+4 GRAPH / ADJACENCY
 G = (V, E)
+V = states
+E = V × V
+allowed transitions (covert relations)
 
-V : states  
-E \subseteq V \times V :  
-allowed transitions  
-(cover relations)
-
-5  
-HAMILTONIAN
-
-H = \gamma A + |w\rangle\langle w|
-
-global propagation  
+5 HAMILTONIAN
+H = γA + |w><w|
+global propagation
 local marking
+A = adjacency matrix
+γ = coupling strength
+|w> = marked target state
 
-A : adjacency matrix of G    |w\rangle : marked (target) state    \gamma \in R : coupling strength
-
-6  
-WALK / SEARCH / TRANSFER
-
-t_0  
-t_1  
-t_2  
-...  
-t_T
-
-|\psi(t)\rangle = e^{-iHt} |\psi(0)\rangle
-
-p_w(t) = |\langle w | \psi(t)\rangle|^2
-
+6 WALK / SEARCH / TRANSFER
+|ψ(t)> = e^{-iHt} |ψ(0)>
+p_w(t) = |<w|ψ(t)>|^2
 amplitude at marked state
 
-7  
-REALIZATION
-
-Collapse, commit, and  
-embed outcome into  
-the worldsystem.
-
-Realize ordered  
-possibilities.
-
+7 REALIZATION
+Collapse, commit, and embed outcome into the worldsystem.
+Realize ordered possibilities.
 possibility space
 
-realized state
+An ordered creation can be simulated by engineering distinctions into an order-theoretic state space, then using quantum-walk dynamics to navigate, privilege, and realize structured possibilities.
 
-SIMULATION  
-GOAL
-
-engineer a  
-lawful worldspace
-
-define admissible  
-transitions
-
-guide search  
-toward ordered  
-goods
-
-stabilize  
-reachable  
-realizations
-
-H^\dagger = H
-
-e^{-iHt} unitary
-
-\frac{d}{dt} |\psi(t)\rangle = -iH|\psi(t)\rangle
-
-E  
-\lambda
-
-An ordered creation can be simulated by engineering  
-distinctions into an order-theoretic state space, then  
-using quantum-walk dynamics to navigate, privilege,  
-and realize structured possibilities.
-
-mark  
-order  
-adjacency  
-evolution  
-search  
-manifestation
+mark · order · adjacency · evolution · search · manifestation
 
 ## Visual
-
-A tall, ornate infographic poster uses a central vertical sequence of seven numbered panels, flanked by ingredient and goal sidebars. The imagery mixes posets, adjacency graphs, quantum state diagrams, wave/search plots, compass and tree symbols, and celestial/star-map decoration to frame computation as ordered cosmological design. The style is dark navy with gold filigree, glowing cyan accents, serif small caps, and illuminated manuscript-like borders.
+Tall dark ornate poster with gold filigree borders and serif typography. A central numbered seven-step vertical pipeline (Distinction → Region → Order Structure → Graph/Adjacency → Hamiltonian → Walk/Search/Transfer → Realization) each with small diagrams: scatter dots, a Hasse-diagram poset, a node graph, a boxed gold equation H = γA + |w><w|, and amplitude plots. Flanking left and right margins list "Tamon Ingredients" and "Simulation Goal" with small circular icons. A thesis box and an icon chain footer close the page. Deep navy/black with gold and faint blue accents, classical engraved aesthetic.
