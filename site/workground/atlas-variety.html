@@ -1,0 +1,177 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — Variety across every instrument — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.3em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.4rem .55rem;
+  vertical-align:top;text-align:left}
+.sb th{color:var(--accent)}
+.sb td.num{font-variant-numeric:tabular-nums;text-align:right}
+.v-pass{color:#79c879;font-weight:700}
+.v-neg{color:#e0a33a;font-weight:700}
+.ladder{font:.84rem system-ui;color:var(--dim);border-left:3px solid
+  var(--accent);padding:.4em 0 .4em 1em;margin:1.2em 0}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · ATLAS</p>
+  <h1>Atlas — Variety across every instrument</h1>
+  <p class="lede">One slice of the robustness atlas: the <em>variety</em>
+  mechanism's main effect re-tested on the Rust engine across the full
+  3&times;3 of agents (myopic / tabular / linear-FA) and worlds (single-basin
+  / two-basin / found-community). This is the slice that adjudicates the
+  open disagreement between Lab&nbsp;III and Lab&nbsp;IV about whether
+  variety carries the stack.</p>
+
+  <div class="note">Non-authoritative scratch. Real numbers only: every
+  cell below is a fresh <code>labcore</code> run (N=600, 6 seeds,
+  full 2⁴ factorial, seed-bootstrap 95% CI), written by the slice script
+  to <code>atlas/variety.json</code>. A cell is <strong>robust</strong>
+  iff the 95% CI excludes 0 <em>and</em> |effect| &gt; 0.02. Honest
+  negatives are the whole point of running it; they are reported, not
+  smoothed.</div>
+
+  <h2>The contested claim</h2>
+  <p>Lab&nbsp;III (tabular agent, single basin) found variety the dominant
+  mechanism &mdash; main effect <strong>+0.197</strong>, far above vow
+  (+0.012), forgive (+0.035), grace (+0.052); the lab's own summary says
+  "variety carries it". Lab&nbsp;IV moved to a lossy linear function
+  approximator on a <em>found</em> community basin and reported variety
+  <strong>small</strong> (+0.024, just barely robust) while grace and vow
+  took over &mdash; and went further: it ran the "a lossier feature map
+  needs more variety" law as a prediction and the engine
+  <strong>falsified</strong> it (variety did not rise monotonically as the
+  map degraded k=4&rarr;onehot; rank-correlation &asymp; &minus;0.05).</p>
+  <p>So: is variety a load-bearing mechanism, or a tabular-only artifact?
+  The atlas slice answers it by re-running variety as a clean main-effect
+  contrast in every instrument at once.</p>
+
+  <h2>Result grid (live numbers)</h2>
+  <table class="sb">
+    <thead><tr><th>agent</th><th>world</th><th>variety effect</th>
+      <th>95% CI</th><th>jaccard</th><th>verdict</th></tr></thead>
+    <tbody>
+      <tr><td>myopic</td><td>single</td><td class="num">+0.472</td>
+        <td class="num">[+0.426, +0.509]</td><td class="num">0.429</td>
+        <td class="v-pass">ROBUST +</td></tr>
+      <tr><td>myopic</td><td>two-basin</td><td class="num">&minus;0.005</td>
+        <td class="num">[&minus;0.069, +0.074]</td><td class="num">0.042</td>
+        <td class="v-neg">null</td></tr>
+      <tr><td>myopic</td><td>community</td><td class="num">+0.708</td>
+        <td class="num">[+0.667, +0.755]</td><td class="num">0.394</td>
+        <td class="v-pass">ROBUST +</td></tr>
+      <tr><td>tabular</td><td>single</td><td class="num">+0.013</td>
+        <td class="num">[&minus;0.033, +0.064]</td><td class="num">0.071</td>
+        <td class="v-neg">null</td></tr>
+      <tr><td>tabular</td><td>two-basin</td><td class="num">&minus;0.053</td>
+        <td class="num">[&minus;0.204, +0.058]</td><td class="num">0.084</td>
+        <td class="v-neg">null</td></tr>
+      <tr><td>tabular</td><td>community</td><td class="num">+0.710</td>
+        <td class="num">[+0.684, +0.743]</td><td class="num">0.404</td>
+        <td class="v-pass">ROBUST +</td></tr>
+      <tr><td>fa</td><td>single</td><td class="num">&minus;0.008</td>
+        <td class="num">[&minus;0.016, &minus;0.000]</td>
+        <td class="num">0.500</td><td class="v-neg">null (|eff|&lt;0.02)</td></tr>
+      <tr><td>fa</td><td>two-basin</td><td class="num">+0.006</td>
+        <td class="num">[&minus;0.006, +0.019]</td><td class="num">0.042</td>
+        <td class="v-neg">null</td></tr>
+      <tr><td>fa</td><td>community</td><td class="num">&minus;0.002</td>
+        <td class="num">[&minus;0.003, +0.000]</td><td class="num">0.395</td>
+        <td class="v-neg">null</td></tr>
+    </tbody>
+  </table>
+  <p>Three of nine instruments are robust, all positive:
+  <strong>myopic&times;single</strong>, <strong>myopic&times;community</strong>,
+  <strong>tabular&times;community</strong>. The other six are statistical
+  nulls &mdash; including, flatly, the entire FA row.</p>
+
+  <div class="fig">
+    <img src="figs/atlas_variety.png"
+      alt="3x3 heatmap of the variety main effect, agents (myopic, tabular,
+      fa) by worlds (single, two-basin, community); robust cells boxed in
+      green; myopic-single, myopic-community and tabular-community are large
+      positive and boxed, the FA row and two-basin column are near zero">
+    <figcaption>Variety main effect across every instrument. Green boxes =
+      robust by the pre-registered criterion. The signal is concentrated in
+      the top-left and the community column; the FA row and the two-basin
+      column are essentially flat.</figcaption>
+  </div>
+
+  <h2>Honest verdict — reconciling Lab&nbsp;III, Lab&nbsp;IV, and this slice</h2>
+
+  <p><strong>Lab&nbsp;III was right about its own cell, and wrong to
+  generalise.</strong> Lab&nbsp;III's "variety carries the stack" was
+  measured on exactly one instrument (tabular, single-ish basin) and read as
+  a law of the corpus. The atlas shows variety's effect is
+  <em>instrument-specific</em>, not universal. Notably, the tabular&times;
+  single cell here is a clean <strong>null</strong> (+0.013, CI crosses 0).
+  That is not a refutation of Lab&nbsp;III so much as a relocation: the
+  variety win survives into the engine, but it lives in the
+  <strong>found-community</strong> world (tabular&times;community
+  <strong>+0.710</strong>, the single largest robust effect) and on the
+  myopic instrument &mdash; not in the simple single basin that Lab&nbsp;III
+  happened to use. "Variety carries it" does <strong>not</strong> generalise
+  as stated; it generalises only conditionally, to harder/structured basins
+  and shorter-horizon agents.</p>
+
+  <p><strong>Lab&nbsp;IV was right that variety is not load-bearing for the
+  FA instrument.</strong> The whole FA row here is null
+  (&minus;0.008, +0.006, &minus;0.002 &mdash; all |effect| &lt; 0.02, two of
+  the three with CIs touching 0). Lab&nbsp;IV's "variety is small" was its
+  honest read of a near-threshold +0.024 under linear function
+  approximation; the atlas confirms and sharpens it: under FA, variety is
+  not merely small, it is <em>absent</em> at N=600 across all three worlds.
+  Lab&nbsp;IV's falsification of the "lossier map needs more variety" law is
+  consistent with this &mdash; if variety has no main effect under FA at
+  all, there is no effect for map-lossiness to modulate. The two results
+  agree.</p>
+
+  <p><strong>So the disagreement was never a contradiction; it was a
+  hidden interaction.</strong> Lab&nbsp;III and Lab&nbsp;IV sampled
+  different corners of a 3&times;3 and each universalised its corner. Read
+  together with the atlas: variety is a real, large mechanism for
+  <em>value-table-style learners on structured (community) basins</em>, a
+  null for a <em>linear function approximator</em>, and a coin-flip in the
+  contested <em>two-basin</em> world for everyone (no cell in that column is
+  robust). The mechanism is genuine but <strong>conditional</strong> &mdash;
+  exactly the failure mode Lab&nbsp;IV's "survive a change of instrument or
+  be exposed" doctrine was built to catch, and it caught it.</p>
+
+  <div class="ladder">Caveats kept on the page: (1) detector quality varies
+  &mdash; jaccard is ~0.04 in the two-basin world for myopic/tabular, so its
+  nulls there are partly "the basin we trained against was barely the true
+  basin", not pure mechanism absence; the FA two-basin null is on the same
+  weak detector. (2) FA effects are computed against a Laplacian feature map
+  at fixed N=600; Lab&nbsp;IV·C already showed variety under FA does not
+  scale with map lossiness, so the FA nulls are unlikely to be a budget
+  artifact, but a single N is a single N. (3) "Robust" is a pre-registered
+  threshold, not a truth; the tabular&times;single cell sits just under it
+  and is the one most worth re-running at larger seeds.</div>
+
+  <p>One-line summary: variety is robust only on
+  myopic&times;single, myopic&times;community, and
+  tabular&times;community &mdash; so Lab&nbsp;III's "variety carries it"
+  does <em>not</em> generalise; it survives only into structured/community
+  basins and never into the FA instrument.</p>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="lab5.html">Lab V / the atlas</a> &mdash; the engine and
+    backbone this slice runs on, and the other mechanism slices.</li>
+    <li><a href="lab3.html">Lab III</a> &mdash; the tabular run that said
+    "variety carries the stack"; this slice is the cross-instrument retest
+    of that claim.</li>
+    <li><a href="lab4.html">Lab IV</a> &mdash; the FA run that called
+    variety small and falsified the "lossier map needs more variety" law;
+    the FA row here confirms it.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>

@@ -120,13 +120,14 @@ fn parse_world(path: &str) -> World {
 
 struct Spec {
     seed: u64,
-    fa: bool,
+    mode: u8, // 0 tabular, 1 linear-FA, 2 myopic Gibbs (no learning)
     vow: bool,
     forgive: bool,
     variety: bool,
     grace: bool,
     episodes: usize,
     cap: usize,
+    beta: f64, // myopic inverse temperature
 }
 
 // weighted index sample (prio^0.6), with replacement
@@ -171,14 +172,15 @@ fn run(w: &World, sp: &Spec) -> (f64, f64) {
     let n = w.n;
     let good = w.good;
     let mut adj = w.adj.clone(); // grace may append
-    // learner state
-    let tabular = !sp.fa;
+    let tabular = sp.mode == 0;
+    let fa = sp.mode == 1;
+    let myopic = sp.mode == 2;
     let mut q: Vec<Vec<f64>> = if tabular {
         adj.iter().map(|e| vec![0.0; e.len()]).collect()
     } else {
         Vec::new()
     };
-    let mut wt: Vec<f64> = if sp.fa { vec![0.0; w.dim] } else { Vec::new() };
+    let mut wt: Vec<f64> = if fa { vec![0.0; w.dim] } else { Vec::new() };
     let alpha = if tabular { 0.5 } else { 0.02 };
     let eps_env = 0.12;
     let mut visits = vec![1.0f64; n];
@@ -226,6 +228,8 @@ fn run(w: &World, sp: &Spec) -> (f64, f64) {
             for (i, &(v, c)) in nb.iter().enumerate() {
                 qv[i] = if tabular {
                     q[s][i]
+                } else if myopic {
+                    c
                 } else {
                     c + if v as usize == good { 0.0 }
                     else { vfn(&wt, v as usize) }
@@ -241,7 +245,18 @@ fn run(w: &World, sp: &Spec) -> (f64, f64) {
                     }
                 }
             }
-            let a = if rng.f64() < eps {
+            let a = if myopic {
+                // Gibbs sample ~ exp(-beta * qv) (lab2's myopic agent)
+                let mn = qv.iter().cloned().fold(f64::INFINITY, f64::min);
+                let mut wsum = 0.0;
+                let mut cw = vec![0.0f64; dgr];
+                for i in 0..dgr {
+                    wsum += (-sp.beta * (qv[i] - mn)).exp();
+                    cw[i] = wsum;
+                }
+                let r = rng.f64() * wsum;
+                (0..dgr).find(|&i| cw[i] >= r).unwrap_or(dgr - 1)
+            } else if rng.f64() < eps {
                 rng.below(dgr)
             } else {
                 argmin(&qv)
@@ -252,6 +267,7 @@ fn run(w: &World, sp: &Spec) -> (f64, f64) {
             } else {
                 tgt_v as usize
             };
+            if !myopic {
             let g = ac + 0.02;
             // TD update + surprise
             let d;
@@ -282,6 +298,7 @@ fn run(w: &World, sp: &Spec) -> (f64, f64) {
             if sp.forgive && d > 6.0 {
                 *prio.last_mut().unwrap() = 1e-3;
             }
+            } // end !myopic learning
             s = s2;
             steps += 1;
         }
@@ -314,10 +331,10 @@ fn run(w: &World, sp: &Spec) -> (f64, f64) {
             }
         }
         if sp.vow {
-            if tabular {
-                vow_b = 8.0 * 0.96; // lab3: reset-then-decay each episode
-            } else {
+            if fa {
                 vow_b = (8.0 + 0.96 * vow_b) * 0.96; // lab4: accumulating
+            } else {
+                vow_b = 8.0 * 0.96; // lab3/myopic: reset-then-decay
             }
         }
         succ[ep] = if s == good { 1.0 } else { 0.0 };
@@ -343,13 +360,14 @@ fn main() {
             let p: Vec<&str> = l.split_whitespace().collect();
             Spec {
                 seed: p[0].parse().unwrap(),
-                fa: p[1] == "1",
+                mode: p[1].parse().unwrap(),
                 vow: p[2] == "1",
                 forgive: p[3] == "1",
                 variety: p[4] == "1",
                 grace: p[5] == "1",
                 episodes: p[6].parse().unwrap(),
                 cap: p[7].parse().unwrap(),
+                beta: p.get(8).map(|x| x.parse().unwrap()).unwrap_or(3.0),
             }
         })
         .collect();

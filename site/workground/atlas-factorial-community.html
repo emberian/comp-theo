@@ -1,0 +1,161 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — The full factorial on a found basin — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.3em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.4rem .55rem;
+  vertical-align:top;text-align:right}
+.sb th{color:var(--accent);text-align:left}
+.sb td:first-child{text-align:left}
+.v-pass{color:#79c879;font-weight:700}
+.v-neg{color:#e0a33a;font-weight:700}
+.ladder{font:.84rem system-ui;color:var(--dim);border-left:3px solid
+  var(--accent);padding:.4em 0 .4em 1em;margin:1.2em 0}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · ATLAS</p>
+  <h1>Atlas — The full factorial on a found basin</h1>
+  <p class="lede">Lab III's 2⁴ factorial lived on a <em>planted</em> demon.
+  Here the same factorial — all four mechanisms {vow, forgive, variety,
+  grace}, main effects and the six pairwise interactions — runs on the
+  hardest world in the atlas: a stochastic-block <em>community</em> whose
+  basin is <em>detected</em>, not labelled. No mechanism sees the true
+  basin; they act on what the unsupervised MFPT trap-score finds.</p>
+
+  <div class="ladder"><strong>The question.</strong> On a basin nobody
+  planted — one the detector only partially recovers (Jaccard ≈ 0.40–0.46)
+  — which mechanisms still carry weight, and do lab3's
+  <em>negative interactions</em> (the "idolatry of the repair toolkit"
+  antagonisms) survive the move from planted to found? And does the answer
+  depend on the learner: tabular Q vs linear function approximation?</div>
+
+  <div class="note">Every number below is verbatim from
+  <code>site/workground/_run_factorial_community_slice.py</code> over
+  <code>lab5kit</code> (Rust engine, N=800, 8 seeds, detected basin;
+  tabular world-seed 42, FA world-seed 43), machine-readable in
+  <code>atlas/factorial_community.json</code>. ~9 s wall.</div>
+
+  <h2>Main effects</h2>
+  <p>Effect = mean(success | factor on) − mean(success | factor off),
+  averaged over the other 8 cells; 95% seed-bootstrap CI. A row is
+  <span class="v-pass">significant</span> when its CI excludes zero.</p>
+
+  <table class="sb">
+    <tr><th>agent</th><th>factor</th><th>effect</th><th>CI low</th>
+      <th>CI high</th><th>verdict</th></tr>
+    <tr><td>tabular</td><td>vow</td><td>+0.000</td><td>+0.000</td>
+      <td>+0.000</td><td class="v-neg">null</td></tr>
+    <tr><td>tabular</td><td>forgive</td><td>−0.010</td><td>−0.033</td>
+      <td>+0.011</td><td class="v-neg">ns</td></tr>
+    <tr><td>tabular</td><td><strong>variety</strong></td>
+      <td><strong>+0.736</strong></td><td>+0.721</td><td>+0.754</td>
+      <td class="v-pass">significant</td></tr>
+    <tr><td>tabular</td><td>grace</td><td>+0.003</td><td>−0.023</td>
+      <td>+0.026</td><td class="v-neg">ns</td></tr>
+    <tr><td>fa</td><td>vow</td><td>+0.000</td><td>+0.000</td>
+      <td>+0.000</td><td class="v-neg">null</td></tr>
+    <tr><td>fa</td><td>forgive</td><td>−0.008</td><td>−0.019</td>
+      <td>+0.001</td><td class="v-neg">ns</td></tr>
+    <tr><td>fa</td><td>variety</td><td>−0.005</td><td>−0.012</td>
+      <td>+0.002</td><td class="v-neg">ns</td></tr>
+    <tr><td>fa</td><td>grace</td><td>−0.002</td><td>−0.007</td>
+      <td>+0.002</td><td class="v-neg">ns</td></tr>
+  </table>
+
+  <p>Endpoints: <strong>tabular</strong> base (all off) = 0.183, full
+  (all on) = 0.900, detector Jaccard = 0.461.
+  <strong>FA</strong> base = 0.998, full = 0.983, Jaccard = 0.404.</p>
+
+  <h2>The six pairwise interactions</h2>
+  <p>Non-additivity, lab3 convention (2⁴ contrast, ±2 scaling):
+  negative = <em>antagonism</em> (mechanisms get in each other's way),
+  positive = synergy. Threshold ±0.02.</p>
+
+  <table class="sb">
+    <tr><th>pair</th><th>tabular</th><th>tag</th>
+      <th>fa</th><th>tag</th></tr>
+    <tr><td>vow | forgive</td><td>+0.000</td><td>~additive</td>
+      <td>+0.000</td><td>~additive</td></tr>
+    <tr><td>vow | variety</td><td>−0.000</td><td>~additive</td>
+      <td>+0.000</td><td>~additive</td></tr>
+    <tr><td>vow | grace</td><td>+0.000</td><td>~additive</td>
+      <td>+0.000</td><td>~additive</td></tr>
+    <tr><td>forgive | variety</td><td>−0.016</td>
+      <td class="v-neg">antagonism (sub-thr)</td>
+      <td>−0.006</td><td>~additive</td></tr>
+    <tr><td>forgive | grace</td><td>+0.018</td><td>synergy (sub-thr)</td>
+      <td>−0.004</td><td>~additive</td></tr>
+    <tr><td>variety | grace</td><td><strong>+0.036</strong></td>
+      <td class="v-pass">synergy</td>
+      <td>+0.005</td><td>~additive</td></tr>
+  </table>
+
+  <div class="fig">
+    <img src="figs/atlas_factorial_community.png"
+      alt="Two-column factorial: main-effect bars with CI and
+      interaction heatmaps for tabular and FA agents on the found
+      community basin.">
+    <figcaption>Left column tabular, right FA. Top: main-effect bars
+      with 95% seed-bootstrap CI (* = CI excludes 0). Bottom: 4×4
+      pairwise-interaction heatmap (blue = antagonism, red = synergy).
+      N=800, 8 seeds, detected basin.</figcaption>
+  </div>
+
+  <h2>Honest verdict</h2>
+  <p><strong>On a found basin the apparatus collapses to one mechanism —
+  and only for the tabular learner.</strong> For tabular Q-learning,
+  <em>variety</em> alone is load-bearing: +0.736 (CI [+0.721, +0.754]),
+  lifting bare 0.183 → 0.900. Vow is an exact null (the costly-return
+  shaping has nothing to grip when the basin is only ~46% recovered),
+  forgive and grace are statistically indistinguishable from zero.
+  This <em>sharpens</em> lab3's "variety carries it, mostly no for the
+  rest" — on a detected rather than planted demon, the
+  rest is not merely small, it is gone.</p>
+
+  <p><strong>Do the antagonisms survive?</strong> Mostly they evaporate.
+  lab3's headline negatives were vow×variety (−0.023), forgive×variety
+  (−0.028), vow×forgive (−0.021). Here vow's interactions are exactly
+  zero (a null factor cannot antagonise), and forgive×variety shrinks to
+  −0.016 — present in sign, but sub-threshold. The one real coupling that
+  emerges is a <em>positive</em> one: variety×grace = +0.036 (synergy) for
+  tabular. So on the found basin the toolkit does not so much fight itself
+  as <em>fall silent</em>: with variety doing all the work, the other
+  mechanisms have no margin in which to either help or harm. The "idolatry
+  of the repair toolkit" speculation is confirmed in a stronger form —
+  not "the parts antagonise" but "the parts are inert."</p>
+
+  <p><strong>tabular vs FA — representation decides everything.</strong>
+  The linear-FA agent never enters the basin in a way the mechanisms can
+  move: base = 0.998 already, so there is no gap to close and every effect
+  is a tiny negative wobble (all CIs straddle or sit just below zero, all
+  interactions ~additive). The spectral embedding lets FA route around the
+  community block before any mechanism fires; the entire factorial is a
+  flat null. This is the representation-dependence lab4·B flagged, in its
+  most extreme form: the same four mechanisms that produce a +0.74 swing
+  for a tabular learner produce nothing — neither help, harm, nor
+  interaction — for an agent that already sees the graph's spectral
+  structure. The mechanisms are not properties of the world; they are
+  properties of the learner's blindness.</p>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="lab5.html">Lab V</a> — the Robustness Atlas this slice
+      belongs to: the same claim re-tested across instruments and worlds.</li>
+    <li><a href="lab3.html">Lab III</a> — the original 2⁴ factorial on a
+      <em>planted</em> demon; its negative interactions are the
+      speculation this slice re-measures on a found basin.</li>
+    <li><a href="labcore.html">labcore</a> — the Rust engine
+      (<code>lab5kit</code> / <code>labkit</code>) that runs every cell
+      of this factorial.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>

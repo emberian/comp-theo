@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab V: The Robustness Atlas — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.4em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}.fig figcaption{color:var(--dim);font:.8rem system-ui;
+  margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.82rem system-ui;margin:1.2em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.38rem .5rem}
+.sb th{color:var(--accent);text-align:left}
+.v-pass{color:#79c879;font-weight:700}.v-neg{color:#e0a33a;font-weight:700}
+.ladder{font:.83rem system-ui;color:var(--dim);border-left:3px solid
+  var(--accent);padding:.4em 0 .4em 1em;margin:1.1em 0}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · ATLAS</p>
+  <h1>Lab V — The Robustness Atlas</h1>
+  <p class="lede">The engine made thousands of runs free, so the question
+  stopped being "does mechanism X help?" and became "in which of all the
+  instruments does it help?" The atlas runs every corpus mechanism across
+  {myopic, tabular, function-approx} agents × {single-basin, two-basin,
+  community} worlds, plus the scaling law and a detector-honesty audit, on
+  the <a href="labcore.html">Rust engine</a>. Seven subagents ran one slice
+  each; this is the synthesis.</p>
+
+  <div class="ladder">toy → lab → lab2 (theory) → lab3 (complected) →
+  lab4 (lossy maps; engine falsified its own prettiest law) →
+  <strong>lab5</strong>: the same doctrine — <em>survive a change of
+  instrument or be exposed</em> — applied at <em>breadth</em>. 9 instruments
+  per mechanism, seed-bootstrap CIs, ~minutes total on the engine.</div>
+
+  <div class="note">"Robust" = 95% seed-bootstrap CI excludes 0 with
+  |effect| &gt; 0.02 (for scaling: ρ(B/τ, success) &gt; 0.6 = "lawful").
+  Every number is from the swarm's runs, in
+  <code>site/workground/atlas/*.json</code>; each slice has its own page.</div>
+
+  <figure class="fig"><img src="figs/atlas_master.png" alt="">
+  <figcaption>The atlas at a glance. Cell = effect (mechanisms) or ρ
+  (scaling); a black box = robust/lawful. Almost nothing is boxed.</figcaption></figure>
+
+  <h2>The headline: almost nothing is universal</h2>
+  <p>Across 9 instruments per mechanism, robustly-positive cells:</p>
+  <table class="sb">
+    <tr><th>Mechanism</th><th>robust&nbsp;+</th><th>robust&nbsp;−</th>
+      <th>where it holds</th><th>verdict</th></tr>
+    <tr><td>grace</td><td>4 / 9</td><td>0</td>
+      <td>myopic·single/community, tabular·single/community (all tiny)</td>
+      <td class="v-neg">the "best", and it's 4/9 of small effects</td></tr>
+    <tr><td>variety</td><td>3 / 9</td><td>0</td>
+      <td>myopic·single (+0.47), myopic·community (+0.71),
+      tabular·community (+0.71) — <em>never under FA, never two-basin</em></td>
+      <td class="v-neg">lab3 was right in its one cell, wrong to
+      generalise</td></tr>
+    <tr><td>vow</td><td>1 / 9</td><td>0</td>
+      <td>only tabular·two-basin (+0.186)</td>
+      <td class="v-neg">lab4's "vow is FA-shaped" did <em>not</em>
+      replicate</td></tr>
+    <tr><td>forgive</td><td>0 / 9</td><td>1</td>
+      <td>only robust cell is fa·single, and it is <em>harmful</em>
+      (−0.053); myopic = exact no-op (no replay)</td>
+      <td class="v-neg">operationally inert everywhere</td></tr>
+    <tr><td>scaling law (τ)</td><td colspan="2">5 / 9 lawful</td>
+      <td>holds for myopic/tabular on single &amp; community; fails on
+      <em>every</em> two-basin world and fa·community</td>
+      <td class="v-pass">the most robust structural claim — but
+      world-specific, not universal</td></tr>
+  </table>
+
+  <p>The pattern is unmistakable and it is the corpus's own thesis turned
+  on the corpus: there is <strong>no mechanism that helps across all
+  instruments</strong>. The most "successful," grace, is robust in fewer
+  than half the cells and only in small amounts. The contested
+  <em>two-basin</em> world — the closest thing here to a world with more
+  than one tempting idol — nullifies essentially everything, including the
+  scaling law. "A bad goal is a tiny god" was always relative to a mind;
+  the atlas shows the <em>cures</em> are just as relative to the mind and
+  the world. The soteriological toolkit is a collection of cell-local
+  effects, not laws.</p>
+
+  <h2>What each slice found (the swarm)</h2>
+  <ul>
+    <li><a href="atlas-vow.html">Vow</a> — 1/9. The vow's reputation does
+    not survive breadth; its lone win is agent-and-world-specific.</li>
+    <li><a href="atlas-variety.html">Variety</a> — reconciles lab3 vs lab4:
+    real in structured/community basins for short-horizon agents, absent
+    under function approximation. lab3 over-generalised one true cell.</li>
+    <li><a href="atlas-grace.html">Grace</a> — 4/9, all small; lab4-FA's
+    grace effect is FA-specific and does not generalise.</li>
+    <li><a href="atlas-forgive.html">Forgiveness</a> — 0/9 helpful, the
+    weakest move; myopic no-op verified exactly. "Forgiveness as graph
+    surgery" is operationally inert across the atlas.</li>
+    <li><a href="atlas-scaling.html">Scaling law</a> — instrument-robust
+    but world-specific: lawful on single/community, fails on every
+    two-basin world. lab4-A is a law of simple worlds, not all worlds.</li>
+    <li><a href="atlas-factorial-community.html">Factorial on a found
+    basin</a> — on the unsupervised-detected community basin, tabular keeps
+    only variety; FA is at ceiling. The antagonisms shrink off the planted
+    world.</li>
+    <li><a href="atlas-detector.html">Detector honesty</a> — Jaccard 0.05
+    (two-basin, near-useless) to 0.48 (single); no verdict flipped between
+    detected and true basin where tested, so "targeting the detected basin
+    isn't cheating" holds — except two-basin, where detection is too poor
+    to trust and which (not coincidentally) is also where every mechanism
+    dies.</li>
+  </ul>
+
+  <h2>The one robust thing, and the honest verdict</h2>
+  <p>Only the scaling law clears breadth as a near-law, and only on
+  uncontested worlds: <em>a sample-limited learner collapses when the
+  basin's reference exit time exceeds its budget</em>. That is a real,
+  predictive, instrument-spanning statement — and it is a statement about
+  <em>difficulty</em>, not about any of the corpus's redemptive machinery.
+  The machinery itself — vow, forgiveness, variety, grace — does not
+  generalise. Read back into the series: the atlas is the empirical form of
+  <a href="../essays/spine.html">the spine</a>'s own conclusion and lab2's
+  doctrine. The corpus said "analogy, not theorem." Tested at the breadth
+  the engine finally made affordable, almost none of its analogies are even
+  robust effects. The honest yield of computational theology, measured, is
+  one scaling law about when minds get trapped — and the discipline of
+  having looked.</p>
+
+  <div class="note">Ceiling, stated: 3 agent classes, 3 world families,
+  N≈600–1400, ≤8 seeds, the detector is weak on two-basin (a caveat the
+  atlas itself surfaces rather than hides). These are robustness facts
+  about this model family, not metaphysics. The negatives are the result.</div>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="labcore.html">labcore</a> — the engine that made the
+    atlas affordable, and itself a robustness check.</li>
+    <li><a href="lab4.html">Lab IV</a> / <a href="lab3.html">Lab III</a> —
+    the single-instrument results the atlas generalises and, mostly,
+    deflates.</li>
+    <li><a href="cruxes.html">Open Problems &amp; Cruxes</a> — "is the
+    apparatus load-bearing?" now has its widest answer: no, except a
+    scaling law about difficulty.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>

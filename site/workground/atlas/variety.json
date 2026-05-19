@@ -1,0 +1,101 @@
+{
+ "slice": "variety",
+ "mechanism": "variety",
+ "backbone": "lab5kit / labcore (Rust engine)",
+ "N": 600,
+ "seeds": 6,
+ "criterion": "95%CI excludes 0 AND |effect|>0.02",
+ "grid": [
+  {
+   "agent": "myopic",
+   "world": "single",
+   "effect": 0.472222,
+   "lo": 0.425926,
+   "hi": 0.509259,
+   "jaccard": 0.428571,
+   "robust": true,
+   "sign": "+"
+  },
+  {
+   "agent": "myopic",
+   "world": "two_basin",
+   "effect": -0.00463,
+   "lo": -0.069444,
+   "hi": 0.074074,
+   "jaccard": 0.041946,
+   "robust": false,
+   "sign": "-"
+  },
+  {
+   "agent": "myopic",
+   "world": "community",
+   "effect": 0.708333,
+   "lo": 0.666667,
+   "hi": 0.754629,
+   "jaccard": 0.393548,
+   "robust": true,
+   "sign": "+"
+  },
+  {
+   "agent": "tabular",
+   "world": "single",
+   "effect": 0.012917,
+   "lo": -0.033333,
+   "hi": 0.06375,
+   "jaccard": 0.071429,
+   "robust": false,
+   "sign": "+"
+  },
+  {
+   "agent": "tabular",
+   "world": "two_basin",
+   "effect": -0.053333,
+   "lo": -0.204167,
+   "hi": 0.058375,
+   "jaccard": 0.083752,
+   "robust": false,
+   "sign": "-"
+  },
+  {
+   "agent": "tabular",
+   "world": "community",
+   "effect": 0.71,
+   "lo": 0.684167,
+   "hi": 0.743333,
+   "jaccard": 0.403974,
+   "robust": true,
+   "sign": "+"
+  },
+  {
+   "agent": "fa",
+   "world": "single",
+   "effect": -0.008413,
+   "lo": -0.015625,
+   "hi": -0.0004,
+   "jaccard": 0.5,
+   "robust": false,
+   "sign": "-"
+  },
+  {
+   "agent": "fa",
+   "world": "two_basin",
+   "effect": 0.00641,
+   "lo": -0.00641,
+   "hi": 0.019231,
+   "jaccard": 0.041946,
+   "robust": false,
+   "sign": "+"
+  },
+  {
+   "agent": "fa",
+   "world": "community",
+   "effect": -0.001603,
+   "lo": -0.003205,
+   "hi": 0.0,
+   "jaccard": 0.394904,
+   "robust": false,
+   "sign": "-"
+  }
+ ],
+ "wall_s": 18.5
+}

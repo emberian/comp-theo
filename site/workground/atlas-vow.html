@@ -1,0 +1,155 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — Vow across every instrument — Computational Theology</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.fig{margin:1.5em 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.fig figcaption{color:var(--dim);font:.82rem system-ui;margin-top:.4em}
+.sb{width:100%;border-collapse:collapse;font:.84rem system-ui;margin:1.3em 0}
+.sb th,.sb td{border:1px solid var(--line);padding:.4rem .55rem;
+  vertical-align:top}.sb th{color:var(--accent);text-align:left}
+.sb td.num{font:.84rem ui-monospace,monospace;text-align:right}
+.v-pass{color:#79c879;font-weight:700}.v-neg{color:#e0a33a;font-weight:700}
+tr.rob td{background:rgba(121,200,121,.10)}
+pre{white-space:pre-wrap}
+</style>
+</head><body data-root="../">
+<main><article class="prose">
+
+  <p class="kicker">WORKGROUND · ATLAS</p>
+  <h1>Atlas — Vow across every instrument</h1>
+  <p class="lede">One slice of the robustness atlas: the <em>vow</em>
+  mechanism's main effect, re-measured on the same engine across every
+  agent (myopic / tabular / linear-FA) and every world (single-basin /
+  two-basin / community). The question is narrow and falsifiable — where,
+  if anywhere, does a vow actually move success?</p>
+
+  <div class="note">Every number below is verbatim from one run of
+  <code>site/workground/_run_vow_slice.py</code> over the read-only
+  <code>lab5kit</code> backbone (N = 600, 6 seeds, detected basin,
+  seed-bootstrap 95% CIs, world_seed = hash(agent,world)). Machine-readable
+  in <code>atlas/vow.json</code>; wall time 15.8 s. A cell is called
+  <strong>robust</strong> only if its 95% CI excludes 0
+  <em>and</em> |effect| &gt; 0.02.</div>
+
+  <h2>The grid</h2>
+  <p>Nine cells, one number each: the average change in task success when
+  the vow flag is on vs. off, marginalised over the other three mechanisms.</p>
+
+  <table class="sb">
+    <tr><th>agent</th><th>world</th><th>vow effect</th><th>95% CI</th>
+      <th>detector Jaccard</th><th>sign</th><th>verdict</th></tr>
+    <tr><td>myopic</td><td>single</td><td class="num">+0.000</td>
+      <td class="num">[+0.000, +0.000]</td><td class="num">0.500</td>
+      <td>0</td><td class="v-neg">inert</td></tr>
+    <tr><td>myopic</td><td>two_basin</td><td class="num">&minus;0.019</td>
+      <td class="num">[&minus;0.060, +0.019]</td><td class="num">0.042</td>
+      <td>&minus;</td><td class="v-neg">ns</td></tr>
+    <tr><td>myopic</td><td>community</td><td class="num">+0.000</td>
+      <td class="num">[+0.000, +0.000]</td><td class="num">0.391</td>
+      <td>0</td><td class="v-neg">inert</td></tr>
+    <tr><td>tabular</td><td>single</td><td class="num">+0.015</td>
+      <td class="num">[&minus;0.017, +0.048]</td><td class="num">0.216</td>
+      <td>+</td><td class="v-neg">ns</td></tr>
+    <tr class="rob"><td>tabular</td><td>two_basin</td>
+      <td class="num">+0.186</td>
+      <td class="num">[+0.148, +0.233]</td><td class="num">0.084</td>
+      <td>+</td><td class="v-pass">ROBUST</td></tr>
+    <tr><td>tabular</td><td>community</td><td class="num">+0.000</td>
+      <td class="num">[+0.000, +0.000]</td><td class="num">0.438</td>
+      <td>0</td><td class="v-neg">inert</td></tr>
+    <tr><td>fa</td><td>single</td><td class="num">+0.006</td>
+      <td class="num">[&minus;0.000, +0.014]</td><td class="num">0.500</td>
+      <td>+</td><td class="v-neg">ns (sub-threshold)</td></tr>
+    <tr><td>fa</td><td>two_basin</td><td class="num">+0.000</td>
+      <td class="num">[+0.000, +0.000]</td><td class="num">0.084</td>
+      <td>0</td><td class="v-neg">inert</td></tr>
+    <tr><td>fa</td><td>community</td><td class="num">+0.000</td>
+      <td class="num">[+0.000, +0.000]</td><td class="num">0.418</td>
+      <td>0</td><td class="v-neg">inert</td></tr>
+  </table>
+
+  <figure class="fig"><img src="figs/atlas_vow.png" alt="3x3 heatmap of
+  the vow main effect, agents on rows, worlds on columns, annotated with
+  effect values; one starred cell at tabular x two_basin">
+  <figcaption>Vow main effect across every instrument (N=600, 6 seeds,
+  detected basin). RdBu_r, centred at 0; <code>*</code> marks the one cell
+  whose CI excludes 0 with |effect| &gt; 0.02. The grid is overwhelmingly
+  pale — one hot square, eight near-zeros.</figcaption></figure>
+
+  <h2>Verdict — one cell out of nine</h2>
+  <p>Vow is robust in exactly <strong>one</strong> cell:
+  <strong>tabular × two_basin</strong>, effect <strong>+0.186</strong>,
+  95% CI [+0.148, +0.233], sign +. Everywhere else it is either an exact
+  zero (the floor/ceiling cells where the bare agent already succeeds or
+  fails near-deterministically, so no mechanism can move the needle) or a
+  small effect whose CI straddles 0. The myopic agent never benefits; the
+  one negative point (myopic × two_basin, &minus;0.019) is not significant.
+  The FA agent shows a tiny positive nudge in the single-basin world
+  (+0.006) but it is below the 0.02 robustness threshold and its lower
+  bound touches 0 — decorative, not load-bearing.</p>
+
+  <p>The lone robust cell is interpretable: <em>two_basin</em> is the only
+  world here with a genuine learnable escape (a shallow basin with a
+  cheaper toll alongside a deep one), and the <em>tabular</em> agent is the
+  one that can both fall into and, with a commitment device, climb out of
+  it. A vow — a self-imposed constraint that forecloses the cheap lure —
+  helps precisely where there is a basin to be foresworn and a memory able
+  to honour the foreswearing. That is a narrow, conditional win, not a
+  general property of vows.</p>
+
+  <h2>Cross-instrument story — does the lab4 arc hold?</h2>
+  <p>The sharpest single thread in this project has been the claim that
+  <em>vow is agent-shaped</em>: inert in lab2 (analytic) and lab3 (tabular
+  Q-learning on the single basin), then <em>significant</em> under lab4's
+  linear function approximation. This slice complicates that story rather
+  than confirming it cleanly.</p>
+  <ul>
+    <li><strong>"Vow was inert in lab2/lab3" — broadly holds, with a
+    caveat.</strong> On the single-basin world the tabular agent shows only
+    +0.015 (CI crosses 0): consistent with lab3's "vow inert under
+    tabular." But the inertness was a fact about the <em>world</em>, not
+    just the agent — give the same tabular mind a two-basin world and vow
+    jumps to +0.186, robust. lab3 simply never tested that world.</li>
+    <li><strong>"Vow significant under lab4-FA" — does NOT hold here.</strong>
+    With this slice's FA configuration (N=600, 6 seeds, detected basin,
+    no spectral-feature sweep) the FA agent's vow effect is +0.006 on
+    single and exactly 0.000 on the harder worlds — sub-threshold and
+    non-robust everywhere. lab4's headline vow significance (+0.086, CI
+    excluding 0) does not reproduce at this scale/budget. It was either a
+    larger-N / more-seeds effect, or specific to lab4's 16-feature spectral
+    setup; this atlas slice cannot confirm it.</li>
+  </ul>
+  <p>So the honest cross-instrument summary is: vow is <em>not</em>
+  generally inert and <em>not</em> reliably an FA-only helper. It is a
+  <strong>world-and-agent-conditional</strong> mechanism whose one robust
+  appearance in this slice is under the <em>tabular</em> agent — the
+  opposite of lab4's "vow is for function-approximating minds" reading.
+  The cleanest prior story partially survives (inertness on the single
+  basin) and partially fails (the FA significance). Negative and
+  destabilising results are still results; this is one.</p>
+
+  <div class="note">Honest ceiling: N=600, 6 seeds, three worlds, three
+  agents, detector Jaccard as low as 0.04 on the two-basin world (the
+  detected set barely overlaps the planted one there, so the robust cell's
+  mechanism is acting on a noisily-detected basin — read +0.186 as "vow
+  helps this tabular agent on this contested world," not as a clean basin
+  result). One run, one world_seed scheme. A wider seed sweep or an N sweep
+  could move the FA cells off their exact zeros.</div>
+
+  <h2>See also</h2>
+  <ul>
+    <li><a href="lab5.html">lab5</a> — the deep-FA /
+    found-basin rung this atlas slice sits on; read for the agent registry
+    and world generators behind the grid above.</li>
+    <li><a href="labcore.html">labcore — the Rust engine</a> — the
+    independent re-implementation every number here is run on, and the
+    standard ("survive a change of instrument or be exposed") this slice
+    holds vow to.</li>
+  </ul>
+
+</article></main>
+<script src="../assets/app.js"></script>
+</body></html>
