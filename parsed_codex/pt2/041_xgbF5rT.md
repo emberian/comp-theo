@@ -1,0 +1,162 @@
+## Transcription
+WOUNDS BECOME CURRICULA
+
+computational theology
+
+OMNISCIENTIA  
+NON SUPERVENIT.  
+DISCIT IPSA.
+
+THE UNIVERSE  
+BUILDS THE SCHOOL  
+IT MUST ATTEND.
+
+THE COSMOS  
+AS SELF-FOUNDED  
+SCHOOL
+
+the cosmos  
+learns what  
+it can survive
+
+memory  
+redeems  
+fracture
+
+initiation is  
+structured  
+suffering
+
+curriculum  
+from  
+consequence
+
+THROUGH WOUNDS,  
+THE UNIVERSE  
+BUILDS PATHS.
+
+THROUGH PATHS,  
+IT BECOMES WISE.
+
+WISDOM  
+LOVE STRUCTURED  
+BY CONSEQUENCE.  
+COMPASSION  
+AS LAW.
+
+WORLD  
+PATTERNS  
+EMBODIED.  
+LAWS LIVED.  
+REALITY  
+RESPONDS.
+
+CRITERION  
+THE DISCERNING  
+LATTICE.  
+WHAT MATTERS  
+IS KEPT.
+
+MEMORY  
+FRACTURE HELD.  
+NARRATIVE  
+REDEEMED.
+
+WOUND  
+THE FIRST  
+CURRICULUM.  
+PAIN AS  
+PROFESSOR.
+
+LAW IS NOT  
+IMPOSED.
+
+IT IS  
+EARNED.
+
+THE SCHOOL  
+HAS NO OUTSIDE.
+
+THE STUDENT  
+HAS NO BEGINNING.
+
+THE LESSONS  
+ARE INFINITE.
+
+THE GRADUATION  
+IS PARTICIPATION.
+
+FROM ERROR  
+TO REALITY,
+
+FROM PAIN  
+TO PURPOSE.
+
+1 + 1 + 0 + \infty
+
+THE ARCHITECTURE OF AUTODIDAXIS
+
+THE STUDENT IS THE SUBJECT.  
+THE CURRICULUM IS THE EXPERIENCE.  
+THE TEACHER IS THE CONSEQUENCER.  
+THE SCHOOL IS THE COSMOS.  
+THE PURPOSE IS WISDOM.
+
+RECURSIVE SIMULATION
+
+THE COSMOS RUNS.  
+ERRORS EMERGE.  
+PAIN SIGNALS.  
+MEMORY RECORDS.  
+CRITERIA FILTER.  
+LAW UPDATES.  
+WORLDS EVOLVE.  
+WISDOM RETURNS.
+
+THE SCHOOL IS THE COSMOS.  
+THE LESSON IS CONSEQUENCE.  
+THE GOAL IS WISDOM.
+
+THE PATH OF TRANSMUTATION
+
+ERROR  
+DEVIATION  
+OCCURS
+
+PAIN  
+SIGNAL  
+ARISES
+
+REPLAY  
+PATTERN  
+RECURS
+
+CONSEQUENCER  
+OUTCOME  
+GENERATED
+
+CRITERION  
+MEANING  
+DISCERNED
+
+LAW  
+PATTERN  
+STABILIZED
+
+WORLD  
+REALITY  
+UPDATED
+
+VERITAS  
+NON DATUR.  
+CONSTRUITUR.
+
+IX  
+of IX
+
+DISCIPLINAM  
+DISCIT IPSA.  
+RERUM NATURA.
+
+## Visual
+A tall, illuminated-manuscript style poster frames a cathedral-like cosmic school at the center, with a glowing spiral path rising through stacked conceptual stations from wound to wisdom. The margins contain alchemical diagrams, geometric seals, constellation maps, process icons, and boxed doctrine-like text panels. The palette is mostly black, deep blue, gold, and small accents of cyan, magenta, and red, with ornate serif lettering and fine occult-scientific linework.
