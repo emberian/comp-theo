@@ -1,168 +1,70 @@
 ## Transcription
-
 ORDERED CREATION / LEAST-ACTION SERIES · 3 / 8
 
-LOW-ACTION  
-SEARCH
+LOW-ACTION SEARCH
 
-From quantum-walk search  
-to stationary-action path selection.
+From quantum-walk search to stationary-action path selection.
 
-“We prefer  
-the paths that  
-nature herself  
-is most willing  
-to take.”
+"We prefer the paths that nature herself is most willing to take."
 
 TWO VIEWS OF DYNAMICS
 
 Ordinary marked search
-
-Find the marked target w  
-by exploring the graph.
-
-x_0  
-w
-
-• diffuse exploration  
-• no preference among admissible paths  
-• arrival amplitude spreads across many routes
+Find the marked target w by exploring the graph.
+x_0 ... w
+- diffuse exploration
+- no preference among admissible paths
+- arrival amplitude spreads across many routes
 
 VS.
 
 Low-action search
-
-Many admissible paths compete;  
-low-action trajectories dominate.
-
-p_1  
-p_2  
-p*  
-p_3  
-x_0  
-x_T = w
-
-low action (high weight)  
-medium action  
-high action (low weight)
+Many admissible paths compete; low-action trajectories win.
+x_0 ... x_T = w
+p*
+p_1, p_2, p_3
+- low action (high weight)
+- medium action
+- high action (low weight)
 
 PATH ENSEMBLE
-
-A(x_0 -> x_T) = \sum_{p \in P(x_0,x_T)} e^{-S[p]/\tau}
-
-S[p] = \sum_t L(x_t, x_{t+1})     (action of path p)  
-\tau = action temperature (control sharpness)
-
-Lower action S[p]  
-receives higher  
-effective weight.
+A(x_0 → x_T) = Σ_{p ∈ P(x_0, x_T)} e^{−S[p]/τ}
+S[p] = Σ_t L(x_t, x_{t+1})  (action of path p)
+τ = action temperature (control sharpness)
+Lower action S[p] receives higher effective weight.
 
 QUANTUM IDIOM (COMPARE)
-
-In a more quantum setting,  
-compare phase weights
-
-A_q(x_0 -> x_T) = \sum_p e^{iS[p]/\hbar}
-
-Interference favors  
-stationary-action paths.
+In a more quantum setting, compare phase-weights:
+A_q(x_0 → x_T) = Σ_p e^{iS[p]/ℏ}
+Stationary bases stationary-action paths.
 
 CANDIDATE PATHS THROUGH AN ORDERED GRAPH
+Path action — low / medium / high
+x_0 ... x_T = w
+low thickness indicates effective weight
+higher action (lower weight)
 
-Path action  
-(relative)
-
-low  
-medium  
-high
-
-Line thickness  
-indicates  
-effective weight  
-(e^{-S/\tau}).
-
-x_0  
-x_T = w
-
-higher action  
-(lower weight)
-
-action decreases
-
-lower action  
-(higher weight)
-
-ARRIVAL PROFILE AT TARGET w
-
-arrival  
-probability  
-(or amplitude  
-magnitude)
-
-high-action  
-routes
-
-medium-action  
-routes
-
-low-action  
-channel
-
-T/4  
-T/2  
-3T/4  
-T  
+ARRIVAL PROFILE AT TARGET
+arrival probability (or amplitude magnitude)
+- low-action arrival: high amplitude, early
+- medium action
+- high-action: low broad amplitude
 time steps
-
-Low-action search yields earlier,  
-sharper arrival.
+Low-action trajectories arrive earlier, sharper arrival.
 
 INTERPRETATION
-
-“Search is no longer merely  
-‘find the good node’;  
-it becomes ‘distribute amplitude  
-over lawful trajectories and let  
-low-action routes dominate.’”
+Search is no longer merely "find the good node"; it becomes "distribute amplitude over lawful trajectories and let low-action paths dominate."
 
 CONSEQUENCES
-
-CONCENTRATION  
-Amplitude concentrates  
-on efficient paths,  
-accelerating arrival.
-
-ROBUSTNESS  
-Graceful adaptation  
-to perturbations  
-in the landscape.
-
-AVOIDANCE OF  
-BRITTLE DETOURS  
-High-action cul-de-sacs  
-naturally carry little  
-weight.
-
-PATH COMPETITION  
-Multiple good routes  
-can share the load  
-constructively.
+- CONCENTRATION: Amplitude concentrates on efficient paths, accelerating arrival.
+- ROBUSTNESS: Graceful adaptation to perturbations in the landscape.
+- AVOIDANCE OF BRITTLE DETOURS: High-action cul-de-sacs naturally carry little weight.
+- PATH COMPETITION: Multiple paths can share the load constructively.
 
 THESIS
+Action minimization replaces explicit maximization of goodness with a lawful bias toward efficient trajectories.
 
-Action minimization replaces explicit maximization of goodness  
-with a lawful bias toward efficient trajectories.
-
-SERIES ROADMAP (8 PARTS)  
-1 Shift of Objective  
-2 Order & Priors  
-3 Low-Action Search  
-4 Path Ensembles  
-5 Open Systems  
-6 Emergent Goods  
-7 Scaling & Recursion  
-8 End Justification
+SERIES ROADMAP (8 PARTS): 1 Shift Objective  2 Order & Price  3 Low-Action Search  4 Path Ensembles  5 Open Systems  6 Emergent Goods  7 Scaling & Recursion
 
 ## Visual
-
-A vintage scientific poster layout uses stacked boxed panels, thin rules, and a cream paper texture with distressed black, red, teal, and blue typography. The main comparison contrasts a diffuse graph search with a low-action path diagram where weighted colored trajectories converge on a target. Lower panels show a path ensemble formula, candidate path weights, an arrival-time plot, and icon-based consequences, all reinforcing the idea that low-action routes dominate search dynamics.
+A tall Swiss/Bauhaus poster with red, black, blue, and yellow blocks on cream paper with heavy condensed headlines. The "Two Views of Dynamics" band contrasts an ordinary marked-search scatter graph against a low-action search graph with a bold red minimizing path among lighter competing paths. Below sit boxed path-ensemble equations, a candidate-paths graph, and an arrival-profile plot with sharp early peaks. A consequences row of icon panels and a thesis bar with roadmap footer close the page.

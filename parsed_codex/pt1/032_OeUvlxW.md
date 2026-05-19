@@ -1,0 +1,214 @@
+## Transcription
+
+ORDERED CREATION / LEAST-ACTION SERIES · 6 / 8
+
+RECURSIVE  
+LEAST ACTION
+
+Can minimization instantiate itself across scales?
+
+“The world  
+minimizes by  
+building systems  
+that minimize  
+within.”
+
+PARADIGM SHIFT
+
+1. NESTED ORDERED WORLD
+
+LEGEND  
+macro link  
+macro node  
+(subsystem)  
+micro state  
+optimal  
+trajectory  
+possible  
+trajectory
+
+Macro (world level):  
+ordered graph  
+of subsystems.
+
+Each node contains  
+an ordered system  
+with its own  
+least action.
+
+ZOOM: SUBSYSTEM i
+
+ZOOM: MICRO PATH IN i
+
+x_0^i  
+x_T^i  
+optimal p_i^*
+
+MACRO ACTION (OVER TRAJECTORY OF SUBSYSTEMS)
+
+S_macro[P] = \sum_k L_macro(X_k, X_{k+1})
+
+X_k = macro state of the world at step k  
+(e.g., subsystem boundary states, summaries, flows)
+
+P = {X_0, X_1, ..., X_K} = macro-trajectory
+
+Minimize S_macro[P] over admissible macro-trajectories P.
+
+MICRO ACTION WITHIN SUBSYSTEM i
+
+S_i[p_i] = \sum_t L_i(x_t, x_{t+1})
+
+x_t = micro state inside subsystem i
+
+p_i = {x_0^i, x_1^i, ..., x_T^i} = micro-trajectory in i
+
+Boundary / interface constraints couple i to the macro path.
+
+Minimize S_i[p_i] over admissible micro-trajectories p_i.
+
+REQUIREMENTS  
+FOR RECURSION
+
+1  
+ADDITIVITY /  
+COMPOSABILITY  
+Total action decomposes  
+into sum (or integral) of  
+macro and local actions.
+
+2  
+STABLE INTERFACES  
+Well-defined boundaries  
+and exchanged  
+quantities persist  
+across variations.
+
+3  
+COARSE-GRAINING  
+Macro variables capture  
+the relevant impact of  
+subsystems without  
+needing full micro detail.
+
+4  
+SCALE SEPARATION  
+Internal equilibration is  
+sufficiently fast compared  
+to macro evolution.
+
+5  
+COMPATIBLE  
+LOCAL OBJECTIVES  
+Local minima align with,  
+and do not sabotage,  
+global minimization.
+
+2. COMPOSITION (RECURSION) CRITERION
+
+Recursive instantiation works when  
+local actions compose, scales separate,  
+and subsystem minima do not  
+destroy global minima.
+
+Let P^* be a macro minimizer and p_i^* the micro  
+minimizer inside each subsystem i.  
+If boundary conditions induced by P^* are satisfied,  
+and compatibility holds, then:
+
+S_macro[P^*] + \sum_i S_i[p_i^*] = S_total^min
+
+and (P^*, {p_i^*}) is a global minimizer.
+
+WHAT RECURSION  
+MEANS HERE
+
+Not merely repeating  
+the same picture—  
+embedding action-  
+minimizing subsystems  
+inside an action-  
+minimizing world.
+
+NOT THIS  
+(repetition)
+
+THIS  
+(embedding)
+
+3. MICRO → MESO → MACRO CHAIN OF ACTION
+
+MICRO (SUBSYSTEM LEVEL)
+
+...
+
+Action functional  
+S_i[p_i] = \sum_t L_i(x_t, x_{t+1})
+
+Action landscape  
+S_i  
+t  
+local states
+
+Minimize S_i over p_i
+
+MESO (REGION / DOMAIN LEVEL)
+
+...
+
+Action functional  
+S_meso[Q] = \sum_m L_meso(Y_m, Y_{m+1})
+
+Action landscape  
+S_meso  
+regional configs
+
+Minimize S_meso over Q
+
+MACRO (WORLD LEVEL)
+
+Action functional  
+S_macro[P] = \sum_k L_macro(X_k, X_{k+1})
+
+Action landscape  
+S_macro  
+world states
+
+Minimize S_macro over P
+
+VISUAL RECURSION SCHEMA
+
+MACRO  
+World  
+S_macro
+
+MESO  
+Regions  
+S_meso
+
+MICRO  
+Subsystems  
+S_i
+
+Information & constraints flow  
+up and down; action flows across.
+
+THESIS
+
+Least action can recurse if the world decomposes into  
+semi-autonomous layers whose local economies of action  
+remain compatible with global order.
+
+SERIES ROADMAP (8 PARTS)  
+1 Shift of Objective  
+2 Order & Focus  
+3 Action Design  
+4 Path Ensembles  
+5 Open Systems  
+6 Recursive Action  
+7 Scaling & Recursion  
+8 Realization
+
+## Visual
+
+A tall cream-toned infographic poster uses a rigid grid of boxed panels, with a large condensed black-and-red title at top and a right sidebar of numbered requirements. The central imagery shows nested network diagrams: macro nodes containing smaller micro-state graphs, with red paths marking optimal trajectories and dashed paths marking alternatives. The palette is limited to black, red, teal, and blue, with vintage print texture, thick rules, mathematical notation, arrows, checkmarks, layered pyramids, and action-landscape mini-plots reinforcing the recursion-across-scales theme.

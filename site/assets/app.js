@@ -161,7 +161,7 @@
         d.innerHTML = '<span class="tag">' + p.part + " · " +
           ("00" + p.index).slice(-3) + '</span><img loading="lazy" alt="' +
           p.title.replace(/"/g, "&quot;") + '" data-src="' +
-          ROOT + p.img + '">';
+          ROOT + (p.thumb || p.img) + '">';
         d.addEventListener("click", function () { openModal(idx); });
         g.appendChild(d);
       });
@@ -191,8 +191,8 @@
       var p = state.view[i];
       var codexTabs = p.codex ?
         '<div class="tabs"><button class="active" data-src="c">' +
-        "Claude/codex (archive)</button>" +
-        '<button data-src="x">codex re-pass</button></div>' : "";
+        "Claude (archive)</button>" +
+        '<button data-src="x">codex (comparison)</button></div>' : "";
       modal.querySelector(".inner").innerHTML =
         '<div><img src="' + ROOT + p.img + '" alt=""></div>' +
         '<div><div class="meta">' + p.part + " · panel " + p.index +

@@ -1,170 +1,74 @@
 ## Transcription
-
 ORDERED CREATION / LEAST-ACTION SERIES · 1 / 8
 
-FROM GOODNESS  
-TO ACTION
+FROM GOODNESS TO ACTION
 
-Recasting Tamon-style worldsystems  
-as action-minimizing architectures.
+Recasting Tamon-style worldsystems as action-minimizing architectures.
 
-“We shift the  
-objective from  
-seeking the greatest  
-good to enabling the  
-least action.
+"We shift the objective from seeking the greatest good to enabling the least action"
 
 PARADIGM SHIFT
 
-Old objective
+Old objective — maximize good
+Search the state space to reach a privileged good region.
+W
+w* = privileged good state
+W = privileged good region
 
-maximize good  
-Search the state space to reach  
-a privileged good region.
+→
 
-x_0  
-W  
-w*
-
-w* marked target (good)  
-W privileged good region
-
-New objective
-
-minimize action  
-Select among admissible paths p  
-the one with least action S[p].
-
-p_1  
-p*  
-x_T  
-x_0  
-p_3
-
-p path (trajectory)  
-S[p] action of path p
+New objective — minimize action
+Select among admissible paths p the one with least action S[p].
+x_0 ... x_T
+p* = path (trajectory)
+S[p] = action of path p
+p_1, p_2, p_3
 
 ACTION FORMALISM
+S[p] = Σ_t L(x_t, x_{t+1})
+p* = argmin_p S[p]
+Search becomes path selection under cost.
 
-S[p] = \sum_t L(x_t, x_{t+1})
-
-p* = \argmin_p S[p]
-
-Search becomes path  
-selection under cost.
-
-ORDERED STATE SPACE (POSÉT) AND COVER GRAPH
-
-higher  
-(order)
-
-TOP  
-x_T
-
-lower  
-(order)
-
-BOTTOM  
-x_0
-
-p* least-action path  
-p_1 higher action  
-p_2 higher action  
-p_3 higher action  
-cover relation (adjacency)  
-state  
-x_0 start (lower)  
-x_T goal (higher)
+ORDERED STATE SPACE (POSET) AND COVER GRAPH
+higher order
+lower order
+TOP
+BOTTOM
+p* = least-action path
+p_1, p_2, p_3 = higher-action paths
+admissible transition (adjacency / edge)
+state
+x_0 = start (lower)
+x_T = end (higher)
 
 THE LEAST-ACTION ARCHITECTURE CHAIN
-
-distinction  
-differences arise;  
-entities are  
-distinguished.
-
-order  
-relations constrain  
-arrangements;  
-poset structure  
-emerges.
-
-adjacency  
-cover relations  
-define what can  
-change locally.
-
-action  
-x_t <------> x_{t+1}  
-L(x_t, x_{t+1})  
-local moves incur  
-cost; action  
-accumulates.
-
-path selection  
-trajectories compete;  
-least action path  
-emerges.
-
-realization  
-the worldsystem  
-realizes a trajectory;  
-goods arise  
-indirectly.
+- distinction: differences arise, possibles are distinguished
+- order: relations constrain comparability, structure emerges
+- adjacency: cover relation define what can change locally
+- action: local lawful cost assigns cost across transitions
+- path selection: trajectories compete, minimizers emerge
+- realization: the worldsystem reaches a structured good at low action
 
 INTERPRETATION
-
-The worldsystem need not be engineered to  
-chase the greatest good directly. It may instead  
-be engineered so that admissible trajectories  
-settle onto paths of least action, and only  
-indirectly yield stable goods.
-
-ENGINEER  
-THE LANDSCAPE  
-(order, adjacency,  
-cost structure)
-
-LEAST-ACTION TRAJECTORY  
-EMERGES ENDOGENOUSLY
-
-YIELD  
-STABLE GOODS  
-(indirect  
-consequence)
+The worldsystem need not be engineered to chase the greatest good directly. It may instead be engineered so that admissible trajectories settle onto paths of least action, and only indirectly seek good.
+ENGAGE THE LANDSCAPE
+LEAST-ACTION TRAJECTORY EMERGES CONSEQUENTLY
+FIND STABLE GOODS (lawful consequence)
 
 QUESTIONS
-
-1 What counts as action?
-
-2 Is action local or global?
-
-3 Do low-action paths always  
-yield good outcomes?
-
-4 Can minimization recurse  
-across scales?
+- What counts as action?
+- Is action local or global?
+- Do low-action paths always yield good outcomes?
+- Can minimization recover across scales?
 
 LINKS TO EARLIER INGREDIENTS
+- spatial search: marked-region search
+- weak coupling: enables tiny admissible paths
+- chirality: biases direction of allowed motion
+- tails / open systems: couple gradients and through-flux
+- transfer / stability: guards parcel via flows and descent
 
-spatial search  
-search as trajectory in state space
-
-weak coupling  
-enables many admissible paths
-
-chirality  
-biases direction of allowed moves
-
-tails / open systems  
-sustain gradients and through-flux
-
-transfer / stability  
-goods persist via flows and  
-absorbers
-
-SERIES ROADMAP (8 PARTS) | 1 Shift Objective · 2 Order & Posets · 3 Action Design · 4 Path Ensembles · 5 Open Systems · 6 Emergent Goods · 7 Scaling & Recursion · 8 Realization
+SERIES ROADMAP · 1 / 8: 1 Shift Objective  2 Action Design  3 Path Ensembles  4 Open Systems  5 Emergent Goods  6 Stability & Bounds  7 Realization  8 Synthesis
 
 ## Visual
-
-A vertically stacked poster uses a cream paper texture, thick black panel borders, red/blue accents, and condensed poster typography. The top contrasts an “old objective” blob-like good region with a “new objective” path-selection diagram, while the middle formalizes action and shows a poset/cover graph with competing trajectories. The bottom turns the idea into a left-to-right architecture chain, plus interpretation, questions, and links to prior concepts; arrows, dotted paths, graph nodes, and the red least-action path carry the main visual logic.
+A tall poster in bold Swiss/Bauhaus style with red, black, blue and yellow blocks on cream paper, heavy condensed sans-serif headlines. The top "Paradigm Shift" band contrasts an old-objective scatter (good region W) against a new-objective path diagram with a red minimizing trajectory. The middle shows a node-edge poset graph with a highlighted red least-action path. A horizontal six-step architecture chain of small diagrams runs across, and the bottom is divided into interpretation, questions, and links panels above a roadmap footer strip.
