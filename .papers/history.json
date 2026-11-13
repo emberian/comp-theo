@@ -1,0 +1,157 @@
+[
+  {
+    "repo": "comp-theo",
+    "oid": "e2b6946e447a7e792dad8f0ffd79e58863f9f8ea",
+    "sha256": "3457d087eddd61dcf898ac89151d8f66e26622ca70b163aa3a4a108847dcc3b9",
+    "bytes": 5008269,
+    "library_path": "repo-rescue-2026-11-13/papers/3457d087eddd61dc--AutodidacticUniverse.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/AutodidacticUniverse.pdf",
+      "refs/papers/arxiv-2104.03902.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  },
+  {
+    "repo": "comp-theo",
+    "oid": "6b9a53b584bee3fe6e81598dd9490cc0e9d1e694",
+    "sha256": "da21dcd5e7adacff21b8faacdd6dafccb8f47f77df2b34b9fe16cd2ab2a0eb97",
+    "bytes": 130312,
+    "library_path": "repo-rescue-2026-11-13/papers/da21dcd5e7adacff--Cap_Matching.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/Cap_Matching.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  },
+  {
+    "repo": "comp-theo",
+    "oid": "6478811c5b568489a80e9c2198fe59644b3d1ce4",
+    "sha256": "4961ba791d10dcbcb24c9f02a73dfdbec19b8039760a0791a6781b12049be45b",
+    "bytes": 6688319,
+    "library_path": "repo-rescue-2026-11-13/papers/4961ba791d10dcbc--ConsciousMachines.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/ConsciousMachines.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  },
+  {
+    "repo": "comp-theo",
+    "oid": "0c153df4680419ec7175bc7ba05ba5cc70b220c2",
+    "sha256": "3f7c2d315c740430423dca74eb55990e0165f130e5d2f9c5bc8b35b077518b1a",
+    "bytes": 2846518,
+    "library_path": "repo-rescue-2026-11-13/papers/3f7c2d315c740430--PainfulIntelligence.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/PainfulIntelligence.pdf",
+      "refs/papers/arxiv-2205.15409.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  },
+  {
+    "repo": "comp-theo",
+    "oid": "2ac3ec4cff2ef77d756670611780e4d5d4268d57",
+    "sha256": "95e12e97a4197fea94504d98079dc8efe56c356298eef574760ebacd609961ab",
+    "bytes": 895086,
+    "library_path": "repo-rescue-2026-11-13/papers/95e12e97a4197fea--arxiv-2204.04355.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/arxiv-2204.04355.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  },
+  {
+    "repo": "comp-theo",
+    "oid": "5d7eadccc03d80f26bfc5688a600aa5a8fc92e92",
+    "sha256": "f169deccbff9cf5f2921c28f55919765ab9bc1e5c42c3f6dd9fbf30965f9192d",
+    "bytes": 251364,
+    "library_path": "repo-rescue-2026-11-13/papers/f169deccbff9cf5f--arxiv-2211.14704.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/arxiv-2211.14704.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  },
+  {
+    "repo": "comp-theo",
+    "oid": "eaaf5fba3b8be0f2212e029f88839637b8cf2a7e",
+    "sha256": "7731b1c3a6a75ed4aa3e32a50817d9ea4a8e2f50529ccf156d1bb874b87a78be",
+    "bytes": 467141,
+    "library_path": "repo-rescue-2026-11-13/papers/7731b1c3a6a75ed4--arxiv-2301.07251.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/arxiv-2301.07251.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  },
+  {
+    "repo": "comp-theo",
+    "oid": "9982bad1cc0f196d69e0184c70f5ebb154519fa0",
+    "sha256": "69071aef77f2db0d4835109c561ddce01a8cd95e5c797a8126ee4247ae24ad18",
+    "bytes": 485954,
+    "library_path": "repo-rescue-2026-11-13/papers/69071aef77f2db0d--arxiv-2508.06611.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/arxiv-2508.06611.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  },
+  {
+    "repo": "comp-theo",
+    "oid": "f0505e579d4f40b359f0a54742b68aeb0548d773",
+    "sha256": "23269f33aef430fcb6f9d948177a273e46eb4b7393783b7fa01f4844a570da09",
+    "bytes": 378839,
+    "library_path": "repo-rescue-2026-11-13/papers/23269f33aef430fc--arxiv-2605.04414.pdf",
+    "valid_pdf": true,
+    "reused_existing_library_copy": false,
+    "original_paths": [
+      "refs/papers/arxiv-2605.04414.pdf"
+    ],
+    "observed_commits": [
+      "337fe779199389e6f2462c9861384c333306016c",
+      "7057d9fffd18501b2f7c029f0115dc54ea5e536f",
+      "72332045d645b043414ff6ce885a94095aae1a94"
+    ]
+  }
+]

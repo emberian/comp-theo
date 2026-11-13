@@ -4,3 +4,6 @@ __pycache__/
 *.tmp
 .DS_Store
 labcore/target/
+
+# PDFs live in the local paper library; see PAPERS.txt.
+*.[pP][dD][fF]
