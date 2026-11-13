@@ -1,3 +1,5 @@
+> PDFs live in the local paper library. Restore exact saved versions with `python3 tools/paperbin.py restore`; see [PAPERS.txt](PAPERS.txt).
+
 # Computational Theology — Archive & Archeology
 
 **Live site:** https://emberian.github.io/comp-theo/ — poster browser
