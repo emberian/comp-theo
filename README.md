@@ -19,7 +19,7 @@ the underlying intellectual framework from the primary material.
 ## Layout
 
 ```
-images/ptN/NNN_<id>.png   mirrored posters, album order preserved
+images/ptN/NNN_<id>.webp  full-resolution posters, album order preserved
 manifest.json             ordered index: part, index, imgur id, url, dims
 parsed/ptN/NNN_<id>.md    per-image transcription + visual description
 scripts/fetch_albums.py   re-runnable mirror (parses embedded imgur JSON)
@@ -62,10 +62,17 @@ regenerating `site/data/` via `scripts/build_site_data.py`). Local preview:
 `scripts/serve_site.sh` → http://localhost:8765. Interpretive essays/lessons/
 comparisons are a skeptical outside reading, not the original author's voice.
 
+## Image encoding
+
+All 210 posters remain in this repository at their original dimensions as
+WebP quality 97 copies, selected after visual comparison. The source Imgur
+URLs, original MIME types and SHA256 hashes remain in `manifest.json`.
+See [IMAGE-ENCODING.md](IMAGE-ENCODING.md) for encoding and original recovery.
+
 ## Reproduce
 
 ```sh
-python3 scripts/fetch_albums.py        # mirror images + manifest
+python3 scripts/fetch_albums.py        # mirror + encode (requires cwebp/libwebp)
 scripts/parse_images.sh 5              # parse via `codex exec` vision
                                        # (needs `codex` logged in; resumable)
 CODEX_MODEL=gpt-5.5 scripts/parse_images.sh 5   # to pin a model
