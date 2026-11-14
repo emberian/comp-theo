@@ -2,13 +2,16 @@
 """Mirror the Computational Theology imgur albums into images/.
 
 Parses the `postDataJSON` blob embedded in each gallery page (no API key
-needed), preserves album order, and downloads full-resolution media.
+needed), preserves album order, and stores full-resolution WebP copies. Original source URLs and hashes are
+retained in manifest.json; see IMAGE-ENCODING.md.
 """
 import html
+import hashlib
 import json
 import os
 import re
 import sys
+from image_encoding import encode_webp
 import time
 import urllib.request
 
@@ -58,7 +61,10 @@ def parse_album(page_html):
 
 def main():
     os.makedirs(IMG_DIR, exist_ok=True)
-    manifest = []
+    manifest_path = os.path.join(ROOT, "manifest.json")
+    previous = json.load(open(manifest_path)) if os.path.exists(manifest_path) else []
+    existing = {(r["part"], r["id"]): r for r in previous}
+    manifest, failures = [], []
     for part, slug in ALBUMS:
         print(f"== {part}: {slug} ==")
         page = get(f"https://imgur.com/gallery/{slug}")
@@ -71,7 +77,8 @@ def main():
             mid = item.get("id")
             ext = item.get("ext") or "png"
             url = item.get("url") or f"https://i.imgur.com/{mid}.{ext}"
-            fn = f"{i:03d}_{mid}.{ext}"
+            source_fn = f"{i:03d}_{mid}.{ext}"
+            fn = f"{i:03d}_{mid}.webp"
             dest = os.path.join(part_dir, fn)
             rec = {
                 "part": part, "index": i, "id": mid, "url": url,
@@ -80,20 +87,38 @@ def main():
                 "mime": item.get("mime_type"),
                 "metadata": item.get("metadata", {}),
             }
-            manifest.append(rec)
+            old = existing.get((part, mid))
             if os.path.exists(dest) and os.path.getsize(dest) > 0:
+                if not old or old.get("file") != rec["file"] or old.get("mime") != "image/webp":
+                    raise RuntimeError(f"Unindexed existing image: {dest}; refusing to overwrite provenance")
+                if hashlib.sha256(open(dest, "rb").read()).hexdigest() != old.get("sha256"):
+                    raise RuntimeError(f"Image differs from recorded hash: {dest}")
+                manifest.append(old)
                 print(f"   [skip] {fn}")
                 continue
             try:
                 blob = get(url, binary=True)
-                with open(dest, "wb") as f:
-                    f.write(blob)
-                print(f"   [ok]   {fn} ({len(blob)} bytes)")
+                encoded = encode_webp(blob)
+                rec["source"] = {
+                    "file": f"images/{part}/{source_fn}", "mime": rec["mime"],
+                    "sha256": hashlib.sha256(blob).hexdigest(), "bytes": len(blob),
+                }
+                rec["mime"] = "image/webp"
+                rec["sha256"] = hashlib.sha256(encoded).hexdigest()
+                with open(dest + ".tmp", "wb") as f:
+                    f.write(encoded)
+                os.replace(dest + ".tmp", dest)
+                manifest.append(rec)
+                print(f"   [ok]   {fn} ({len(encoded)} bytes)")
             except Exception as e:
+                failures.append(fn)
                 print(f"   [FAIL] {fn}: {e}")
             time.sleep(0.3)
-    with open(os.path.join(ROOT, "manifest.json"), "w") as f:
+    if failures:
+        raise RuntimeError(f"{len(failures)} images failed; previous manifest retained")
+    with open(manifest_path + ".tmp", "w") as f:
         json.dump(manifest, f, indent=2)
+    os.replace(manifest_path + ".tmp", manifest_path)
     print(f"\nWrote manifest.json with {len(manifest)} entries")
 
 
